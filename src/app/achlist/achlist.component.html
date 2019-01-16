@@ -1,7 +1,8 @@
+
 <div id="page-wrapper">
   <div class="row">
     <!--  page header -->
-    
+    <h1 class="text-center">List of User</h1>
     <!-- end  page header -->
     
   </div>
@@ -23,48 +24,29 @@
                   <th class="sr_width text-center">#</th>
                   <th class="">Firstname</th>
                   <th class="">Lastname</th>
-                  <th class="">Homeaddress</th>
-                  <th class="">Phone</th>
+                  <th class="">Address</th>
+                  <th class="">Phone Number</th>
                   <th class="">Email</th>
-                  <th class="">Bankname</th>
-                  <th class="">Bankaddress</th>
-                  <th class="">Bankacno</th>
-                  <th class="">IFSC code</th>
-                  <th class="">Account Type</th>
-                  <th class="">Bankphone</th>
-                 
+                  <th class="">PAN card</th>
+                  <th class="">Addressproof</th>
+                  <th class="">Action</th>
                   
                   
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let department of departmentList; let i = index">
+                <tr *ngFor="let ach of achlist; let i = index">
                   <td class=" text-center">{{i+1}}</td>
-                  <td>{{achlist.firstname}}</td>
-                  <td class="text-center">
-                    <div class="activeyes_box" data-toggle="tooltip" data-placement="top" [attr.title]="department.IsActive==1 ? 'Active' : 'Deactive'">
-                      <input type="checkbox" name="active1" id="active{{i}}" (change)="isActiveChange(department,i)"
-                        [checked]="department.IsActive==1" value="Yes">
-                      <label for="active{{i}}"></label>
-                    </div>
-                  </td>
-                  <td class="text-center">
-                    <div class="inline_delbtn tooltip_inline" title="Edit" data-toggle="tooltip" data-placement="bottom">
-                      <button class="btn btn-default btn-rounded btn-sm" routerLink="/department/edit/{{department.DepartmentId}}">
-                        <span class="fa fa-pencil"></span>
-                      </button>
-                    </div>
-                    <div *ngIf="department.isdisabled>0" class="inline_delbtn tooltip_inline" data-toggle="tooltip" data-placement="bottom" title="Department can't be deleted as it is already used in Job Title.">
-                      <button [disabled]="department.isdisabled>0" data-type="Record"
-                        class="btn btn-danger btn-rounded btn-sm delete-user-row-with-ajax-button"><span class="fa fa-times"></span></button>
-                    </div>
-                    <div *ngIf="department.isdisabled==0" class="inline_delbtn tooltip_inline" data-toggle="tooltip" data-placement="bottom" title="Delete">
-                      <button data-type="Record" class="btn btn-danger btn-rounded btn-sm delete-user-row-with-ajax-button"
-                        (click)="deleteDepartment(department)">
-                        <span class="fa fa-times"></span>
-                      </button>
-                    </div>
-                  </td>
+                  <td>{{ach.FirstName}}</td>
+                  <td>{{ach.LastName}}</td>
+                  <td> {{ach.Address}}</td>
+                  <td> {{ach.PhoneNumber}}</td>
+                  <td> {{ach.EmailAddress}}</td>
+                  <td> {{ach.PanCard}}</td>
+                  <td> {{ach.AddressProof}}</td>
+                  <td><input type="button" class="btn btn-success" value="View Detail" (click)="ViewDetail(ach);"/></td>
+                   
+                   
                 </tr>
                 <tr class="text-center" *ngIf="achlist.length <= 0">
                   <td colspan="4">There is no record found.</td>
@@ -78,4 +60,47 @@
     </div>
   </div>
 </div>
-<!-- end page-wrapper -->
+
+
+
+<!-- 
+<tr  *ngFor="let a of achuserList; let i = index">
+  <td class=" text-center btn btn-success">{{i+1}}</td>
+  <td>{{a.FirstName}}</td>
+  <td>{{a.LastName}}</td>
+</tr> -->
+
+
+<div class="modal fade bs-example-modal-sm" id="Details_Modal" tabindex="-1" role="dialog" aria-labelledby="ach_modal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="pull-left">
+              <h3 class="modal-title" id="myModalLabel">Userdetail</h3>
+            </div>
+            <div class="pull-right">
+              <div class="btn-group add-right">
+                <button type="button" class="btn btn-danger btn-rounded btn-sm delete-user-row-with-ajax-button"
+                  data-dismiss="modal"><span class="fa fa-times"></span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="modal-body">
+        <div class="col-lg-12 col-md-12">
+          
+          <!-- <div class="alert alert-info" *ngIf="evaluationNoteEntity.EvaluationNote!=null">You already Added.</div> -->
+        </div>
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

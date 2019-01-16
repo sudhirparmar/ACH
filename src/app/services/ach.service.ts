@@ -53,4 +53,25 @@ export class AchService {
     return promise;
   }
 
+  ViewDetail(Userid) {
+    debugger
+    let promise = new Promise((resolve, reject) => {
+      this.http.get(this.globals.baseAPIUrl + 'Ach/viewDetail/'+Userid)
+        .toPromise()
+        .then(
+          res => { // Success
+            alert("succss viewdetail");
+            resolve(res);
+          },
+          msg => { // Error
+            alert("error");
+            reject(msg);
+            //  this.globals.isLoading = false;
+            //this.router.navigate(['/pagenotfound']);
+          }
+        );
+    });
+    return promise;
+  }
+
 }
