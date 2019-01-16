@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2019 at 08:25 AM
+-- Generation Time: Jan 16, 2019 at 08:32 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -21,30 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `ach`
 --
-
-DELIMITER $$
---
--- Procedures
---
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addData` (IN `firstname` VARCHAR(100), IN `lastname` VARCHAR(100), IN `Address` TEXT, IN `phoneno` VARCHAR(12), IN `email` VARCHAR(100), IN `pancard` VARCHAR(155), IN `address_proof` VARCHAR(255))  NO SQL
-BEGIN
-START TRANSACTION;
-
-INSERT INTO tblachuser(FirstName,LastName,Address,PhoneNo,Email,PanCard,AddresProof)
-VALUES (firstname,lastname,address,phoneno,email,pancard,address_proof);
-COMMIT;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `getuserdata` ()  NO SQL
-BEGIN
-START TRANSACTION;
-
-SELECT  * from tblachuser;
-
-COMMIT;
-END$$
-
-DELIMITER ;
 
 -- --------------------------------------------------------
 
