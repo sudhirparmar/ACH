@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2019 at 07:25 AM
--- Server version: 10.1.32-MariaDB
--- PHP Version: 7.2.5
+-- Generation Time: Jan 16, 2019 at 08:25 AM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -284,14 +284,15 @@ INSERT INTO `logs` (`id`, `errno`, `errtype`, `errstr`, `errfile`, `errline`, `u
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblachbanks`
+-- Table structure for table `tblbank`
 --
 
-CREATE TABLE `tblachbanks` (
-  `ACHBankId` int(11) NOT NULL,
+CREATE TABLE `tblbank` (
+  `BankId` int(11) NOT NULL,
   `BankName` varchar(255) NOT NULL,
+  `BankIFSCCode` varchar(20) NOT NULL,
   `BankAddress` text NOT NULL,
-  `BankPhoneNo` varchar(12) NOT NULL,
+  `BankPhoneNumber` varchar(12) NOT NULL,
   `IsActive` bit(1) NOT NULL,
   `CreatedBy` int(11) NOT NULL,
   `CreatedOn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -302,39 +303,38 @@ CREATE TABLE `tblachbanks` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblachinfo`
+-- Table structure for table `tbluser`
 --
 
-CREATE TABLE `tblachinfo` (
+CREATE TABLE `tbluser` (
+  `UserId` int(11) NOT NULL,
+  `FirstName` varchar(100) NOT NULL,
+  `LastName` varchar(100) NOT NULL,
+  `Address` text NOT NULL,
+  `PhoneNumber` varchar(13) NOT NULL,
+  `Email` varchar(100) NOT NULL,
+  `PanCard` text NOT NULL,
+  `AddressProof` text NOT NULL,
+  `IsActive` bit(1) NOT NULL,
+  `CreatedBy` int(11) NOT NULL,
+  `CreatedOn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `UpdatedBy` int(11) NOT NULL,
+  `UpdatedOn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbluserbank`
+--
+
+CREATE TABLE `tbluserbank` (
   `ACHInfoId` int(11) NOT NULL,
   `ACHUserId` int(11) NOT NULL,
   `ACHBankId` int(11) NOT NULL,
   `BankAccountNo` varchar(20) NOT NULL,
-  `IFSCCode` varchar(20) NOT NULL,
   `AccountType` varchar(10) NOT NULL,
   `PercOfSalary` decimal(5,2) NOT NULL,
-  `IsActive` bit(1) NOT NULL,
-  `CreatedBy` int(11) NOT NULL,
-  `CreatedOn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `UpdatedBy` int(11) NOT NULL,
-  `UpdatedOn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tblachuser`
---
-
-CREATE TABLE `tblachuser` (
-  `ACHUserid` int(11) NOT NULL,
-  `FirstName` varchar(100) NOT NULL,
-  `LastName` varchar(100) NOT NULL,
-  `Address` text NOT NULL,
-  `PhoneNo` varchar(12) NOT NULL,
-  `Email` varchar(100) NOT NULL,
-  `PanCard` text NOT NULL,
-  `AddressProof` text NOT NULL,
   `IsActive` bit(1) NOT NULL,
   `CreatedBy` int(11) NOT NULL,
   `CreatedOn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -353,24 +353,24 @@ ALTER TABLE `logs`
   ADD PRIMARY KEY (`id`,`ip_address`,`user_agent`);
 
 --
--- Indexes for table `tblachbanks`
+-- Indexes for table `tblbank`
 --
-ALTER TABLE `tblachbanks`
-  ADD PRIMARY KEY (`ACHBankId`);
+ALTER TABLE `tblbank`
+  ADD PRIMARY KEY (`BankId`);
 
 --
--- Indexes for table `tblachinfo`
+-- Indexes for table `tbluser`
 --
-ALTER TABLE `tblachinfo`
+ALTER TABLE `tbluser`
+  ADD PRIMARY KEY (`UserId`);
+
+--
+-- Indexes for table `tbluserbank`
+--
+ALTER TABLE `tbluserbank`
   ADD PRIMARY KEY (`ACHInfoId`),
   ADD KEY `ACHUserId` (`ACHUserId`),
   ADD KEY `ACHBankId` (`ACHBankId`);
-
---
--- Indexes for table `tblachuser`
---
-ALTER TABLE `tblachuser`
-  ADD PRIMARY KEY (`ACHUserid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -383,33 +383,33 @@ ALTER TABLE `logs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=211;
 
 --
--- AUTO_INCREMENT for table `tblachbanks`
+-- AUTO_INCREMENT for table `tblbank`
 --
-ALTER TABLE `tblachbanks`
-  MODIFY `ACHBankId` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tblbank`
+  MODIFY `BankId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tblachinfo`
+-- AUTO_INCREMENT for table `tbluser`
 --
-ALTER TABLE `tblachinfo`
+ALTER TABLE `tbluser`
+  MODIFY `UserId` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tbluserbank`
+--
+ALTER TABLE `tbluserbank`
   MODIFY `ACHInfoId` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tblachuser`
---
-ALTER TABLE `tblachuser`
-  MODIFY `ACHUserid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `tblachinfo`
+-- Constraints for table `tbluserbank`
 --
-ALTER TABLE `tblachinfo`
-  ADD CONSTRAINT `tblachinfo_ibfk_1` FOREIGN KEY (`ACHUserId`) REFERENCES `tblachuser` (`ACHUserid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tblachinfo_ibfk_2` FOREIGN KEY (`ACHBankId`) REFERENCES `tblachbanks` (`ACHBankId`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `tbluserbank`
+  ADD CONSTRAINT `tbluserbank_ibfk_1` FOREIGN KEY (`ACHUserId`) REFERENCES `tbluser` (`UserId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbluserbank_ibfk_2` FOREIGN KEY (`ACHBankId`) REFERENCES `tblbank` (`BankId`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
