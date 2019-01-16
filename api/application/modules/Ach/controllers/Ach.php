@@ -11,15 +11,12 @@ class Ach extends CI_Controller
 		$this->load->model('Ach_model');
 	}
     
-	public function addData()
+	public function addAchForm()
 	{
-		
-		
 		$data = json_decode(trim(file_get_contents('php://input')), true);
-	//	echo json_encode($data);
 		if ($data) {
 			
-				$result = $this->Ach_model->InsertRecord($data); 
+				$result = $this->Ach_model->addAchForm($data); 
 				if($result) {
 					echo json_encode($data);	
 				}

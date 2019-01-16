@@ -12,10 +12,10 @@ export class AchService {
 
   constructor(private http: HttpClient, private globals: Globals,private router: Router){}
   
-  addData(achEntity) {
+  addAchForm(obj) {
     debugger
     let promise = new Promise((resolve, reject) => {
-      this.http.post(this.globals.baseAPIUrl + 'Ach/addData', achEntity)
+      this.http.post(this.globals.baseAPIUrl + 'Ach/addAchForm', obj)
         .toPromise()
         .then(
           res => { // Success
@@ -24,9 +24,7 @@ export class AchService {
           },
           msg => { // Error
             alert("reject");
-
-            reject(msg);
-            
+            reject(msg);            
           }
         );
     });
