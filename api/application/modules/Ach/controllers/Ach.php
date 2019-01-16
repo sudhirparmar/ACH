@@ -42,6 +42,19 @@ class Ach extends CI_Controller
 		}
 		
 	}
+	public function viewDetail($Userid)
+	{
+		$data=$this->Ach_model->viewDetail($Userid);
+		if($data)
+		{
+			echo json_encode($data);
+		}
+		else
+		{
+			return false;
+		}
+		
+	}
 }	
 
 ?>
