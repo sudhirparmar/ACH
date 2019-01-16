@@ -1,0 +1,8 @@
+.error_span
+{
+    color:red;
+}
+
+.red_border {
+    border: solid 1px red;
+}

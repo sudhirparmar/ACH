@@ -1,0 +1,292 @@
+
+<div class="inner_content">
+    <div class="container ">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="content-area">
+                    <div id="main">
+                        <h1 class="text-center">ACH Information</h1>
+                        <hr>
+                        <h2 class="text-center">Your Information</h2>
+                        <div class="separator text-center">
+                            <span class="dott"></span>
+                            <span class="dott"></span>
+                            <span class="dott"></span>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <form class="form-validate" role="form" #achForm="ngForm" (ngSubmit)="add(achForm)">
+
+
+
+                            <div class="ans_block">
+                                <div class="col-md-2 col-sm-3">
+                                    <label class="pull-right mt-5">
+                                        <span class="error_span"> *</span> First Name</label>
+                                </div>
+                                <div class="col-md-4 col-sm-9">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" #firstName="ngModel" [(ngModel)]="achEntity.firstName" name="firstName"  pattern="[a-zA-Z\s]{2,}" maxlength="100"
+                                            [ngClass]="{red_border: (firstName.dirty && firstName.invalid) || (firstName.pristine && submitted)}"
+                                            required>
+
+                                        <span class="error_span" *ngIf="(firstName.dirty && firstName.invalid) || (firstName.pristine && submitted)">
+                                            <span *ngIf="firstName.errors.required || (firstName.pristine && submitted)">Please enter firstname</span>
+                                            <span *ngIf="firstName.errors && firstName.errors.pattern">Please enter valid firstname</span>
+                                        </span>
+
+
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 col-sm-3">
+                                    <label class="pull-right mt-5">
+                                        <span class="error_span">*</span> Last Name</label>
+                                </div>
+                                <div class="col-md-4 col-sm-9">
+                                    <div class="form-group">
+
+                                        <input type="text" class="form-control error_span" #lastName="ngModel" [(ngModel)]="achEntity.lastName" name="lastName" 
+                                        pattern="[a-zA-Z\s]{2,}" maxlength="100"
+                                        [ngClass]="{red_border: (lastName.dirty && lastName.invalid) || (lastName.pristine && submitted)}" required>
+
+                                        <span class="error_span" *ngIf="(lastName.dirty && lastName.invalid) || (lastName.pristine && submitted)">
+                                                <span *ngIf="lastName.errors.required || (firstName.pristine && submitted)">Please enter last name</span>
+                                                <span *ngIf="lastName.errors && lastName.errors.pattern">Please enter valid last name</span>
+                                        </span>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 col-sm-3">
+                                    <label class="pull-right mt-5">
+                                        <span class="error_span">*</span>Home Address</label>
+                                </div>
+                                <div class="col-md-4 col-sm-9">
+                                    <div class="form-group">
+                                        <textarea class="form-control" #homeAddress="ngModel" [(ngModel)]="achEntity.homeAddress" 
+                                         [ngClass]="{red_border: (homeAddress.dirty && homeAddress.invalid) || (homeAddress.pristine && submitted)}"
+                                          name="homeAddress" id="home_address"
+                                            maxlength="500" required></textarea>
+
+                                            <span class="error_span" *ngIf="(homeAddress.dirty && homeAddress.invalid) || (homeAddress.pristine && submitted)">
+                                                    <span *ngIf="homeAddress.errors.required || (homeAddress.pristine && submitted)">Please enter home address</span>
+                                                 
+                                            </span>
+                                        </div>
+
+                                </div>
+
+                                <div class="col-md-2 col-sm-3">
+                                    <label class="pull-right mt-5">
+                                        <span class="error_span">*</span>Phone Number</label>
+                                </div>
+                                <div class="col-md-4 col-sm-9">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" #phone="ngModel" [(ngModel)]="achEntity.phone" 
+                                         [ngClass]="{red_border: (phone.dirty && phone.invalid) || (phone.pristine && submitted)}" name="phone" id="phone" maxlength="10"
+                                            required>
+
+                                        <span class="error_span" *ngIf="(phone.dirty && phone.invalid) || (phone.pristine && submitted)">
+                                                <span *ngIf="phone.errors.required || (phone.pristine && submitted)">Please enter phone</span>
+                                                
+                                        </span>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 col-sm-3">
+                                    <label class="pull-right mt-5">
+                                        <span class="error_span">*</span>Email Address</label>
+                                </div>
+                                <div class="col-md-4 col-sm-9">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" #email="ngModel" [(ngModel)]="achEntity.email"
+                                          [ngClass]="{red_border: (email.dirty && email.invalid) || (email.pristine && submitted)}" name="email" id="email" required>
+                                        <span class="error_span" *ngIf="(email.dirty && email.invalid) || (email.pristine && submitted)">
+                                                <span *ngIf="email.errors.required || (email.pristine && submitted)">Please enter email</span>
+                                                
+                                        </span>
+
+
+
+
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-3">
+                                    <label class="pull-right mt-5">
+                                        <span class="error_span">*</span>Attach PAN Card</label>
+                                </div>
+                                <div class="col-md-4 col-sm-9">
+                                    <div class="form-group">
+                                        <input type="file" #pancard="ngModel" [(ngModel)]="achEntity.pancard"  class="form-control" name="pancard" accept="application/pdf,image/jpg,image/jpeg,image/png,image/jpeg"
+                                        />
+
+                                        <h5>allowed format (.pdf .jpg .jpeg .png)</h5>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-3">
+                                    <label class="pull-right mt-5">
+                                        <span class="error_span">*</span>Attach Address Proof</label>
+                                </div>
+                                <div class="col-md-4 col-sm-9">
+                                    <div class="form-group">
+                                        <input type="file"   #addressproof="ngModel" [(ngModel)]="achEntity.addressproof"  class="form-control" name="addressproof" accept="application/pdf,image/jpg,image/jpeg,image/png,image/jpeg"
+                                        />
+
+                                        <h5>allowed format (.pdf .jpg .jpeg .png)</h5>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <hr>
+
+                                <h2 class="text-center">Bank Information</h2>
+                                <div class="separator text-center">
+                                    <span class="dott"></span>
+                                    <span class="dott"></span>
+                                    <span class="dott"></span>
+                                </div>
+                                <div class="clearfix"></div>
+
+                                <div class="col-md-2 col-sm-3">
+                                    <label class="pull-right mt-5">
+                                        <span class="error_span">*</span>Bank Name</label>
+                                </div>
+                                <div class="col-md-4 col-sm-9">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" #bankName="ngModel" [(ngModel)]="achEntity.bankName"
+                                        [ngClass]="{red_border: (bankName.dirty && bankName.invalid) || (bankName.pristine && submitted)}" name="bankName" id="bank_name"
+                                        maxlength="50" required>
+
+                                        <span class="error_span" *ngIf="(bankName.dirty && bankName.invalid) || (bankName.pristine && submitted)">
+                                                <span *ngIf="bankName.errors.required || (bankName.pristine && submitted)">Please enter bank name</span>
+                                                
+                                        </span>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 col-sm-3">
+                                    <label class="pull-right mt-5">
+                                        <span class="error_span">*</span>Bank Address</label>
+                                </div>
+                                <div class="col-md-4 col-sm-9">
+                                    <div class="form-group">
+                                        <textarea class="form-control" #bankAddress="ngModel" [(ngModel)]="achEntity.bankAddress"
+                                        [ngClass]="{red_border: (bankAddress.dirty && bankAddress.invalid) || (bankAddress.pristine && submitted)}"  name="bankAddress" id="bank_address"
+                                            maxlength="500" required></textarea>
+
+                                            <span class="error_span" *ngIf="(bankAddress.dirty && bankAddress.invalid) || (bankAddress.pristine && submitted)">
+                                                    <span *ngIf="bankAddress.errors.required || (bankAddress.pristine && submitted)">Please enter bank address</span>
+                                                    
+                                            </span>
+
+
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-2 col-sm-3">
+                                    <label class="pull-right mt-5">
+                                        <span class="error_span">*</span>Bank Account Number</label>
+                                </div>
+                                <div class="col-md-4 col-sm-9">
+                                    <div class="form-group">
+                                        <input type="number" #bankAcno="ngModel" [(ngModel)]="achEntity.bankAcno" 
+                                        [ngClass]="{red_border: (bankAcno.dirty && bankAcno.invalid) || (bankAcno.pristine && submitted)}"
+                                        class="form-control" name="bankAcno" id="bank_acno"
+                                            required>
+
+                                        <span class="error_span" *ngIf="(bankAcno.dirty && bankAcno.invalid) || (bankAcno.pristine && submitted)">
+                                                <span *ngIf="bankAcno.errors.required || (bankAcno.pristine && submitted)">Please enter bank account number</span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 col-sm-3">
+                                    <label class="pull-right mt-5">
+                                        <span class="error_span">*</span>IFSC Code</label>
+                                </div>
+                                <div class="col-md-4 col-sm-9">
+                                    <div class="form-group">
+                                        <input type="text" #ifscCode="ngModel" [(ngModel)]="achEntity.ifscCode" 
+                                        [ngClass]="{red_border: (ifscCode.dirty && ifscCode.invalid) || (ifscCode.pristine && submitted)}"
+                                        class="form-control" name="ifscCode" id="ifsc_code"
+                                            required>
+
+                                        <span class="error_span" *ngIf="(ifscCode.dirty && ifscCode.invalid) || (ifscCode.pristine && submitted)">
+                                                <span *ngIf="ifscCode.errors.required || (ifscCode.pristine && submitted)">Please enter bank IFSC code</span>
+                                        </span>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-2 col-sm-3">
+                                    <label class="pull-right atp_title mt-5" style="text-align:right;">
+                                        <span class="error_span">*</span>Account Type</label>
+                                </div>
+                                <div class="col-md-4 col-sm-9">
+                                    <div class="form-group">
+                                        <div class="radio_box">
+                                            <input type="radio" #actype="ngModel" [(ngModel)]="achEntity.actype"  name="actype" value="Current" id="Current" checked="checked" />
+                                            <label for="Current">Current</label>
+                                            <input type="radio"  #actype="ngModel" [(ngModel)]="achEntity.actype"  name="actype" value="Saving" id="Saving" />
+                                            <label for="Saving">Saving</label>
+
+                                        </div>
+                                        
+                                    </div>
+                                    <span id="radio_error"></span>
+                                </div>
+
+
+                                <div class="col-md-2 col-sm-3">
+                                    <label class="pull-right mt-5">
+                                        <span class="error_span">*</span>Bank Phone Number</label>
+                                </div>
+                                <div class="col-md-4 col-sm-9">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" #bankPhone="ngModel" [(ngModel)]="achEntity.bankPhone" 
+                                        [ngClass]="{red_border: (bankPhone.dirty && bankPhone.invalid) || (bankPhone.pristine && submitted)}"
+                                        name="bankPhone" id="bank_phone"
+                                            maxlength="50" required>
+
+                                            <span class="error_span" *ngIf="(bankPhone.dirty && bankPhone.invalid) || (bankPhone.pristine && submitted)">
+                                                    <span *ngIf="bankPhone.errors.required || (bankPhone.pristine && submitted)">Please enter bank phone</span>
+                                            </span>
+
+
+                                    </div>
+                                </div>
+
+
+
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-md-4" id="error" style="color: red"></div>
+                            <div class="clearfix"></div>
+                            <div class="col-md-12">
+                                <div class="form-btn">
+                                    <button type="submit" class="lgn_btn margin_top" id="btn">
+                                        <span>Submit</span>
+                                    </button>
+                                    <img src="assets/images/loader.gif" id="loader" width="30px" height="auto" style="margin-left:15px;display:none;">
+
+                                    <a class="lgn_btn margin_top" href="Ach_List">
+                                        <span>View List</span>
+                                    </a>
+                                    <img src="assets/images/loader.gif" id="loader" width="30px" height="auto" style="margin-left:15px;display:none;">
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

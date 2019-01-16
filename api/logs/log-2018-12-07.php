@@ -1,0 +1,14 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2018-12-07 07:29:23 --> Severity: error --> Exception: syntax error, unexpected '$address_proof_uploads_dir' (T_VARIABLE), expecting function (T_FUNCTION) or const (T_CONST) C:\xampp\htdocs\ACH\application\controllers\AchForm.php 277
+ERROR - 2018-12-07 07:30:27 --> Severity: error --> Exception: syntax error, unexpected '$address_proof_uploads_dir' (T_VARIABLE), expecting function (T_FUNCTION) or const (T_CONST) C:\xampp\htdocs\ACH\application\controllers\AchForm.php 277
+ERROR - 2018-12-07 08:09:20 --> Severity: error --> Exception: syntax error, unexpected '?>', expecting function (T_FUNCTION) or const (T_CONST) C:\xampp\htdocs\ACH\application\controllers\AchForm.php 307
+ERROR - 2018-12-07 08:10:23 --> Query error: Table 'i-atp.ach_padyment' doesn't exist - Invalid query: INSERT INTO `ach_padyment` (`firstname`, `lastname`, `homeaddress`, `phone`, `email`, `pancard`, `address_proof`, `bankname`, `bankaddress`, `bankacno`, `ifsc_code`, `account_type`, `bank_phone`) VALUES ('sudhir', 'parmar', 'abcd', '7567652964', 'abcde@gmail.com', 'pancard_data/checkbox_checked.png', 'address_proof_data/checkbox_checked.png', 'bob', 'fatehgunj', '123412341234', 'sbi01231287', 'Current', '9988776655')
+ERROR - 2018-12-07 08:15:46 --> Query error: Table 'i-atp.ach_padyment' doesn't exist - Invalid query: INSERT INTO `ach_padyment` (`firstname`, `lastname`, `homeaddress`, `phone`, `email`, `pancard`, `address_proof`, `bankname`, `bankaddress`, `bankacno`, `ifsc_code`, `account_type`, `bank_phone`) VALUES ('fswaf', 'wfd', 'sdf', '9998989898', 'sf@gmail.com', 'pancard_data/inner_banner.jpg', 'address_proof_data/checkbox_checked.png', 'sbi', 'fatehgunj', '1234123412341234', 'sbi01239876', 'Current', '9988776655')
+ERROR - 2018-12-07 08:30:28 --> 404 Page Not Found: Pancard_data/OESS%20_ACH%20on%20LH.pdf
+ERROR - 2018-12-07 08:30:31 --> 404 Page Not Found: Address_proof_data/OESS%20_ACH%20on%20LH.pdf
+ERROR - 2018-12-07 11:25:21 --> 404 Page Not Found: Pancard_data/learnfeedback-structure.png
+ERROR - 2018-12-07 11:25:23 --> 404 Page Not Found: Address_proof_data/LFB-Estimate.pdf
+ERROR - 2018-12-07 13:19:38 --> Severity: error --> Exception: syntax error, unexpected 'echo' (T_ECHO) C:\xampp\htdocs\ACH\application\controllers\AchForm.php 207
+ERROR - 2018-12-07 13:21:55 --> Severity: Warning --> move_uploaded_file(http://localhost/ACH/pancard_data/one.jpg): failed to open stream: HTTP wrapper does not support writeable connections C:\xampp\htdocs\ACH\application\controllers\AchForm.php 219
+ERROR - 2018-12-07 13:21:55 --> Severity: Warning --> move_uploaded_file(): Unable to move 'C:\xampp\tmp\php5170.tmp' to 'http://localhost/ACH/pancard_data/one.jpg' C:\xampp\htdocs\ACH\application\controllers\AchForm.php 219
