@@ -11,15 +11,19 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AchComponent } from './ach/ach.component';
-import { AchService} from './services/ach.service';
+import { AchService } from './services/ach.service';
 
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+
 import { AchlistComponent } from './achlist/achlist.component';
+
 import { ThankYouComponent } from './thank-you/thank-you.component';
+
 import { AchInvitationComponent } from './ach-invitation/ach-invitation.component';
 import { AchInvitationListComponent } from './ach-invitation-list/ach-invitation-list.component';
+import { AchInvitationService } from './services/ach-invitation.service';
 
 
 @NgModule({
@@ -27,11 +31,11 @@ import { AchInvitationListComponent } from './ach-invitation-list/ach-invitation
     AppComponent,
     AchComponent,
     HeaderComponent,
-   FooterComponent,
-   AchlistComponent,
-   ThankYouComponent,
-   AchInvitationComponent,
-   AchInvitationListComponent
+    FooterComponent,
+    AchlistComponent,
+    ThankYouComponent,
+    AchInvitationComponent,
+    AchInvitationListComponent
   ],
   imports: [
     BrowserModule,
@@ -40,12 +44,12 @@ import { AchInvitationListComponent } from './ach-invitation-list/ach-invitation
     AppRoutingModule,
     HttpClientModule,
     RouterModule.forRoot([
-        { path: '', component: AchComponent},
-        { path: 'ach-list', component: AchlistComponent},
-        
-     ])
+      { path: '', component: AchComponent },
+      { path: 'ach-list', component: AchlistComponent },
+
+    ])
   ],
-  providers: [Globals,AchService],
+  providers: [Globals, AchService, AchInvitationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
