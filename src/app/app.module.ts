@@ -46,6 +46,8 @@ import { AchInvitationService } from './services/ach-invitation.service';
     RouterModule.forRoot([
       { path: '', component: AchComponent },
       { path: 'ach-list', component: AchlistComponent },
+      { path: 'ach-invitation', component: AchInvitationComponent },
+      { path: 'ach-invitation-list', component: AchInvitationListComponent },
 
     ])
   ],
