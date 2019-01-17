@@ -36,7 +36,7 @@
                 $this->db->select('BankId,BankIFSCCode');
                 $this->db->where('BankIFSCCode',trim($Bank['BankIFSCCode']));
                 $this->db->limit(1);
-                $this->db->from('tblbank');
+                $this->db->from('tblmstbank');
                 $query = $this->db->get();                            
 
                 if ($query->num_rows() != 1) {
@@ -46,7 +46,7 @@
                     "BankPhoneNumber"=>trim($Bank['BankPhoneNumber']),
                     "BankAddress"=>trim($Bank['BankAddress'])
                   );
-                  $result2 = $this->db->insert('tblbank', $bank_data);
+                  $result2 = $this->db->insert('tblmstbank', $bank_data);
                   $BankId = $this->db->insert_id();
                 } else {
                   foreach($query->result() as $row) {
@@ -87,67 +87,39 @@
             return false;
           }
       }
-      public function getAchData()
+      public function getUserData()
       {
-        $query = $this->db->get('tbluser');
-
-        $result = $query->result();
-
-        if($result)
-        {
-          return $result;
-        }
-        else
-        {
+        try{
+          $this->db->select('UserId, FirstName, LastName, Address, PhoneNumber, EmailAddress, PanCard, AddressProof');
+          $result = $this->db->get('tbluser');
+          $db_error = $this->db->error();
+              if (!empty($db_error) && !empty($db_error['code'])) { 
+                throw new Exception('Database error! Error Code [' . $db_error['code'] . '] Error: ' . $db_error['message']);
+                return false; // unreachable return statement !!!
+              }
+          $res=array();
+          if($result->result())
+          {
+            $res=$result->result();
+          }
+          return $res;
+        }catch(Exception $e){
+          trigger_error($e->getMessage(), E_USER_ERROR);
           return false;
         }
       }
-      public function viewDetail($Id)
-      {
-        if($Id)
-        {
-         $this->db->select('user.FirstName, user.LastName, user.Address,user.PhoneNumber,user.EmailAddress');
-         $this->db->where('user.UserId',$Id);
-         $query=$this->db->get('tbluser user');
-
-            $result = $query->result();
-            if($result)
-            {
-              return $result;
-            }
-            else
-            {
-              return false;
-            }
-
-        
+      
+      public function getBankDetails($post_data) {
+        $this->db->select('tb.BankName, tb.BankIFSCCode, tb.BankAddress, tb.BankPhoneNumber, tub.BankAccountNumber, tub.AccountType, tub.PercOfSalary');
+        $this->db->join('tblmstbank tb','tb.BankId=tub.BankId','left');
+        $this->db->where('tub.UserId',$post_data['UserId']);
+        $result = $this->db->get('tbluserbank as tub');	
+        $res = array();
+        if($result->result()) {
+          $res = $result->result();
         }
-        else
-        {
-          return false;
-        }
-        // if($Id)
-        // {
-        //  $this->db->select('tmet.EvaluationTypeId, tmet.EvaluationTypeName, tmet.IsActive');
-        //  $this->db->where('tmet.EvaluationTypeId',$evaluationtypeId);
-        //  $result=$this->db->get('tblmstevaluationtype tmet');
-        //  $evaluationtype_data= array();
-        //  foreach($result->result() as $row)
-        //  {
-        //   $evaluationtype_data=$row;
-          
-        //  }
-        //  return $evaluationtype_data;
-         
-        // }
-        // else
-        // {
-        //   return false;
-        // }
+        return $res;
       }
-     
-        
-       
   }
     
 ?>  

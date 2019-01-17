@@ -26,31 +26,35 @@ class Ach extends CI_Controller
 			return false;
 			}		
 	}
-	public function getAchData()
+	public function getUserData()
 	{
-		$data=$this->Ach_model->getAchData();
-		if($data)
-		{
+		$data=$this->Ach_model->getUserData();
+		if($data){
 			echo json_encode($data);
-		}
-		else
-		{
+		}else{
 			return false;
 		}
-		
 	}
-	public function viewDetail($Userid)
+	public function getBankDetails()
 	{
-		$data=$this->Ach_model->viewDetail($Userid);
-		if($data)
+		$post_data= json_decode(trim(file_get_contents('php://input')), true);
+		if ($post_data)
 		{
+			$data=$this->Ach_model->getBankDetails($post_data);			
 			echo json_encode($data);
+		}		
+	}
+	public function uploadFile()
+	{
+		if($_FILES){
+			if(isset($_FILES['PanCard']) && !empty($_FILES['PanCard'])){
+				move_uploaded_file($_FILES["PanCard"]["tmp_name"], "../src/assets/document/PAN_Card/".$_FILES["PanCard"]["name"]);
+			}
+			if(isset($_FILES['AddressProof']) && !empty($_FILES['AddressProof'])){
+				move_uploaded_file($_FILES["AddressProof"]["tmp_name"], "../src/assets/document/Address_Proof/".$_FILES["AddressProof"]["name"]);
+			}
+			echo json_encode('success');
 		}
-		else
-		{
-			return false;
-		}
-		
 	}
 }	
 

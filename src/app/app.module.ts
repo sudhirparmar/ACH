@@ -17,6 +17,9 @@ import { AchService} from './services/ach.service';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AchlistComponent } from './achlist/achlist.component';
+import { ThankYouComponent } from './thank-you/thank-you.component';
+import { AchInvitationComponent } from './ach-invitation/ach-invitation.component';
+import { AchInvitationListComponent } from './ach-invitation-list/ach-invitation-list.component';
 
 
 @NgModule({
@@ -25,7 +28,10 @@ import { AchlistComponent } from './achlist/achlist.component';
     AchComponent,
     HeaderComponent,
    FooterComponent,
-   AchlistComponent
+   AchlistComponent,
+   ThankYouComponent,
+   AchInvitationComponent,
+   AchInvitationListComponent
   ],
   imports: [
     BrowserModule,
@@ -34,8 +40,8 @@ import { AchlistComponent } from './achlist/achlist.component';
     AppRoutingModule,
     HttpClientModule,
     RouterModule.forRoot([
-        { path: 'achform', component: AchComponent},
-        { path: 'achlist', component: AchlistComponent},
+        { path: '', component: AchComponent},
+        { path: 'ach-list', component: AchlistComponent},
         
      ])
   ],

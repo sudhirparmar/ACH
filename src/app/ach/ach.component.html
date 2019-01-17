@@ -22,7 +22,7 @@
                                 <div class="col-md-4 col-sm-9">
                                     <div class="form-group">
                                         <input type="text" class="form-control" #FirstName="ngModel" [(ngModel)]="achEntity.FirstName"
-                                            name="FirstName" pattern="[a-zA-Z\s]{2,}" maxlength="50" [ngClass]="{red_border: (FirstName.dirty && FirstName.invalid) || (FirstName.pristine && submitted)}"
+                                            name="FirstName" pattern="[a-zA-Z',&.$\ ]{2,}" maxlength="50" [ngClass]="{red_border: (FirstName.dirty && FirstName.invalid) || (FirstName.pristine && submitted)}"
                                             required>
                                         <span class="error_span" *ngIf="(FirstName.dirty && FirstName.invalid) || (FirstName.pristine && submitted)">
                                             <span *ngIf="FirstName.errors.required || (FirstName.pristine && submitted)">Please
@@ -40,7 +40,7 @@
                                     <div class="form-group">
 
                                         <input type="text" class="form-control" #LastName="ngModel" [(ngModel)]="achEntity.LastName"
-                                            name="LastName" pattern="[a-zA-Z\s]{2,}" maxlength="50" [ngClass]="{red_border: (LastName.dirty && LastName.invalid) || (LastName.pristine && submitted)}"
+                                            name="LastName" pattern="[a-zA-Z',&.$\ ]{2,}" maxlength="50" [ngClass]="{red_border: (LastName.dirty && LastName.invalid) || (LastName.pristine && submitted)}"
                                             required>
                                         <span class="error_span" *ngIf="(LastName.dirty && LastName.invalid) || (LastName.pristine && submitted)">
                                             <span *ngIf="LastName.errors.required || (LastName.pristine && submitted)">Please
@@ -91,9 +91,10 @@
                                 </div>
                                 <div class="col-md-4 col-sm-9">
                                     <div class="form-group">
-                                        <input type="number" class="form-control" #PhoneNumber="ngModel" [(ngModel)]="achEntity.PhoneNumber"
+                                        <input type="text" class="form-control" #PhoneNumber="ngModel" [(ngModel)]="achEntity.PhoneNumber"
                                             [ngClass]="{red_border: (PhoneNumber.dirty && PhoneNumber.invalid) || (PhoneNumber.pristine && submitted)}"
-                                            name="PhoneNumber" id="PhoneNumber" maxlength="10" required>
+                                            name="PhoneNumber" id="PhoneNumber" pattern="[0-9\-.()+\s]{3,13}" maxlength="13"
+                                            required>
                                         <span class="error_span" *ngIf="(PhoneNumber.dirty && PhoneNumber.invalid) || (PhoneNumber.pristine && submitted)">
                                             <span *ngIf="PhoneNumber.errors.required || (PhoneNumber.pristine && submitted)">Please
                                                 enter Phone Number</span>
@@ -110,7 +111,7 @@
                                 <div class="col-md-4 col-sm-9">
                                     <div class="form-group">
                                         <input type="file" #PanCard="ngModel" [(ngModel)]="achEntity.PanCard" class="form-control"
-                                            name="PanCard" accept="application/pdf,image/jpg,image/jpeg,image/png" />
+                                            id="PanCard" name="PanCard" accept="application/pdf,image/jpg,image/jpeg,image/png" />
                                         <h5>allowed format (.pdf .jpg .jpeg .png)</h5>
                                     </div>
                                 </div>
@@ -121,7 +122,7 @@
                                 <div class="col-md-4 col-sm-9">
                                     <div class="form-group">
                                         <input type="file" #AddressProof="ngModel" [(ngModel)]="achEntity.AddressProof"
-                                            class="form-control" name="AddressProof" accept="application/pdf,image/jpg,image/jpeg,image/png" />
+                                            class="form-control" id="AddressProof" name="AddressProof" accept="application/pdf,image/jpg,image/jpeg,image/png" />
                                         <h5>allowed format (.pdf .jpg .jpeg .png)</h5>
                                     </div>
                                 </div>
@@ -157,12 +158,15 @@
                                     </div>
                                     <div class="col-md-4 col-sm-9">
                                         <div class="form-group">
-                                            <input type="number" #BankAccountNumber="ngModel" [(ngModel)]="bankList[i].BankAccountNumber"
+                                            <input type="text" #BankAccountNumber="ngModel" [(ngModel)]="bankList[i].BankAccountNumber"
                                                 [ngClass]="{red_border: (BankAccountNumber.dirty && BankAccountNumber.invalid) || (BankAccountNumber.pristine && submitted)}"
-                                                class="form-control" name="BankAccountNumber{{i}}" id="bank_acno" required>
+                                                class="form-control" name="BankAccountNumber{{i}}" id="bank_acno"
+                                                pattern="[0-9]{9,18}" maxlength="18" required>
                                             <span class="error_span" *ngIf="(BankAccountNumber.dirty && BankAccountNumber.invalid) || (BankAccountNumber.pristine && submitted)">
                                                 <span *ngIf="BankAccountNumber.errors.required || (BankAccountNumber.pristine && submitted)">Please
                                                     enter Bank Account Number</span>
+                                                <span *ngIf="BankAccountNumber.errors && BankAccountNumber.errors.pattern">Length
+                                                    should be of 9 numeric characters to 18 numeric characters.</span>
                                             </span>
                                         </div>
                                     </div>
@@ -183,7 +187,7 @@
                                                     enter Bank IFSC Code</span>
                                                 <span *ngIf="BankIFSCCode.errors && BankIFSCCode.errors.pattern">Please
                                                     enter
-                                                    valid Bank IFSC Code (ABCD1234567)</span>
+                                                    valid Bank IFSC Code (Should like ABCD1234567)</span>
                                             </span>
                                         </div>
                                     </div>
@@ -193,13 +197,16 @@
                                     </div>
                                     <div class="col-md-4 col-sm-9">
                                         <div class="form-group">
-                                            <input type="number" class="form-control" #BankPhoneNumber="ngModel"
+                                            <input type="text" class="form-control" #BankPhoneNumber="ngModel"
                                                 [(ngModel)]="bankList[i].BankPhoneNumber" [ngClass]="{red_border: (BankPhoneNumber.dirty && BankPhoneNumber.invalid) || (BankPhoneNumber.pristine && submitted)}"
-                                                name="BankPhoneNumber{{i}}" id="bank_phone" ng-maxlength="10" required>
+                                                name="BankPhoneNumber{{i}}" id="bank_phone" pattern="[0-9\-.()+\s]{3,13}"
+                                                maxlength="13" required>
 
                                             <span class="error_span" *ngIf="(BankPhoneNumber.dirty && BankPhoneNumber.invalid) || (BankPhoneNumber.pristine && submitted)">
                                                 <span *ngIf="BankPhoneNumber.errors.required || (BankPhoneNumber.pristine && submitted)">Please
                                                     enter Bank Phone Number</span>
+                                                <span *ngIf="BankPhoneNumber.errors && BankPhoneNumber.errors.pattern">Please
+                                                    enter valid Bank Phone Number</span>
                                             </span>
                                         </div>
                                     </div>
@@ -225,13 +232,16 @@
                                     </div>
                                     <div class="col-md-4 col-sm-9">
                                         <div class="form-group">
-                                            <input type="number" class="form-control" #PercOfSalary="ngModel"
-                                                [(ngModel)]="bankList[i].PercOfSalary" [ngClass]="{red_border: (PercOfSalary.dirty && PercOfSalary.invalid) || (PercOfSalary.pristine && submitted)}"
-                                                name="PercOfSalary{{i}}" id="bank_phone" maxlength="6" required>
+                                            <input type="text" class="form-control" #PercOfSalary="ngModel" [(ngModel)]="bankList[i].PercOfSalary"
+                                                [ngClass]="{red_border: (PercOfSalary.dirty && PercOfSalary.invalid) || (PercOfSalary.pristine && submitted)}"
+                                                name="PercOfSalary{{i}}" id="bank_phone" pattern="^[1-9]$|^[1-9][0-9]$|^(100)$"
+                                                maxlength="3" required>
 
                                             <span class="error_span" *ngIf="(PercOfSalary.dirty && PercOfSalary.invalid) || (PercOfSalary.pristine && submitted)">
                                                 <span *ngIf="PercOfSalary.errors.required || (PercOfSalary.pristine && submitted)">Please
                                                     enter Payment Percentage</span>
+                                                <span *ngIf="PercOfSalary.errors && PercOfSalary.errors.pattern">Payment
+                                                    Percentage should be only in range of 1 to 100.</span>
                                             </span>
                                         </div>
                                     </div>
@@ -252,12 +262,12 @@
                                         </div>
                                         <span id="radio_error"></span>
                                     </div>
-                                    <button type="button" (click)="RemoveBank(Question)"
-                                        *ngIf="i!=0" class="r-btnRemove btn btn-danger btn-rounded btn-sm" title="Remove Bank">
-                                        <span class="fa fa-times"></span> 
+                                    <button type="button" (click)="RemoveBank(Question)" *ngIf="i!=0" class="r-btnRemove btn btn-danger btn-rounded btn-sm"
+                                        title="Remove Bank">
+                                        <span class="fa fa-times"></span>
                                     </button>
-                                    <button type="button" (click)="AddBank(i)"
-                                        *ngIf="last" class="r-btnAdd btn btn-default btn-rounded btn-sm" title="Add Bank">
+                                    <button type="button" (click)="AddBank(i)" *ngIf="last" class="r-btnAdd btn btn-default btn-rounded btn-sm"
+                                        title="Add Bank">
                                         <span class="fa fa-plus"></span> Add
                                     </button>
                                     <div class="clearfix"></div>
@@ -272,7 +282,7 @@
                                         <span>Submit</span>
                                     </button>
                                     <img src="assets/images/loader.gif" id="loader" width="30px" height="auto" style="margin-left:15px;display:none;">
-                                    <a class="lgn_btn margin_top" href="Ach_List">
+                                    <a class="lgn_btn margin_top" routerLink="/ach-list">
                                         <span>View List</span>
                                     </a>
                                     <img src="assets/images/loader.gif" id="loader" width="30px" height="auto" style="margin-left:15px;display:none;">

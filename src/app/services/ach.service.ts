@@ -10,64 +10,72 @@ import { Globals } from '../globals';
 
 export class AchService {
 
-  constructor(private http: HttpClient, private globals: Globals,private router: Router){}
-  
+  constructor(private http: HttpClient, private globals: Globals, private router: Router) { }
+
   addAchForm(obj) {
     debugger
     let promise = new Promise((resolve, reject) => {
       this.http.post(this.globals.baseAPIUrl + 'Ach/addAchForm', obj)
         .toPromise()
         .then(
-          res => { // Success
-            alert("Record Inserted Successfully");
+          res => {
             resolve(res);
           },
-          msg => { // Error
-            alert("reject");
-            reject(msg);            
+          msg => {
+            reject(msg);
           }
         );
     });
     return promise;
   }
 
- 
-  selectData() {
+
+  getUserData() {
     debugger
     let promise = new Promise((resolve, reject) => {
-      this.http.get(this.globals.baseAPIUrl + 'Ach/getAchData')
+      this.http.get(this.globals.baseAPIUrl + 'Ach/getUserData')
         .toPromise()
         .then(
-          res => { // Success
-            alert("succss");
+          res => {
             resolve(res);
           },
-          msg => { // Error
-            alert("error");
+          msg => {
             reject(msg);
-            //  this.globals.isLoading = false;
-            //this.router.navigate(['/pagenotfound']);
           }
         );
     });
     return promise;
   }
 
-  ViewDetail(Userid) {
+  getBankDetails(user) {
     debugger
     let promise = new Promise((resolve, reject) => {
-      this.http.get(this.globals.baseAPIUrl + 'Ach/viewDetail/'+Userid)
+      this.http.post(this.globals.baseAPIUrl + 'Ach/getBankDetails/', user)
+        .toPromise()
+        .then(
+          res => {
+            resolve(res);
+          },
+          msg => {
+            reject(msg);
+          }
+        );
+    });
+    return promise;
+  }
+
+  uploadFile(file) {
+    let promise = new Promise((resolve, reject) => {
+      this.http.post(this.globals.baseAPIUrl + 'Ach/uploadFile', file)
         .toPromise()
         .then(
           res => { // Success
-            alert("succss viewdetail");
             resolve(res);
           },
           msg => { // Error
-            alert("error");
             reject(msg);
-            //  this.globals.isLoading = false;
-            //this.router.navigate(['/pagenotfound']);
+            this.globals.isLoading = false;
+            this.router.navigate(['/pagenotfound']);
           }
         );
     });

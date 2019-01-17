@@ -61,7 +61,7 @@ class CI_Lib_log
             // Load config filei
             //$this->_ci->load->config('log');
             //Retrieve the table name from the $config array::
-            $this->_log_table_name = ($this->_ci->config->item('logs')) ? $this->_ci->config->item('logs') : 'logs';
+            $this->_log_table_name = ($this->_ci->config->item('tblerrorlog')) ? $this->_ci->config->item('tblerrorlog') : 'tblerrorlog';
         }
         catch (Exception $e) {
             throw new Exception($e->getMessage());
