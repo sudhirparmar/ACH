@@ -76,7 +76,7 @@
                                         <input type="EmailAddress" class="form-control" #EmailAddress="ngModel"
                                             [(ngModel)]="achEntity.EmailAddress" [ngClass]="{red_border: (EmailAddress.dirty && EmailAddress.invalid) || (EmailAddress.pristine && submitted)}"
                                             name="EmailAddress" id="EmailAddress" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
-                                            required>
+                                            required disabled>
                                         <span class="error_span" *ngIf="(EmailAddress.dirty && EmailAddress.invalid) || (EmailAddress.pristine && submitted)">
                                             <span *ngIf="EmailAddress.errors.required || (EmailAddress.pristine && submitted)">Please
                                                 enter Email Address</span>

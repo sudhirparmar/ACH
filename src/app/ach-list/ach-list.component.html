@@ -1,0 +1,124 @@
+<div id="page-wrapper">
+  <div class="row">
+    <!--  page header -->
+    <div class="col-lg-12">
+      <div class="breadcrumb_block">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="page_heading">
+            <h1>List of ACH Users</h1>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12 text-right">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/ach-list"><i class="fa fa-home"></i></a></li>
+            <li class="breadcrumb-item active">ACH Users</li>
+          </ol>
+          <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="btn-group pull-right add-right">
+        <a routerLink="/ach-invitation" class="next_btn">
+          Invite User for ACH
+        </a>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <!-- end  page header -->
+  </div>
+  <div class="alert alert-{{globals.type}}" role="alert" *ngIf="globals.msgflag">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{globals.message}}
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <!-- Advanced Tables -->
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTables-users">
+              <thead>
+                <tr>
+                  <th class="sr_width text-center">#</th>
+                  <th class="">Name</th>
+                  <th class="">Address</th>
+                  <th class="">Phone Number</th>
+                  <th class="">Email</th>
+                  <th class="text-center">PAN card</th>
+                  <th class="text-center">Address Proof</th>
+                  <th class="text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let UserDetail of userList; let i = index">
+                  <td class="text-center">{{i+1}}</td>
+                  <td>{{UserDetail.FirstName}} {{UserDetail.LastName}}</td>
+                  <td>{{UserDetail.Address}}</td>
+                  <td>{{UserDetail.PhoneNumber}}</td>
+                  <td>{{UserDetail.EmailAddress}}</td>
+                  <td class="text-center">
+                    <a href="assets/document/PAN_Card/{{UserDetail.PanCard}}" Download><span class="fa fa-download tooltip_inline"
+                        data-placement="bottom" title="Download PAN Card"></span></a>
+                  </td>
+                  <td class="text-center">
+                    <a href="assets/document/Address_Proof/{{UserDetail.AddressProof}}" Download><span class="fa fa-download tooltip_inline"
+                        data-placement="bottom" title="Download Address Proof"></span></a>
+                  </td>
+                  <td class="text-center"><input type="button" class="btn btn-success" value="View Bank Details"
+                      (click)="ViewBankDetails(UserDetail);" /></td>
+                </tr>
+                <tr class="text-center" *ngIf="userList.length == 0">
+                  <td colspan="8">There is no record found.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!--End Advanced Tables -->
+    </div>
+  </div>
+</div>
+<!-- end page-wrapper -->
+
+<div class="modal fade bs-example-modal-sm" id="BankDetails_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="pull-left">
+              <h3 class="modal-title" id="myModalLabel">Bank Details of {{Name}}</h3>
+            </div>
+            <div class="pull-right">
+              <div class="btn-group add-right">
+                <button type="button" class="btn btn-danger btn-rounded btn-sm delete-user-row-with-ajax-button"
+                  data-dismiss="modal"><span class="fa fa-times"></span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="modal-body">
+        <div class="col-lg-12 col-md-12">
+          <div *ngFor="let BankDetail of bankDetails; let i = index">
+            <div class="col-lg-6 col-md-6">
+              <p *ngIf="bankDetails.length > 1"><strong>Bank - {{i+1}}</strong></p>
+              <p>Name : {{BankDetail.BankName}}</p>
+              <p>Account Number : {{BankDetail.BankAccountNumber}}</p>
+              <p>IFSC Code : {{BankDetail.BankIFSCCode}}</p>
+              <p>Account Type : {{BankDetail.AccountType}}</p>
+              <p>Address : {{BankDetail.BankAddress}}</p>
+              <p>Phone Number : {{BankDetail.BankPhoneNumber}}</p>
+              <p>Perc Of Salary : {{BankDetail.PercOfSalary}}</p>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

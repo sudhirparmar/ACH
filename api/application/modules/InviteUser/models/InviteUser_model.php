@@ -5,6 +5,142 @@
       { 
          parent::__construct();  
       }  
+
+      public function getUserData()
+      {
+        try{
+          $this->db->select('UserId, FirstName, LastName, Address, PhoneNumber, EmailAddress, PanCard, AddressProof');
+          $this->db->where('StatusId','1');
+          $result = $this->db->get('tbluser');
+          $db_error = $this->db->error();
+              if (!empty($db_error) && !empty($db_error['code'])) { 
+                throw new Exception('Database error! Error Code [' . $db_error['code'] . '] Error: ' . $db_error['message']);
+                return false; // unreachable return statement !!!
+              }
+          $res=array();
+          if($result->result())
+          {
+            $res=$result->result();
+          }
+          return $res;
+        }catch(Exception $e){
+          trigger_error($e->getMessage(), E_USER_ERROR);
+          return false;
+        }
+      }
+      
+      public function getBankDetails($post_data) {
+        $this->db->select('tb.BankName, tb.BankIFSCCode, tb.BankAddress, tb.BankPhoneNumber, tub.BankAccountNumber, tub.AccountType, tub.PercOfSalary');
+        $this->db->join('tblmstbank tb','tb.BankId=tub.BankId','left');
+        $this->db->where('tub.UserId',$post_data['UserId']);
+        $result = $this->db->get('tbluserbank as tub');	
+        $res = array();
+        if($result->result()) {
+          $res = $result->result();
+        }
+        return $res;
+      }
+      
+      public function getUserInvitationList()
+      {
+        try{
+          $this->db->select('UserId, EmailAddress, StatusId');
+          $result = $this->db->get('tbluser');
+          $db_error = $this->db->error();
+              if (!empty($db_error) && !empty($db_error['code'])) { 
+                throw new Exception('Database error! Error Code [' . $db_error['code'] . '] Error: ' . $db_error['message']);
+                return false; // unreachable return statement !!!
+              }
+              $res=array();
+              if($result->result())
+              {
+                $res=$result->result();
+              }
+              return $res;
+        }catch(Exception $e){
+          trigger_error($e->getMessage(), E_USER_ERROR);
+          return false;
+        }
+      }
+      
+      public function RevokeUser($data)
+      {
+        try{
+          if($data) {
+            $UserId = $data['id'];
+            $Email = $data['Email'];
+            $data = array( 
+              'Statusid'	=>  2,
+              'InvitationCode' => ''
+            );
+            $this->db->where('UserId', $UserId);
+            $res = $this->db->update('tbluser',$data);
+            if($res){
+              /* ACTIVITY LOG */
+              $activity_log = array(
+                'Module' =>'Revoke User',
+                'Activity'=>'Revoke Invitation of - '.$Email
+              );
+
+              $log = $this->db->insert('tblactivitylog',$activity_log);
+              /* END */
+              return true;
+            }else{
+              return false;
+            }
+          }else{
+            return false;
+          }
+        }catch(Exception $e){
+            trigger_error($e->getMessage(), E_USER_ERROR);
+            return false;
+        }
+      }
+
+       public function ReInviteUser($data)
+       {
+         try{
+           if($data)
+           {
+             $UserId = $data['id'];
+             $InviteCode = $data['InvitationCode'];
+             $Email = $data['Email'];
+            
+             $data = array( 
+              'InvitationCode' => $InviteCode,
+              'Statusid'	=>  0
+            );
+               $this->db->where('UserId', $UserId);
+               $res = $this->db->update('tbluser',$data);
+              
+               if($res)
+               {
+                 /* ACTIVITY LOG */
+                $activity_log = array(
+                  'Module' =>'Re-Invite User',
+                  'Activity'=>'Re-Invitation sent to - '.$Email
+                );
+
+                $log = $this->db->insert('tblactivitylog',$activity_log);
+                /* END */
+                 return $UserId;
+               }
+               else
+               {
+                 return false;
+               }
+           } 
+           else 
+           {
+                   return false;
+           }
+         }
+           catch(Exception $e){
+             trigger_error($e->getMessage(), E_USER_ERROR);
+             return false;
+           }
+        }
+
       public function userInvite($post_Invitation) {
         try{
         if($post_Invitation) {
@@ -30,6 +166,10 @@
               'UpdatedOn' => date('y-m-d H:i:s')
             );
             $res = $this->db->insert('tbluser',$Invitation_data);
+
+            
+            $UserId = $this->db->insert_id();
+
             $db_error = $this->db->error();
             if (!empty($db_error) && !empty($db_error['code'])) { 
               throw new Exception('Database error! Error Code [' . $db_error['code'] . '] Error: ' . $db_error['message']);
@@ -37,7 +177,15 @@
             }
             
             if($res) { 
-              return $res;
+              /* ACTIVITY LOG */
+                $activity_log = array(
+                  'Module' =>'Invite User',
+                  'Activity'=>'Invitation sent to - '.$post_Invitation['EmailAddress']
+                );
+
+                $log = $this->db->insert('tblactivitylog',$activity_log);
+                /* END */
+              return $UserId;
             } else {
               return false;
             }

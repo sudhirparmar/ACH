@@ -89,7 +89,18 @@ define('ACTIVE_GROUP', 'default'); // database mode
 //define('ACTIVE_GROUP', 'QA'); // database mode
 //define('ACTIVE_GROUP', 'Production'); // database mode
 
-define('BASE_URL', 'http://localhost/ACH'); // Base URL - Local
+define('BASE_URL', 'http://localhost:4200/'); // Base URL - Local
 //define('BASE_URL', 'http://ach-form.devbyopeneyes.com/'); // Base URL - Development
 //define('BASE_URL', 'http://iatp.uatbyopeneyes.com'); // Base URL - QA
 //define('BASE_URL', 'http://iatp.uatbyopeneyes.com'); // Base URL - Production<?php
+
+
+
+
+define('SMTP_EMAIL', 'myopeneyes3937@gmail.com');
+define('SMTP_PASSWORD', 'W3lc0m3@2019');
+define('SMTP_HOST', 'ssl://smtp.googlemail.com');
+define('SMTP_PORT', '465');
+define('SMTP_PROTOCOL', 'smtp');
+define('FROM_EMAIL', 'no-reply@theopeneyes.com');
+define('FROM_USER', 'OpenEyes Software Solutions Pvt. Ltd');

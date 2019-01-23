@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import { AchService } from '../services/ach.service';
 import { Globals } from '../globals';
+import { JwtHelper } from 'angular2-jwt';
 declare var $, swal: any;
 
 
@@ -23,7 +24,33 @@ export class AchComponent implements OnInit {
   }
 
   ngOnInit() {
+    debugger
+    this.globals.isLoading = false;
     this.achEntity = {};
+    let id = this.route.snapshot.paramMap.get('id');
+    id = new JwtHelper().decodeToken(id);
+    this.achEntity.EmailAddress = id['EmailAddress'];
+    this.achEntity.UserId = id['UserId'];
+    console.log(this.achEntity.EmailAddress);
+    this.AchService.getACHLink(id)
+			.then((data) => {
+				if (data == 'fail') {
+					swal({
+            title: 'Oops...',  
+            text: "You already filled the ACH Form.",
+            type: "warning"
+					})
+
+					this.router.navigate(['/login']);
+				}
+				this.globals.isLoading = false;
+			},
+				(error) => {
+					//this.btn_disable = false;
+					this.submitted = false;
+					this.globals.isLoading = false;
+					this.router.navigate(['/pagenotfound']);
+				});
 
     var item = { 'BankName': '', 'BankAccountNumber': '', 'BankIFSCCode': '', 'BankPhoneNumber': '', 'BankAddress': '', 'PercOfSalary': '', 'AccountType': 'Current' };
     this.bankList = [];
@@ -92,6 +119,7 @@ export class AchComponent implements OnInit {
                   showConfirmButton: false,
                   timer: 1500
                 })
+                this.router.navigate(['/login']);
               },
                 (error) => {
                   this.submitted = false;

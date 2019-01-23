@@ -1,23 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
+import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { Globals } from './globals';
 import { HttpClientModule } from '@angular/common/http';
 
+import { LoginComponent } from './login/login.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/auth-guard.service';
 
 
-import { AppComponent } from './app.component';
 import { AchComponent } from './ach/ach.component';
 import { AchService } from './services/ach.service';
 
-
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-
-import { AchlistComponent } from './achlist/achlist.component';
+import { AchListComponent } from './ach-list/ach-list.component';
 
 import { ThankYouComponent } from './thank-you/thank-you.component';
 
@@ -25,17 +28,34 @@ import { AchInvitationComponent } from './ach-invitation/ach-invitation.componen
 import { AchInvitationListComponent } from './ach-invitation-list/ach-invitation-list.component';
 import { AchInvitationService } from './services/ach-invitation.service';
 
+import { LoginLogComponent } from './login-log/login-log.component';
+import { ActivityLogComponent } from './activity-log/activity-log.component';
+import { EmailLogComponent } from './email-log/email-log.component';
+import { AuditLogService } from './services/audit-log.service';
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    AchComponent,
+
+    LoginComponent,
     HeaderComponent,
     FooterComponent,
-    AchlistComponent,
+    SidebarComponent,
+
+    AchComponent,
+    AchListComponent,
     ThankYouComponent,
+
     AchInvitationComponent,
-    AchInvitationListComponent
+    AchInvitationListComponent,
+
+    LoginLogComponent,
+    ActivityLogComponent,
+    EmailLogComponent
+
   ],
   imports: [
     BrowserModule,
@@ -44,14 +64,23 @@ import { AchInvitationService } from './services/ach-invitation.service';
     AppRoutingModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { path: '', component: AchComponent },
-      { path: 'ach-list', component: AchlistComponent },
-      { path: 'ach-invitation', component: AchInvitationComponent },
-      { path: 'ach-invitation-list', component: AchInvitationListComponent },
+      { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
+
+      { path: 'ach/:id', component: AchComponent },
+      { path: 'ach-list', component: AchListComponent, canActivate: [AuthGuard] },
+      { path: 'ach-invitation', component: AchInvitationComponent, canActivate: [AuthGuard] },
+      { path: 'ach-invitation-list', component: AchInvitationListComponent, canActivate: [AuthGuard] },
+
+      { path: 'login-log', component: LoginLogComponent, canActivate: [AuthGuard] },
+      { path: 'activity-log', component: ActivityLogComponent, canActivate: [AuthGuard] },
+      { path: 'email-log', component: EmailLogComponent, canActivate: [AuthGuard] },
+
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: '**', redirectTo: 'login' }
 
     ])
   ],
-  providers: [Globals, AchService, AchInvitationService],
+  providers: [Globals, AuthGuard, AuthService, AchService, AchInvitationService, AuditLogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

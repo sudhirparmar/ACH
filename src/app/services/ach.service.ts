@@ -10,8 +10,27 @@ import { Globals } from '../globals';
 
 export class AchService {
 
-  constructor(private http: HttpClient, private globals: Globals, private router: Router) { }
+  constructor(private http: Http, private globals: Globals, private router: Router, private httpc: HttpClient) { }
 
+  getACHLink(UserId) {
+    debugger
+    let promise = new Promise((resolve, reject) => {
+      this.http.post(this.globals.baseAPIUrl + 'Ach/getACHLink', UserId)
+        .toPromise()
+        .then(
+          res => { // Success
+            resolve(res.json());
+          },
+          msg => { // Error
+            reject(msg);
+            // this.globals.isLoading = false;
+            this.router.navigate(['/pagenotfound']);
+          }
+        );
+    });
+    return promise;
+  }
+  
   addAchForm(obj) {
     debugger
     let promise = new Promise((resolve, reject) => {
@@ -19,7 +38,7 @@ export class AchService {
         .toPromise()
         .then(
           res => {
-            resolve(res);
+            resolve(res.json());
           },
           msg => {
             reject(msg);
@@ -30,39 +49,7 @@ export class AchService {
   }
 
 
-  getUserData() {
-    debugger
-    let promise = new Promise((resolve, reject) => {
-      this.http.get(this.globals.baseAPIUrl + 'Ach/getUserData')
-        .toPromise()
-        .then(
-          res => {
-            resolve(res);
-          },
-          msg => {
-            reject(msg);
-          }
-        );
-    });
-    return promise;
-  }
-
-  getBankDetails(user) {
-    debugger
-    let promise = new Promise((resolve, reject) => {
-      this.http.post(this.globals.baseAPIUrl + 'Ach/getBankDetails/', user)
-        .toPromise()
-        .then(
-          res => {
-            resolve(res);
-          },
-          msg => {
-            reject(msg);
-          }
-        );
-    });
-    return promise;
-  }
+  
 
   uploadFile(file) {
     let promise = new Promise((resolve, reject) => {
@@ -70,11 +57,11 @@ export class AchService {
         .toPromise()
         .then(
           res => { // Success
-            resolve(res);
+            resolve(res.json());
           },
           msg => { // Error
             reject(msg);
-            this.globals.isLoading = false;
+            //this.globals.isLoading = false;
             this.router.navigate(['/pagenotfound']);
           }
         );

@@ -23,12 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/ACH/';
-//$config['base_url'] = 'http://localhost/ACH';
- //$config['base_url'] = 'http://ach-form.devbyopeneyes.com/';
-// $config['base_url'] = 'http://iatp.uatbyopeneyes.com/';
-// $config['base_url'] = 'http://iatp.uatbyopeneyes.com/';
-
+$config['base_url'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -526,3 +521,12 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+$config['allowed_cors_headers'] = [
+    'Authorization',
+    'Origin',
+    'X-Requested-With',
+    'Content-Type',
+    'Accept',
+    'Access-Control-Request-Method'
+  ];

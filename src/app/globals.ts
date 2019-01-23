@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { JwtHelper } from 'angular2-jwt';
-import { environment } from '../environments/environment.local';
+import { environment } from '../environments/environment';
 
 @Injectable()
 export class Globals { 

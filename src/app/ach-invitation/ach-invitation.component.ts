@@ -33,12 +33,14 @@ export class AchInvitationComponent implements OnInit {
 
   inviteUser(inviteUserForm) {
 
-    
+    debugger
 
     var email = this.InvitationEntity.EmailAddress;
 
 
     if (inviteUserForm.valid) {
+
+      //alert('valid');
 
       this.btn_disable = true;
       this.globals.isLoading = true;
@@ -52,7 +54,7 @@ export class AchInvitationComponent implements OnInit {
               title: 'Oops...',
               text: 'You already invited this Email Address',
             })
-          } else {
+          } else if(data == 'success') {
             this.btn_disable = false;
             this.submitted = false;
             this.InvitationEntity = {};
@@ -64,16 +66,17 @@ export class AchInvitationComponent implements OnInit {
               showConfirmButton: false,
               timer: 1500
             })
-            this.globals.isLoading = false;
-            this.router.navigate(['/user-invite']);
+            this.router.navigate(['/ach-invitation-list']);
           }
         },
           (error) => {
             this.btn_disable = false;
             this.submitted = false;
             this.globals.isLoading = false;
-            this.router.navigate(['/pagenotfound']);
+            this.router.navigate(['/ach-invitation-list']);
           });
+    }else{
+      alert('invalid');
     }
   }
 }
