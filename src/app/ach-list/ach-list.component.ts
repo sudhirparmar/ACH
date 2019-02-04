@@ -31,6 +31,7 @@ export class AchListComponent implements OnInit {
         $('footer').removeClass('footer_fixed');
       }
     }, 1000);
+    this.globals.isLoading = true;
     this.userList = [];
 
     this.AchInvitationService.getUserData()
@@ -77,10 +78,13 @@ export class AchListComponent implements OnInit {
 
         if (data) {
           this.userList = data;
+          this.globals.isLoading = false;
+        } else {
+          this.globals.isLoading = false;
         }
       },
         (error) => {
-          //this.globals.isLoading = false;
+          this.globals.isLoading = false;
           this.router.navigate(['/pagenotfound']);
         });
 

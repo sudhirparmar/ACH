@@ -18,7 +18,27 @@ class AuditLog extends CI_Controller
 		if($data){
 			echo json_encode($data);
 		}else{
-			return false;
+			echo json_encode('error');
+		}
+	}
+
+	public function getActivityLog()
+	{
+		$data=$this->AuditLog_model->getActivityLog();
+		if($data){
+			echo json_encode($data);
+		}else{
+			echo json_encode('error');
+		}
+	}
+
+	public function getEmailLog()
+	{
+		$data=$this->AuditLog_model->getEmailLog();
+		if($data){
+			echo json_encode($data);
+		}else{
+			echo json_encode('error');
 		}
 	}
 }	

@@ -13,7 +13,7 @@
 		</div>
 		<div class="clearfix"></div>
 		<div class="footer_bottom">
-			<div class="col-md-6 col-sm-6 text-left footer-left">Copyrights &copy; 2018 <a href="http://theopeneyes.com/" target="_blank">OpenEyes Software Solutions Pvt. Ltd</a></div>
+			<div class="col-md-6 col-sm-6 text-left footer-left">Copyrights &copy; 2019 <a href="http://theopeneyes.com/" target="_blank">OpenEyes Software Solutions Pvt. Ltd</a></div>
 				<div class="col-md-6 col-sm-6 text-right footer-right">
 					<ul class="social_links">
 						<li><a href="https://twitter.com/OpenEyesTech" target="_blank"><i class="flaticon-twitter-logo-silhouette" aria-hidden="true"></i></a></li>

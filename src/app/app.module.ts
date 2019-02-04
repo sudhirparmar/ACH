@@ -13,6 +13,10 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ChangePasswordService } from './services/change-password.service';
+
+
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 
@@ -44,6 +48,8 @@ import { AuditLogService } from './services/audit-log.service';
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
+	
+	ChangePasswordComponent,
 
     AchComponent,
     AchListComponent,
@@ -65,6 +71,8 @@ import { AuditLogService } from './services/audit-log.service';
     HttpClientModule,
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
+	  
+	  { path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard] },
 
       { path: 'ach/:id', component: AchComponent },
       { path: 'ach-list', component: AchListComponent, canActivate: [AuthGuard] },
@@ -80,7 +88,7 @@ import { AuditLogService } from './services/audit-log.service';
 
     ])
   ],
-  providers: [Globals, AuthGuard, AuthService, AchService, AchInvitationService, AuditLogService],
+  providers: [Globals, AuthGuard, AuthService, AchService, AchInvitationService, AuditLogService, ChangePasswordService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

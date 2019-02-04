@@ -1,42 +1,30 @@
 <div class="sidebar_wrap" *ngIf="globals.authData!=undefined">
   <ul class="sidebar_box">
-    <li class="sidebar_box_label"><span>Manage</span></li>
-    <li class="dropdown_menu collapsed" id="test_ach" (click)="checkcollapse('ach',1)" data-toggle="collapse" href="#collapseExample1"
-      data-parent="#accordion"><a href="#" title="ACH List" data-toggle="tooltip" data-placement="right"><i class="fa fa-user"></i><span>ACH</span><i
-          class="fa fa-angle-down pull-right"></i></a>
-      <div class="collapse" id="collapseExample1">
-        <ul class="sub_menu">
-          <li [ngClass]="{'active':globals.currentLink=='/ach-list'}"> <a routerLink="/ach-list" title="List"
-              data-toggle="tooltip" data-placement="right"><i class="fa fa-eye"></i><span>List</span></a> </li>
-        </ul>
-      </div>
+    <li class="sidebar_box_label"><span>ACH</span></li>
+    <li [ngClass]="{'active':globals.currentLink=='/ach-list'}" class="dropdown_menu collapsed" id="test_loginlog" (click)="checkcollapse('loginlog',1)" data-toggle="collapse"
+      href="#collapseExample3" data-parent="#accordion"><a routerLink="/ach-list" title="ACH List" data-toggle="tooltip"
+        data-placement="right"><i class="fa fa-university"></i><span>ACH List</span></a>
     </li>
-    <li class="sidebar_box_label"><span>Invitation</span></li>
-    <li class="dropdown_menu collapsed" id="test_invitation" (click)="checkcollapse('invitation',1)" data-toggle="collapse"
-      href="#collapseExample2" data-parent="#accordion"><a href="#" title="Invitaion" data-toggle="tooltip"
-        data-placement="right"><i class="fa fa-user"></i><span>Invitation</span><i class="fa fa-angle-down pull-right"></i></a>
-      <div class="collapse" id="collapseExample2">
-        <ul class="sub_menu">
-          <li [ngClass]="{'active':globals.currentLink=='/ach-invitation'}"> <a routerLink="/ach-invitation" title="Add Invitation"
-              data-toggle="tooltip" data-placement="right"><i class="fa fa-plus"></i><span>Add</span></a> </li>
-          <li [ngClass]="{'active':globals.currentLink=='/ach-invitation-list'}"> <a routerLink="/ach-invitation-list"
-              title="Invitation List" data-toggle="tooltip" data-placement="right"><i class="fa fa-eye"></i><span>List</span></a>
-          </li>
-        </ul>
-      </div>
+    <li [ngClass]="{'active':globals.currentLink=='/ach-invitation'}" class="dropdown_menu collapsed" id="test_activitylog" (click)="checkcollapse('activitylog',1)" data-toggle="collapse"
+      href="#collapseExample3" data-parent="#accordion"><a routerLink="/ach-invitation" title="Invite" data-toggle="tooltip"
+        data-placement="right"><i class="fa fa-user-plus"></i><span>Invite</span></a>
+    </li>
+    <li [ngClass]="{'active':globals.currentLink=='/ach-invitation-list'}" class="dropdown_menu collapsed" id="test_emaillog" (click)="checkcollapse('emaillog',1)" data-toggle="collapse"
+      href="#collapseExample3" data-parent="#accordion"><a routerLink="/ach-invitation-list" title="Invite List" data-toggle="tooltip"
+        data-placement="right"><i class="fa fa-list-alt"></i><span>Invite List</span></a>
     </li>
     <li class="sidebar_box_label"><span>Audit Logs</span></li>
-    <li class="dropdown_menu collapsed" id="test_loginlog" (click)="checkcollapse('loginlog',1)" data-toggle="collapse"
+    <li [ngClass]="{'active':globals.currentLink=='/login-log'}" class="dropdown_menu collapsed" id="test_loginlog" (click)="checkcollapse('loginlog',1)" data-toggle="collapse"
       href="#collapseExample3" data-parent="#accordion"><a routerLink="/login-log" title="Login Logs" data-toggle="tooltip"
-        data-placement="right"><i class="fa fa-user"></i><span>Login Logs</span></a>
+        data-placement="right"><i class="fa fa-key"></i><span>Login Logs</span></a>
     </li>
-    <li class="dropdown_menu collapsed" id="test_activitylog" (click)="checkcollapse('activitylog',1)" data-toggle="collapse"
+    <li [ngClass]="{'active':globals.currentLink=='/activity-log'}" class="dropdown_menu collapsed" id="test_activitylog" (click)="checkcollapse('activitylog',1)" data-toggle="collapse"
       href="#collapseExample3" data-parent="#accordion"><a routerLink="/activity-log" title="Activity Logs" data-toggle="tooltip"
-        data-placement="right"><i class="fa fa-user"></i><span>Activity Logs</span></a>
+        data-placement="right"><i class="fa fa-tasks"></i><span>Activity Logs</span></a>
     </li>
-    <li class="dropdown_menu collapsed" id="test_emaillog" (click)="checkcollapse('emaillog',1)" data-toggle="collapse"
+    <li [ngClass]="{'active':globals.currentLink=='/email-log'}" class="dropdown_menu collapsed" id="test_emaillog" (click)="checkcollapse('emaillog',1)" data-toggle="collapse"
       href="#collapseExample3" data-parent="#accordion"><a routerLink="/email-log" title="Email Logs" data-toggle="tooltip"
-        data-placement="right"><i class="fa fa-user"></i><span>Email Logs</span></a>
+        data-placement="right"><i class="fa fa-envelope"></i><span>Email Logs</span></a>
     </li>
   </ul>
 </div>

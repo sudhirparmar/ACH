@@ -12,7 +12,6 @@ export class AuthService {
 
 	login(loginEntity) {
 		debugger
-		let jwtHelper = new JwtHelper();
 		let promise = new Promise((resolve, reject) => {
 			this.http.post(this.globals.baseAPIUrl + 'Login/check_login', loginEntity, this.globals.headerpath)
 				.toPromise()

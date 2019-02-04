@@ -29,8 +29,9 @@ export class AchInvitationListComponent implements OnInit {
       }
     }, 1000);
 
+    this.globals.isLoading = true;
     this.userList = [];
-
+ 
     this.AchInvitationService.getUserInvitationList()
       .then((data) => {
         debugger
@@ -74,11 +75,14 @@ export class AchInvitationListComponent implements OnInit {
         }, 100);
         if (data) {
           this.userList = data;
+          this.globals.isLoading = false;
+        } else {
+          this.globals.isLoading = false;
         }
 
       },
         (error) => {
-          //this.globals.isLoading = false;
+          this.globals.isLoading = false;
           this.router.navigate(['/pagenotfound']);
         });
   }
@@ -96,7 +100,7 @@ export class AchInvitationListComponent implements OnInit {
       .then((result) => {
         if (result.value) {
           var revoke = { 'UserId': this.globals.authData.UserId, 'id': UserDetail.UserId, 'Email': UserDetail.EmailAddress };
-          //this.globals.isLoading = true;
+          this.globals.isLoading = true;
           this.AchInvitationService.RevokeUser(revoke)
             .then((data) => {
               this.globals.isLoading = false;
@@ -139,7 +143,7 @@ export class AchInvitationListComponent implements OnInit {
       .then((result) => {
         if (result.value) {
           var reinvite = { 'UserId': this.globals.authData.UserId, 'id': UserDetail.UserId, 'Email': UserDetail.EmailAddress };
-          //this.globals.isLoading = true;
+          this.globals.isLoading = true;
           this.AchInvitationService.ReInviteUser(reinvite)
             .then((data) => {
               this.globals.isLoading = false;
@@ -155,6 +159,7 @@ export class AchInvitationListComponent implements OnInit {
               })
             },
               (error) => {
+                this.globals.isLoading = false;
                 if (error.text) {
                   swal({
                     position: 'top-end',

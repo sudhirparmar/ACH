@@ -58,16 +58,6 @@
 
             if($result) {
 
-              /* ACTIVITY LOG */
-              $activity_log = array(
-                'UserId'=>$UserId,
-                'Module' =>'AchForm',
-                'Activity'=>'Fill Ach form by -'.$UserDetails['FirstName']
-              );
-
-              $log = $this->db->insert('tblactivitylog',$activity_log);
-              /* END */
-
               //loop start
               foreach($BankDetails as $Bank){
                 
@@ -86,18 +76,11 @@
                     "BankAddress"=>trim($Bank['BankAddress'])
                   );
                   $result2 = $this->db->insert('tblmstbank', $bank_data);
-
-                  /* ACTIVITY LOG */
-                  $activity_log = array(
-                    'UserId'=>$UserId,
-                    'Module' =>'AchForm',
-                    'Activity'=>'Fill Ach form by -'.$UserDetails['FirstName']
-                  );
-
-                  $log = $this->db->insert('tblactivitylog',$activity_log);
-                  /* END */
-
                   $BankId = $this->db->insert_id();
+
+                  
+
+                  
                 } else {
                   foreach($query->result() as $row) {
                     $BankId=$row->BankId;
@@ -115,7 +98,15 @@
                   $result3 = $this->db->insert('tbluserbank', $userbank_data);
                   if($result3){
 
-                    
+                    /* ACTIVITY LOG */
+                    $activity_log = array(
+                      'UserId'=>$UserId,
+                      'Module' =>'AchForm',
+                      'Activity'=>'Fill Ach form by - '.$UserDetails['FirstName']
+                    );
+
+                    $log = $this->db->insert('tblactivitylog',$activity_log);
+                    /* END */
                   } else {
                     return false;
                   }

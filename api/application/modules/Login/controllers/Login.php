@@ -25,7 +25,7 @@ class Login extends CI_Controller {
 			if ($result)
 			{
 				$token = array(
-				"AdminUserId" => $result[0]->AdminUserId,
+				"UserId" => $result[0]->AdminUserId,
 			    "EmailAddress" => $result[0]->EmailAddress,
 				"FirstName" => $result[0]->FirstName,
 				"LastName" => $result[0]->LastName

@@ -85,14 +85,14 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 define('ACTIVE_GROUP', 'default'); // database mode
-//define('ACTIVE_GROUP', 'Development'); // database mode
-//define('ACTIVE_GROUP', 'QA'); // database mode
-//define('ACTIVE_GROUP', 'Production'); // database mode
+// define('ACTIVE_GROUP', 'Development'); // database mode
+// define('ACTIVE_GROUP', 'QA'); // database mode
+// define('ACTIVE_GROUP', 'Production'); // database mode
 
-define('BASE_URL', 'http://localhost:4200/'); // Base URL - Local
-//define('BASE_URL', 'http://ach-form.devbyopeneyes.com/'); // Base URL - Development
-//define('BASE_URL', 'http://iatp.uatbyopeneyes.com'); // Base URL - QA
-//define('BASE_URL', 'http://iatp.uatbyopeneyes.com'); // Base URL - Production<?php
+define('BASE_URL', 'http://localhost:4200'); // Base URL - Local
+// define('BASE_URL', 'http://ach.devbyopeneyes.com'); // Base URL - Development
+// define('BASE_URL', 'http://ach.uatbyopeneyes.com'); // Base URL - QA
+// define('BASE_URL', 'http://iatp.uatbyopeneyes.com'); // Base URL - Production<?php
 
 
 

@@ -44,14 +44,24 @@
                   <th class="sr_width text-center">#</th>
                   <th class="">Email</th>
                   <th class="text-center">Status</th>
-                  <th class="text-center">Action</th>
+                  <th class="text-center action_width">Action</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let UserDetail of userList; let i = index">
                   <td class="text-center">{{i+1}}</td>
                   <td>{{UserDetail.EmailAddress}}</td>
-                  <td class="text-center">{{UserDetail.StatusId}}</td>
+                  <td class="text-center">
+                    <div *ngIf="UserDetail.StatusId=='0'" class="text-info">
+                      <strong>Pending to fill ACH</strong>
+                    </div>
+                    <div *ngIf="UserDetail.StatusId=='1'" class="text-success">
+                      <strong>ACH Submitted</strong>
+                    </div>
+                    <div *ngIf="UserDetail.StatusId=='2'" class="text-danger">
+                      <strong>Revoked</strong>
+                    </div>
+                  </td>
                   <td class="text-center">
                     <div *ngIf="UserDetail.StatusId=='0'" class="inline_delbtn">
                       <button class="btn btn-danger btn-rounded btn-sm" (click)="RevokeInvitation(UserDetail)">

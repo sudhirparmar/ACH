@@ -1,298 +1,189 @@
-<div class="inner_content">
-    <div class="container ">
-        <div class="row">
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="breadcrumb_block">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="content-area">
-                    <div id="main">
-                        <h1 class="text-center">ACH Information</h1>
-                        <hr>
-                        <h2 class="text-center">Your Information</h2>
-                        <div class="separator text-center">
-                            <span class="dott"></span>
-                            <span class="dott"></span>
-                            <span class="dott"></span>
-                        </div>
-                        <div class="clearfix"></div>
-                        <form class="form-validate" role="form" #achForm="ngForm" (ngSubmit)="addAchForm(achForm)">
-                            <div class="ans_block">
-                                <div class="col-md-2 col-sm-3">
-                                    <label class="pull-right mt-5">
-                                        <span class="error_span"> *</span>First Name</label>
-                                </div>
-                                <div class="col-md-4 col-sm-9">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" #FirstName="ngModel" [(ngModel)]="achEntity.FirstName"
-                                            name="FirstName" pattern="[a-zA-Z',&.$\ ]{2,}" maxlength="50" [ngClass]="{red_border: (FirstName.dirty && FirstName.invalid) || (FirstName.pristine && submitted)}"
-                                            required>
-                                        <span class="error_span" *ngIf="(FirstName.dirty && FirstName.invalid) || (FirstName.pristine && submitted)">
-                                            <span *ngIf="FirstName.errors.required || (FirstName.pristine && submitted)">Please
-                                                enter First Name</span>
-                                            <span *ngIf="FirstName.errors && FirstName.errors.pattern">Please enter
-                                                valid First Name</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 col-sm-3">
-                                    <label class="pull-right mt-5">
-                                        <span class="error_span">*</span>Last Name</label>
-                                </div>
-                                <div class="col-md-4 col-sm-9">
-                                    <div class="form-group">
-
-                                        <input type="text" class="form-control" #LastName="ngModel" [(ngModel)]="achEntity.LastName"
-                                            name="LastName" pattern="[a-zA-Z',&.$\ ]{2,}" maxlength="50" [ngClass]="{red_border: (LastName.dirty && LastName.invalid) || (LastName.pristine && submitted)}"
-                                            required>
-                                        <span class="error_span" *ngIf="(LastName.dirty && LastName.invalid) || (LastName.pristine && submitted)">
-                                            <span *ngIf="LastName.errors.required || (LastName.pristine && submitted)">Please
-                                                enter Last Name</span>
-                                            <span *ngIf="LastName.errors && LastName.errors.pattern">Please enter valid
-                                                Last Name</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-md-2 col-sm-3">
-                                    <label class="pull-right mt-5">
-                                        <span class="error_span">*</span>Resident Address
-                                    </label>
-                                </div>
-                                <div class="col-md-4 col-sm-9">
-                                    <div class="form-group">
-                                        <textarea class="form-control" #Address="ngModel" [(ngModel)]="achEntity.Address"
-                                            [ngClass]="{red_border: (Address.dirty && Address.invalid) || (Address.pristine && submitted)}"
-                                            name="Address" id="home_address" maxlength="500" required></textarea>
-                                        <span class="error_span" *ngIf="(Address.dirty && Address.invalid) || (Address.pristine && submitted)">
-                                            <span *ngIf="Address.errors.required || (Address.pristine && submitted)">Please
-                                                Resident Address</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 col-sm-3">
-                                    <label class="pull-right mt-5">
-                                        <span class="error_span">*</span>Email Address</label>
-                                </div>
-                                <div class="col-md-4 col-sm-9">
-                                    <div class="form-group">
-                                        <input type="EmailAddress" class="form-control" #EmailAddress="ngModel"
-                                            [(ngModel)]="achEntity.EmailAddress" [ngClass]="{red_border: (EmailAddress.dirty && EmailAddress.invalid) || (EmailAddress.pristine && submitted)}"
-                                            name="EmailAddress" id="EmailAddress" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
-                                            required disabled>
-                                        <span class="error_span" *ngIf="(EmailAddress.dirty && EmailAddress.invalid) || (EmailAddress.pristine && submitted)">
-                                            <span *ngIf="EmailAddress.errors.required || (EmailAddress.pristine && submitted)">Please
-                                                enter Email Address</span>
-                                            <span *ngIf="EmailAddress.errors && EmailAddress.errors.pattern">Please
-                                                enter valid Email Address</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 col-sm-3">
-                                    <label class="pull-right mt-5">
-                                        <span class="error_span">*</span>Phone Number</label>
-                                </div>
-                                <div class="col-md-4 col-sm-9">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" #PhoneNumber="ngModel" [(ngModel)]="achEntity.PhoneNumber"
-                                            [ngClass]="{red_border: (PhoneNumber.dirty && PhoneNumber.invalid) || (PhoneNumber.pristine && submitted)}"
-                                            name="PhoneNumber" id="PhoneNumber" pattern="[0-9\-.()+\s]{3,13}" maxlength="13"
-                                            required>
-                                        <span class="error_span" *ngIf="(PhoneNumber.dirty && PhoneNumber.invalid) || (PhoneNumber.pristine && submitted)">
-                                            <span *ngIf="PhoneNumber.errors.required || (PhoneNumber.pristine && submitted)">Please
-                                                enter Phone Number</span>
-                                            <span *ngIf="PhoneNumber.errors && PhoneNumber.errors.pattern">Please enter
-                                                valid Phone Number</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-md-2 col-sm-3">
-                                    <label class="pull-right mt-5">
-                                        <span class="error_span">*</span>Attach PAN Card</label>
-                                </div>
-                                <div class="col-md-4 col-sm-9">
-                                    <div class="form-group">
-                                        <input type="file" #PanCard="ngModel" [(ngModel)]="achEntity.PanCard" class="form-control"
-                                            id="PanCard" name="PanCard" accept="application/pdf,image/jpg,image/jpeg,image/png" />
-                                        <h5>allowed format (.pdf .jpg .jpeg .png)</h5>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 col-sm-3">
-                                    <label class="pull-right mt-5">
-                                        <span class="error_span">*</span>Attach Address Proof</label>
-                                </div>
-                                <div class="col-md-4 col-sm-9">
-                                    <div class="form-group">
-                                        <input type="file" #AddressProof="ngModel" [(ngModel)]="achEntity.AddressProof"
-                                            class="form-control" id="AddressProof" name="AddressProof" accept="application/pdf,image/jpg,image/jpeg,image/png" />
-                                        <h5>allowed format (.pdf .jpg .jpeg .png)</h5>
-                                    </div>
-                                </div>
-                                <div class="clearfix"></div>
-                                <hr>
-                                <h2 class="text-center">Bank Information</h2>
-                                <div class="separator text-center">
-                                    <span class="dott"></span>
-                                    <span class="dott"></span>
-                                    <span class="dott"></span>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="r-group" *ngFor="let Bank of bankList; let i = index; let last = last;">
-                                    <div class="col-md-2 col-sm-3">
-                                        <label class="pull-right mt-5">
-                                            <span class="error_span">*</span>Bank Name</label>
-                                    </div>
-                                    <div class="col-md-4 col-sm-9">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" #BankName="ngModel" [(ngModel)]="bankList[i].BankName"
-                                                [ngClass]="{red_border: (BankName.dirty && BankName.invalid) || (BankName.pristine && submitted)}"
-                                                name="BankName{{i}}" id="bank_name" maxlength="50" required>
-                                            <span class="error_span" *ngIf="(BankName.dirty && BankName.invalid) || (BankName.pristine && submitted)">
-                                                <span *ngIf="BankName.errors.required || (BankName.pristine && submitted)">Please
-                                                    enter Bank Name</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 col-sm-3">
-                                        <label class="pull-right mt-5">
-                                            <span class="error_span">*</span>Account Number
-                                        </label>
-                                    </div>
-                                    <div class="col-md-4 col-sm-9">
-                                        <div class="form-group">
-                                            <input type="text" #BankAccountNumber="ngModel" [(ngModel)]="bankList[i].BankAccountNumber"
-                                                [ngClass]="{red_border: (BankAccountNumber.dirty && BankAccountNumber.invalid) || (BankAccountNumber.pristine && submitted)}"
-                                                class="form-control" name="BankAccountNumber{{i}}" id="bank_acno"
-                                                pattern="[0-9]{9,18}" maxlength="18" required>
-                                            <span class="error_span" *ngIf="(BankAccountNumber.dirty && BankAccountNumber.invalid) || (BankAccountNumber.pristine && submitted)">
-                                                <span *ngIf="BankAccountNumber.errors.required || (BankAccountNumber.pristine && submitted)">Please
-                                                    enter Bank Account Number</span>
-                                                <span *ngIf="BankAccountNumber.errors && BankAccountNumber.errors.pattern">Length
-                                                    should be of 9 numeric characters to 18 numeric characters.</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                    <div class="col-md-2 col-sm-3">
-                                        <label class="pull-right mt-5">
-                                            <span class="error_span">*</span>IFSC Code</label>
-                                    </div>
-                                    <div class="col-md-4 col-sm-9">
-                                        <div class="form-group">
-                                            <input type="text" #BankIFSCCode="ngModel" [(ngModel)]="bankList[i].BankIFSCCode"
-                                                [ngClass]="{red_border: (BankIFSCCode.dirty && BankIFSCCode.invalid) || (BankIFSCCode.pristine && submitted)}"
-                                                class="form-control" name="BankIFSCCode{{i}}" id="ifsc_code" pattern="^[A-Za-z]{4}[0-9]{6,7}$"
-                                                maxlength="11" required>
-
-                                            <span class="error_span" *ngIf="(BankIFSCCode.dirty && BankIFSCCode.invalid) || (BankIFSCCode.pristine && submitted)">
-                                                <span *ngIf="BankIFSCCode.errors.required || (BankIFSCCode.pristine && submitted)">Please
-                                                    enter Bank IFSC Code</span>
-                                                <span *ngIf="BankIFSCCode.errors && BankIFSCCode.errors.pattern">Please
-                                                    enter
-                                                    valid Bank IFSC Code (Should like ABCD1234567)</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 col-sm-3">
-                                        <label class="pull-right mt-5">
-                                            <span class="error_span">*</span>Phone Number</label>
-                                    </div>
-                                    <div class="col-md-4 col-sm-9">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" #BankPhoneNumber="ngModel"
-                                                [(ngModel)]="bankList[i].BankPhoneNumber" [ngClass]="{red_border: (BankPhoneNumber.dirty && BankPhoneNumber.invalid) || (BankPhoneNumber.pristine && submitted)}"
-                                                name="BankPhoneNumber{{i}}" id="bank_phone" pattern="[0-9\-.()+\s]{3,13}"
-                                                maxlength="13" required>
-
-                                            <span class="error_span" *ngIf="(BankPhoneNumber.dirty && BankPhoneNumber.invalid) || (BankPhoneNumber.pristine && submitted)">
-                                                <span *ngIf="BankPhoneNumber.errors.required || (BankPhoneNumber.pristine && submitted)">Please
-                                                    enter Bank Phone Number</span>
-                                                <span *ngIf="BankPhoneNumber.errors && BankPhoneNumber.errors.pattern">Please
-                                                    enter valid Bank Phone Number</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                    <div class="col-md-2 col-sm-3">
-                                        <label class="pull-right mt-5">
-                                            <span class="error_span">*</span>Address</label>
-                                    </div>
-                                    <div class="col-md-4 col-sm-9">
-                                        <div class="form-group">
-                                            <textarea class="form-control" #BankAddress="ngModel" [(ngModel)]="bankList[i].BankAddress"
-                                                [ngClass]="{red_border: (BankAddress.dirty && BankAddress.invalid) || (BankAddress.pristine && submitted)}"
-                                                name="BankAddress{{i}}" id="bank_address" maxlength="500" required></textarea>
-                                            <span class="error_span" *ngIf="(BankAddress.dirty && BankAddress.invalid) || (BankAddress.pristine && submitted)">
-                                                <span *ngIf="BankAddress.errors.required || (BankAddress.pristine && submitted)">Please
-                                                    enter Bank Address</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 col-sm-3">
-                                        <label class="pull-right mt-5">
-                                            <span class="error_span">*</span>Payment Percentage</label>
-                                    </div>
-                                    <div class="col-md-4 col-sm-9">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" #PercOfSalary="ngModel" [(ngModel)]="bankList[i].PercOfSalary"
-                                                [ngClass]="{red_border: (PercOfSalary.dirty && PercOfSalary.invalid) || (PercOfSalary.pristine && submitted)}"
-                                                name="PercOfSalary{{i}}" id="bank_phone" pattern="^[1-9]$|^[1-9][0-9]$|^(100)$"
-                                                maxlength="3" required>
-
-                                            <span class="error_span" *ngIf="(PercOfSalary.dirty && PercOfSalary.invalid) || (PercOfSalary.pristine && submitted)">
-                                                <span *ngIf="PercOfSalary.errors.required || (PercOfSalary.pristine && submitted)">Please
-                                                    enter Payment Percentage</span>
-                                                <span *ngIf="PercOfSalary.errors && PercOfSalary.errors.pattern">Payment
-                                                    Percentage should be only in range of 1 to 100.</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 col-sm-3">
-                                        <label class="pull-right atp_title mt-5" style="text-align:right;">
-                                            <span class="error_span">*</span>Account Type</label>
-                                    </div>
-                                    <div class="col-md-3 col-sm-9">
-                                        <div class="form-group">
-                                            <div class="radio_box">
-                                                <input type="radio" #AccountType="ngModel" [(ngModel)]="bankList[i].AccountType"
-                                                    name="AccountType{{i}}" value="Current" id="Current{{i}}" />
-                                                <label for="Current{{i}}">Current</label>
-                                                <input type="radio" #AccountType="ngModel" [(ngModel)]="bankList[i].AccountType"
-                                                    name="AccountType{{i}}" value="Saving" id="Saving{{i}}" />
-                                                <label for="Saving{{i}}">Saving</label>
-                                            </div>
-                                        </div>
-                                        <span id="radio_error"></span>
-                                    </div>
-                                    <button type="button" (click)="RemoveBank(Question)" *ngIf="i!=0" class="r-btnRemove btn btn-danger btn-rounded btn-sm"
-                                        title="Remove Bank">
-                                        <span class="fa fa-times"></span>
-                                    </button>
-                                    <button type="button" (click)="AddBank(i)" *ngIf="last" class="r-btnAdd btn btn-default btn-rounded btn-sm"
-                                        title="Add Bank">
-                                        <span class="fa fa-plus"></span> Add
-                                    </button>
-                                    <div class="clearfix"></div>
-                                    <hr *ngIf="!last">
-                                </div>
-                            </div>
-                            <div class="col-md-4" id="error" style="color: red"></div>
-                            <div class="clearfix"></div>
-                            <div class="col-md-12">
-                                <div class="form-btn">
-                                    <button type="submit" class="lgn_btn margin_top" id="btn">
-                                        <span>Submit</span>
-                                    </button>
-                                    <img src="assets/images/loader.gif" id="loader" width="30px" height="auto" style="margin-left:15px;display:none;">
-                                    <a class="lgn_btn margin_top" routerLink="/ach-list">
-                                        <span>View List</span>
-                                    </a>
-                                    <img src="assets/images/loader.gif" id="loader" width="30px" height="auto" style="margin-left:15px;display:none;">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                <div class="page_heading text-center">
+                    <h1>ACH Information</h1>
                 </div>
             </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="form-bg">
+            <form class="form-validate" role="form" #achForm="ngForm" (ngSubmit)="addAchForm(achForm)">
+                <div class="form-group col-md-6">
+                    <label><span class="required">*</span>First Name</label>
+                    <input type="text" class="form-control" #FirstName="ngModel" [(ngModel)]="achEntity.FirstName"
+                        [ngClass]="{red_border: (FirstName.dirty && FirstName.invalid) || (FirstName.pristine && submitted)}"
+                        name="FirstName" pattern="[a-zA-Z',&.$\ ]{2,}" maxlength="50" required>
+                    <span class="error_span" *ngIf="(FirstName.dirty && FirstName.invalid) || (FirstName.pristine && submitted)">
+                        <span *ngIf="FirstName.errors.required || (FirstName.pristine && submitted)">Please
+                            enter First Name</span>
+                        <span *ngIf="FirstName.errors && FirstName.errors.pattern">Please
+                            enter valid First Name</span>
+                    </span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label><span class="required">*</span>Last Name</label>
+                    <input type="text" class="form-control" #LastName="ngModel" [(ngModel)]="achEntity.LastName"
+                        [ngClass]="{red_border: (LastName.dirty && LastName.invalid) || (LastName.pristine && submitted)}"
+                        name="LastName" pattern="[a-zA-Z',&.$\ ]{2,}" maxlength="50" required>
+                    <span class="error_span" *ngIf="(LastName.dirty && LastName.invalid) || (LastName.pristine && submitted)">
+                        <span *ngIf="LastName.errors.required || (LastName.pristine && submitted)">Please
+                            enter Last Name</span>
+                        <span *ngIf="LastName.errors && LastName.errors.pattern">Please
+                            enter valid Last Name</span>
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group col-md-6">
+                    <label><span class="required">*</span>Resident Address</label>
+                    <textarea class="form-control" #Address="ngModel" [(ngModel)]="achEntity.Address" [ngClass]="{red_border: (Address.dirty && Address.invalid) || (Address.pristine && submitted)}"
+                        name="Address" maxlength="500" required> </textarea>
+                    <span class="error_span" *ngIf="(Address.dirty && Address.invalid) || (Address.pristine && submitted)">
+                        <span *ngIf="Address.errors.required || (Address.pristine && submitted)">Please
+                            enter Resident Address</span>
+                    </span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label><span class="required">*</span>Email Address</label>
+                    <input type="text" class="form-control" #EmailAddress="ngModel" [(ngModel)]="achEntity.EmailAddress"
+                        name="EmailAddress" disabled>
+                </div>
+                <div class="form-group col-md-6">
+                    <label><span class="required">*</span>Phone Number</label>
+                    <input type="text" class="form-control" #PhoneNumber="ngModel" [(ngModel)]="achEntity.PhoneNumber"
+                        [ngClass]="{red_border: (PhoneNumber.dirty && PhoneNumber.invalid) || (PhoneNumber.pristine && submitted)}"
+                        name="PhoneNumber" pattern="[0-9\-.()+\s]{3,13}" maxlength="13" required>
+                    <span class="error_span" *ngIf="(PhoneNumber.dirty && PhoneNumber.invalid) || (PhoneNumber.pristine && submitted)">
+                        <span *ngIf="PhoneNumber.errors.required || (PhoneNumber.pristine && submitted)">Please
+                            enter Phone Number</span>
+                        <span *ngIf="PhoneNumber.errors && PhoneNumber.errors.pattern">Please
+                            enter valid Phone Number</span>
+                    </span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label><span class="required">*</span>Attach PAN Card</label>
+                    <input type="file" #PanCard="ngModel" [(ngModel)]="achEntity.PanCard" class="form-control" id="PanCard"
+                        name="PanCard" accept="application/pdf,image/jpg,image/jpeg,image/png" />
+                    <h5>allowed format (.pdf .jpg .jpeg .png)</h5>
+                </div>
+                <div class="form-group col-md-6">
+                    <label><span class="required">*</span>Attach Address Proof</label>
+                    <input type="file" #AddressProof="ngModel" [(ngModel)]="achEntity.AddressProof" class="form-control"
+                        id="AddressProof" name="AddressProof" accept="application/pdf,image/jpg,image/jpeg,image/png" />
+                    <h5>allowed format (.pdf .jpg .jpeg .png)</h5>
+                </div>
+                <div class="clearfix"></div>
+                <hr>
+                <h1 class="text-center">Bank Information</h1>
+                <div class="clearfix"></div>
+                <div class="r-group" *ngFor="let Bank of bankList; let i = index; let last = last;">
+                    <div class="form-group col-md-6">
+                        <label><span class="required">*</span>Bank Name</label>
+                        <input type="text" class="form-control" #BankName="ngModel" [(ngModel)]="bankList[i].BankName"
+                            [ngClass]="{red_border: (BankName.dirty && BankName.invalid) || (BankName.pristine && submitted)}"
+                            name="BankName{{i}}" maxlength="50" required>
+                        <span class="error_span" *ngIf="(BankName.dirty && BankName.invalid) || (BankName.pristine && submitted)">
+                            <span *ngIf="BankName.errors.required || (BankName.pristine && submitted)">Please
+                                enter Bank Name</span>
+                        </span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label><span class="required">*</span>Account Number</label>
+                        <input type="text" class="form-control" #BankAccountNumber="ngModel" [(ngModel)]="bankList[i].BankAccountNumber"
+                            [ngClass]="{red_border: (BankAccountNumber.dirty && BankAccountNumber.invalid) || (BankAccountNumber.pristine && submitted)}"
+                            name="BankAccountNumber{{i}}" pattern="[0-9]{9,18}" maxlength="18" required>
+                        <span class="error_span" *ngIf="(BankAccountNumber.dirty && BankAccountNumber.invalid) || (BankAccountNumber.pristine && submitted)">
+                            <span *ngIf="BankAccountNumber.errors.required || (BankAccountNumber.pristine && submitted)">Please
+                                enter Bank Account Number</span>
+                            <span *ngIf="BankAccountNumber.errors && BankAccountNumber.errors.pattern">Length
+                                should be of 9 numeric characters to 18 numeric characters.</span>
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group col-md-6">
+                        <label><span class="required">*</span>IFSC Code</label>
+                        <input type="text" class="form-control" #BankIFSCCode="ngModel" [(ngModel)]="bankList[i].BankIFSCCode"
+                            [ngClass]="{red_border: (BankIFSCCode.dirty && BankIFSCCode.invalid) || (BankIFSCCode.pristine && submitted)}"
+                            name="BankIFSCCode{{i}}" pattern="^[A-Za-z]{4}[0-9]{6,7}$" maxlength="11" required>
+                        <span class="error_span" *ngIf="(BankIFSCCode.dirty && BankIFSCCode.invalid) || (BankIFSCCode.pristine && submitted)">
+                            <span *ngIf="BankIFSCCode.errors.required || (BankIFSCCode.pristine && submitted)">Please
+                                enter Bank IFSC Code</span>
+                            <span *ngIf="BankIFSCCode.errors && BankIFSCCode.errors.pattern">Please enter valid Bank
+                                IFSC Code (Should like ABCD1234567)</span>
+                        </span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label><span class="required">*</span>Phone Number</label>
+                        <input type="text" class="form-control" #BankPhoneNumber="ngModel" [(ngModel)]="bankList[i].BankPhoneNumber"
+                            [ngClass]="{red_border: (BankPhoneNumber.dirty && BankPhoneNumber.invalid) || (BankPhoneNumber.pristine && submitted)}"
+                            name="BankPhoneNumber{{i}}" pattern="[0-9\-.()+\s]{3,13}" maxlength="13" required>
+                        <span class="error_span" *ngIf="(BankPhoneNumber.dirty && BankPhoneNumber.invalid) || (BankPhoneNumber.pristine && submitted)">
+                            <span *ngIf="BankPhoneNumber.errors.required || (BankPhoneNumber.pristine && submitted)">Please
+                                enter Bank Phone Number</span>
+                            <span *ngIf="BankPhoneNumber.errors && BankPhoneNumber.errors.pattern">Please
+                                enter valid Bank Phone Number</span>
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group col-md-6">
+                        <label><span class="required">*</span>Address</label>
+                        <textarea class="form-control" #BankAddress="ngModel" [(ngModel)]="bankList[i].BankAddress"
+                            [ngClass]="{red_border: (BankAddress.dirty && BankAddress.invalid) || (BankAddress.pristine && submitted)}"
+                            name="BankAddress{{i}}" maxlength="500" required> </textarea>
+                        <span class="error_span" *ngIf="(BankAddress.dirty && BankAddress.invalid) || (BankAddress.pristine && submitted)">
+                            <span *ngIf="BankAddress.errors.required || (BankAddress.pristine && submitted)">Please
+                                enter Bank Address</span>
+                        </span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label><span class="required">*</span>Payment Percentage</label>
+                        <input type="text" class="form-control" #PercOfSalary="ngModel" [(ngModel)]="bankList[i].PercOfSalary"
+                            [ngClass]="{red_border: (PercOfSalary.dirty && PercOfSalary.invalid) || (PercOfSalary.pristine && submitted)}"
+                            name="PercOfSalary{{i}}" pattern="^[1-9]$|^[1-9][0-9]$|^(100)$" maxlength="3" required>
+                        <span class="error_span" *ngIf="(PercOfSalary.dirty && PercOfSalary.invalid) || (PercOfSalary.pristine && submitted)">
+                            <span *ngIf="PercOfSalary.errors.required || (PercOfSalary.pristine && submitted)">Please
+                                enter Payment Percentage</span>
+                            <span *ngIf="PercOfSalary.errors && PercOfSalary.errors.pattern">Payment
+                                Percentage should be only in range of 1 to 100.</span>
+                        </span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label><span class="required">*</span>Account Type</label>
+                        <div class="radio_box">
+                            <input type="radio" #AccountType="ngModel" [(ngModel)]="bankList[i].AccountType" name="AccountType{{i}}"
+                                value="Current" id="Current{{i}}" />
+                            <label for="Current{{i}}">Current</label>
+                            <input type="radio" #AccountType="ngModel" [(ngModel)]="bankList[i].AccountType" name="AccountType{{i}}"
+                                value="Saving" id="Saving{{i}}" />
+                            <label for="Saving{{i}}">Saving</label>
+                        </div>
+                    </div>
+                    <button type="button" (click)="RemoveBank(Question)" *ngIf="i!=0" class="r-btnRemove btn btn-danger btn-rounded btn-sm"
+                        title="Remove Bank">
+                        <span class="fa fa-times"></span>
+                    </button>
+                    <button type="button" (click)="AddBank(i)" *ngIf="last" class="r-btnAdd btn btn-default btn-rounded btn-sm"
+                        title="Add Bank">
+                        <span class="fa fa-plus"></span> Add
+                    </button>
+                    <div class="clearfix"></div>
+                    <hr *ngIf="!last">
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 col-sm-12 text-center">
+                    <button type="submit" [disabled]="btn_disable" class="next_btn"><span>Submit</span></button>
+                </div>
+                <div class="clearfix"></div>
+            </form>
         </div>
     </div>
     <div class="clearfix"></div>
 </div>
+<div class="clearfix"></div>
+<!-- End Inner Section -->

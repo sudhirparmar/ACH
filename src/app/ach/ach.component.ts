@@ -32,8 +32,10 @@ export class AchComponent implements OnInit {
     this.achEntity.EmailAddress = id['EmailAddress'];
     this.achEntity.UserId = id['UserId'];
     console.log(this.achEntity.EmailAddress);
+    this.globals.isLoading = true;
     this.AchService.getACHLink(id)
 			.then((data) => {
+        this.globals.isLoading = false;
 				if (data == 'fail') {
 					swal({
             title: 'Oops...',  
@@ -80,7 +82,7 @@ export class AchComponent implements OnInit {
       PanCard=PanCard.replace(/ /g,"_");
       fd.append('PanCard', PanCardFile, PanCard);
       this.achEntity.PanCard = PanCard;
-      alert(this.achEntity.PanCard);
+      //alert(PanCard);
     } else {
       fd.append('PanCard', null);
       this.achEntity.PanCard = null;
@@ -90,7 +92,7 @@ export class AchComponent implements OnInit {
       AddressProof=AddressProof.replace(/ /g,"_");
       fd.append('AddressProof', AddressProofFile, AddressProof);
       this.achEntity.AddressProof = AddressProof;
-      alert(this.achEntity.AddressProof);
+      //alert(AddressProof);
     } else {
       fd.append('AddressProof', null);
       this.achEntity.AddressProof = null;
@@ -111,6 +113,7 @@ export class AchComponent implements OnInit {
                 var item = { 'BankName': '', 'BankAccountNumber': '', 'BankIFSCCode': '', 'BankPhoneNumber': '', 'BankAddress': '', 'PercOfSalary': '', 'AccountType': 'Current' };
                 this.bankList = [];
                 this.bankList.push(item);
+                this.globals.isLoading = false;
                 achForm.form.markAsPristine();
                 swal({
                   position: 'top-end',

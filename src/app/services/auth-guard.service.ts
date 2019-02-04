@@ -30,7 +30,7 @@ export class AuthGuard implements CanActivate {
 	}
 	  if(this.authService.isLoggedIn()==true){	
 
-		if(state.url=='/login' || state.url=='/forgot-password' || state.url.split('/')[1]=='reset-password'){			
+		if(state.url=='/login'){			
 			this.globals.IsLoggedIn = true;
 			
 			this.router.navigate(['/ach-list']);
@@ -41,13 +41,12 @@ export class AuthGuard implements CanActivate {
 			return true;		  
 		}				  
 	  } else {
-		if(state.url=='/login' || state.url=='/forgot-password' || state.url.split('/')[1]=='reset-password'){					   
+		if(state.url=='/login'){					   
 			   this.globals.IsLoggedIn = false;
 			   return true;
 		   } else {
 			   this.globals.IsLoggedIn = false;
 			   this.router.navigate(['/login']);
-			   //window.location.href = '/login';
 			   return false;
 		   }		  
 	  }

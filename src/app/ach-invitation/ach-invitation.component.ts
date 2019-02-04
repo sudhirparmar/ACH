@@ -19,7 +19,9 @@ export class AchInvitationComponent implements OnInit {
 
   constructor(private http: Http, private router: Router, public globals: Globals, private route: ActivatedRoute, private AchInvitationService: AchInvitationService, private elem: ElementRef) { }
 
+
   ngOnInit() {
+    this.globals.isLoading = false;
     setTimeout(function () {
       if ($("body").height() < $(window).height()) {
         $('footer').addClass('footer_fixed');
@@ -28,7 +30,7 @@ export class AchInvitationComponent implements OnInit {
         $('footer').removeClass('footer_fixed');
       }
     }, 1000);
-    this.InvitationEntity= {};
+    this.InvitationEntity = {};
   }
 
   inviteUser(inviteUserForm) {
@@ -39,8 +41,6 @@ export class AchInvitationComponent implements OnInit {
 
 
     if (inviteUserForm.valid) {
-
-      //alert('valid');
 
       this.btn_disable = true;
       this.globals.isLoading = true;
@@ -54,7 +54,7 @@ export class AchInvitationComponent implements OnInit {
               title: 'Oops...',
               text: 'You already invited this Email Address',
             })
-          } else if(data == 'success') {
+          } else if (data == 'success') {
             this.btn_disable = false;
             this.submitted = false;
             this.InvitationEntity = {};
@@ -75,7 +75,7 @@ export class AchInvitationComponent implements OnInit {
             this.globals.isLoading = false;
             this.router.navigate(['/ach-invitation-list']);
           });
-    }else{
+    } else {
       alert('invalid');
     }
   }

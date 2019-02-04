@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
-
+    this.globals.isLoading = false;
     const body = document.querySelector('body');
     var count = $(window).height();
     body.style.setProperty('--screen-height', count + "px");
@@ -31,14 +31,13 @@ export class LoginComponent implements OnInit {
   }
   login(loginForm) {
     debugger
-    //alert("fhdsvfs");
     this.submitted = true;
     if (loginForm.valid) {
       this.btn_disable = true;
-      //this.globals.isLoading = true;
+      this.globals.isLoading = true;
       this.AuthService.login(this.loginEntity)
         .then((data) => {
-          //alert('success');
+          //this.globals.isLoading = false;
           swal({
             position: 'top-end',
             type: 'success',
@@ -46,28 +45,15 @@ export class LoginComponent implements OnInit {
             showConfirmButton: false,
             timer: 1500
           })
-          // else
-          //   {
-          // alert('error');
-          // this.btn_disable = false;
-          // this.submitted = false;
-          // this.invalid = false;
-          // this.loginEntity = {};
-          // loginForm.form.markAsPristine();
-          //   }
-          //this.globals.isLoading = true;
           window.location.href = '/ach-list';
-          //this.router.navigate(['/dashboard']);
-
         },
           (error) => {
-
+            this.globals.isLoading = false;
             swal({
               type: 'warning',
               title: 'Oops...',
               text: 'Either Username or Password is incorrect!',
             })
-            //this.globals.isLoading = false;
             this.btn_disable = false;
             this.submitted = false;
 
