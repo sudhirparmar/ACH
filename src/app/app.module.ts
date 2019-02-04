@@ -3,7 +3,7 @@ import { Component, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+//import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { Globals } from './globals';
 import { HttpClientModule } from '@angular/common/http';
@@ -67,7 +67,7 @@ import { AuditLogService } from './services/audit-log.service';
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule,
+    //AppRoutingModule,
     HttpClientModule,
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
