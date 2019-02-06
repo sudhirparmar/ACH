@@ -9,15 +9,15 @@ class Ach extends CI_Controller
 		$this->load->model('Ach_model');
 	}
     
-	public function getACHLink()
+	public function getUserInfo()
 		{				
-		$post_achlink = json_decode(trim(file_get_contents('php://input')), true);		
-		if ($post_achlink)
+		$post_userinfo = json_decode(trim(file_get_contents('php://input')), true);		
+		if ($post_userinfo)
 			{
-				$result = $this->Ach_model->getACHLink($post_achlink);
+				$result = $this->Ach_model->getUserInfo($post_userinfo);
 				if($result)
 				{
-					echo json_encode('Success');
+					echo json_encode($result);
 				}	
 				else
 				{
@@ -56,6 +56,21 @@ class Ach extends CI_Controller
 			echo json_encode('success');
 		}
 	}
+
+	public function getCountryList()
+	{
+		$data=$this->Ach_model->getCountryList();
+		echo json_encode($data);
+	}
+
+	public function getStateList($CountryId = NULL) {		
+		if(!empty($CountryId)) {
+			$result = [];
+			$result = $this->Ach_model->getStateList($CountryId);			
+			echo json_encode($result);				
+		}			
+	}
+
 }	
 
 ?>

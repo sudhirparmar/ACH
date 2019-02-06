@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost/ACH-master',
+  baseUrl: 'http://localhost/ACH',
   env: 'local'  
 };

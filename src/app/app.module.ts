@@ -37,6 +37,15 @@ import { ActivityLogComponent } from './activity-log/activity-log.component';
 import { EmailLogComponent } from './email-log/email-log.component';
 import { AuditLogService } from './services/audit-log.service';
 
+import { CountryComponent } from './country/country.component';
+import { CountryListComponent } from './country-list/country-list.component';
+import { CountryService } from './services/country.service';
+
+
+import { StateComponent } from './state/state.component';
+import { StateListComponent } from './state-list/state-list.component';
+import { StateService } from './services/state.service';
+
 
 
 
@@ -48,8 +57,8 @@ import { AuditLogService } from './services/audit-log.service';
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
-	
-	ChangePasswordComponent,
+
+    ChangePasswordComponent,
 
     AchComponent,
     AchListComponent,
@@ -60,7 +69,13 @@ import { AuditLogService } from './services/audit-log.service';
 
     LoginLogComponent,
     ActivityLogComponent,
-    EmailLogComponent
+    EmailLogComponent,
+
+    CountryComponent,
+    CountryListComponent,
+
+    StateComponent,
+    StateListComponent
 
   ],
   imports: [
@@ -71,24 +86,33 @@ import { AuditLogService } from './services/audit-log.service';
     HttpClientModule,
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
-	  
-	  { path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard] },
+
+      { path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard] },
 
       { path: 'ach/:id', component: AchComponent },
       { path: 'ach-list', component: AchListComponent, canActivate: [AuthGuard] },
       { path: 'ach-invitation', component: AchInvitationComponent, canActivate: [AuthGuard] },
-      { path: 'ach-invitation-list', component: AchInvitationListComponent, canActivate: [AuthGuard] },
+      { path: 'ach-invitation/list', component: AchInvitationListComponent, canActivate: [AuthGuard] },
 
       { path: 'login-log', component: LoginLogComponent, canActivate: [AuthGuard] },
       { path: 'activity-log', component: ActivityLogComponent, canActivate: [AuthGuard] },
       { path: 'email-log', component: EmailLogComponent, canActivate: [AuthGuard] },
+
+      { path: 'country/add', component: CountryComponent, canActivate: [AuthGuard] },
+      { path: 'country/edit/:id', component: CountryComponent, canActivate: [AuthGuard] },
+      { path: 'country/list', component: CountryListComponent, canActivate: [AuthGuard] },
+
+      { path: 'state/add', component: StateComponent, canActivate: [AuthGuard] },
+      { path: 'state/edit/:id', component: StateComponent, canActivate: [AuthGuard] },
+      { path: 'state/list', component: StateListComponent, canActivate: [AuthGuard] },
+
 
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: '**', redirectTo: 'login' }
 
     ])
   ],
-  providers: [Globals, AuthGuard, AuthService, AchService, AchInvitationService, AuditLogService, ChangePasswordService],
+  providers: [Globals, AuthGuard, AuthService, AchService, AchInvitationService, AuditLogService, ChangePasswordService, CountryService, StateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

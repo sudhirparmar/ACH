@@ -12,10 +12,11 @@ export class AchService {
 
   constructor(private http: Http, private globals: Globals, private router: Router, private httpc: HttpClient) { }
 
-  getACHLink(UserId) {
+
+  getUserInfo(UserInfo) {
     debugger
     let promise = new Promise((resolve, reject) => {
-      this.http.post(this.globals.baseAPIUrl + 'Ach/getACHLink', UserId)
+      this.http.post(this.globals.baseAPIUrl + 'Ach/getUserInfo', UserInfo)
         .toPromise()
         .then(
           res => { // Success
@@ -30,7 +31,43 @@ export class AchService {
     });
     return promise;
   }
-  
+  getUserAddress(UserInfo) {
+    debugger
+    let promise = new Promise((resolve, reject) => {
+      this.http.post(this.globals.baseAPIUrl + 'Ach/getUserAddress', UserInfo)
+        .toPromise()
+        .then(
+          res => { // Success
+            resolve(res.json());
+          },
+          msg => { // Error
+            reject(msg);
+            // this.globals.isLoading = false;
+            this.router.navigate(['/pagenotfound']);
+          }
+        );
+    });
+    return promise;
+  }
+  getBankDetails(UserInfo) {
+    debugger
+    let promise = new Promise((resolve, reject) => {
+      this.http.post(this.globals.baseAPIUrl + 'Ach/getBankDetails', UserInfo)
+        .toPromise()
+        .then(
+          res => { // Success
+            resolve(res.json());
+          },
+          msg => { // Error
+            reject(msg);
+            // this.globals.isLoading = false;
+            this.router.navigate(['/pagenotfound']);
+          }
+        );
+    });
+    return promise;
+  }
+
   addAchForm(obj) {
     debugger
     let promise = new Promise((resolve, reject) => {
@@ -49,7 +86,7 @@ export class AchService {
   }
 
 
-  
+
 
   uploadFile(file) {
     let promise = new Promise((resolve, reject) => {
@@ -63,6 +100,61 @@ export class AchService {
             reject(msg);
             //this.globals.isLoading = false;
             this.router.navigate(['/pagenotfound']);
+          }
+        );
+    });
+    return promise;
+  }
+
+  getCountryList() {
+    debugger
+    let promise = new Promise((resolve, reject) => {
+      this.http.get(this.globals.baseAPIUrl + 'Ach/getCountryList')
+        .toPromise()
+        .then(
+          res => { // Success
+            resolve(res.json());
+          },
+          msg => { // Error
+            reject(msg);
+            //  this.globals.isLoading = false;
+            //this.router.navigate(['/pagenotfound']);
+          }
+        );
+    });
+    return promise;
+  }
+
+  getStateList(CountryId) {
+    let promise = new Promise((resolve, reject) => {
+      this.http.get(this.globals.baseAPIUrl + 'Ach/getStateList/' + CountryId)
+        .toPromise()
+        .then(
+          res => { // Success
+            resolve(res.json());
+          },
+          msg => { // Error
+            reject(msg);
+            // this.globals.isLoading = false;
+            // this.router.navigate(['/pagenotfound']);
+          }
+        );
+    });
+    return promise;
+  }
+
+  getFromIFSC(ifsc) {
+    let promise = new Promise((resolve, reject) => {
+      this.http.get('https://ifsc.razorpay.com/' + ifsc)
+        .toPromise()
+        .then(
+          res => { // Success
+            resolve(res.json());
+          },
+          msg => { // Error
+            reject(msg);
+            // this.globals.isLoading = false;
+            // this.router.navigate(['/pagenotfound']);
           }
         );
     });

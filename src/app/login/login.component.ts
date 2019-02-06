@@ -23,9 +23,11 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     this.globals.isLoading = false;
+
     const body = document.querySelector('body');
     var count = $(window).height();
     body.style.setProperty('--screen-height', count + "px");
+
 
     this.loginEntity = {};
   }
@@ -45,7 +47,13 @@ export class LoginComponent implements OnInit {
             showConfirmButton: false,
             timer: 1500
           })
-          window.location.href = '/ach-list';
+          if (this.globals.authData.RoleId == 2) {
+            window.location.href = '/ach/' + this.globals.authData.UserId;
+          }
+          else {
+            window.location.href = '/ach-list';
+          }
+
         },
           (error) => {
             this.globals.isLoading = false;

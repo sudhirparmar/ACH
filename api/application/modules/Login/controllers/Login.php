@@ -25,10 +25,12 @@ class Login extends CI_Controller {
 			if ($result)
 			{
 				$token = array(
-				"UserId" => $result[0]->AdminUserId,
+				"UserId" => $result[0]->UserId,
+				"RoleId" => $result[0]->RoleId,
 			    "EmailAddress" => $result[0]->EmailAddress,
 				"FirstName" => $result[0]->FirstName,
-				"LastName" => $result[0]->LastName
+				"LastName" => $result[0]->LastName,
+				"StatusId" => $result[0]->StatusId,
 				);
 
 				$jwt = JWT::encode($token, "MyGeneratedKey","HS256");

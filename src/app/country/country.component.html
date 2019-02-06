@@ -1,0 +1,85 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="breadcrumb_block">
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="page_heading">
+          <h1>{{ header }} Country</h1>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-12 text-right">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/ach-list"><i class="fa fa-home"></i></a></li>
+          <li class="breadcrumb-item"><a routerLink="/country/list">Country</a></li>
+          <li class="breadcrumb-item active">{{ header }}</li>
+        </ol>
+        <div class="clearfix"></div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="btn-group pull-right add-right addpage_backbtn">
+      <a routerLink="/country/list" class="back_btn">
+        Back to list
+      </a>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="form-bg">
+      <form class="form-validate" role="form" #countryForm="ngForm" (ngSubmit)="addCountry(countryForm)">
+        <div class="form-group col-md-6">
+          <label><span class="required">*</span>Country Name</label>
+          <input type="text" class="form-control" #CountryName="ngModel" [(ngModel)]="countryEntity.CountryName"
+            [ngClass]="{red_border: (CountryName.dirty && CountryName.invalid) || (CountryName.pristine && submitted)}"
+            name="CountryName" id="CountryName" pattern="[a-zA-Z]{2,}" maxlength="100" required>
+          <span class="error_span" *ngIf="(CountryName.dirty && CountryName.invalid) || (CountryName.pristine && submitted)">
+            <span *ngIf="CountryName.errors.required || (CountryName.pristine && submitted)">Please
+              enter Country</span>
+            <span *ngIf="CountryName.errors && CountryName.errors.pattern">Please
+              enter valid Country</span>
+          </span>
+        </div>
+        <div class="form-group col-md-6">
+          <label><span class="required">*</span>Country Abbreviation</label>
+          <input type="text" class="form-control" #CountryAbbreviation="ngModel" [(ngModel)]="countryEntity.CountryAbbreviation"
+            [ngClass]="{red_border: (CountryAbbreviation.dirty && CountryAbbreviation.invalid) || (CountryAbbreviation.pristine && submitted)}"
+            name="CountryAbbreviation" id="CountryAbbreviation" pattern="[a-zA-Z]{2,}" maxlength="3" required>
+          <span class="error_span" *ngIf="(CountryAbbreviation.dirty && CountryAbbreviation.invalid) || (CountryAbbreviation.pristine && submitted)">
+            <span *ngIf="CountryAbbreviation.errors.required || (CountryAbbreviation.pristine && submitted)">Please
+              enter Country Abbreviation</span>
+            <span *ngIf="CountryAbbreviation.errors && CountryAbbreviation.errors.pattern">Please
+              enter valid Country Abbreviation</span>
+          </span>
+        </div>
+        <div class="clearfix"></div>
+        <div class="form-group col-md-6">
+          <label><span class="required">*</span>Phone Prefix</label>
+          <input type="text" class="form-control" #PhonePrefix="ngModel" [(ngModel)]="countryEntity.PhonePrefix"
+            [ngClass]="{red_border: (PhonePrefix.dirty && PhonePrefix.invalid) || (PhonePrefix.pristine && submitted)}"
+            name="PhonePrefix" id="PhonePrefix" pattern="[0-9+]{1,}" maxlength="11" required>
+          <span class="error_span" *ngIf="(PhonePrefix.dirty && PhonePrefix.invalid) || (PhonePrefix.pristine && submitted)">
+            <span *ngIf="PhonePrefix.errors.required || (PhonePrefix.pristine && submitted)">Please
+              enter Phone Prefix</span>
+            <span *ngIf="PhonePrefix.errors && PhonePrefix.errors.pattern">Please
+              enter valid Phone Prefix</span>
+          </span>
+        </div>
+        <div class="form-group col-md-6">
+          <label><span class="required">*</span>Active ?</label>
+          <div class="activeyes_box">
+            <input type="checkbox" name="IsActive" id="IsActive" value="yes" #IsActive="ngModel" [(ngModel)]="countryEntity.IsActive">
+            <label for="IsActive"></label>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-md-12 col-sm-12 text-center">
+          <button type="submit" [disabled]="btn_disable" class="next_btn"><span>Submit</span></button>
+        </div>
+        <div class="clearfix"></div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+<!-- End Inner Section -->

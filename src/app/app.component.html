@@ -9,7 +9,7 @@
 </div>
 
 
-<div *ngIf="globals.authData!=undefined">
+<div *ngIf="globals.authData!=undefined && globals.authData.RoleId==1">
     <app-header></app-header>
     <app-sidebar></app-sidebar>
     <div class="right_content_block">
@@ -17,6 +17,16 @@
             <div class="bg_white_block">
                 <router-outlet></router-outlet>
                 <app-footer></app-footer>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="globals.authData!=undefined && globals.authData.RoleId==2">
+    <app-header></app-header>
+    <div class="right_content_block">
+        <div class="col-md-12 col-sm-12 col-xs-12 height_100 menu_right">
+            <div class="bg_white_block">
+                <router-outlet></router-outlet>
             </div>
         </div>
     </div>

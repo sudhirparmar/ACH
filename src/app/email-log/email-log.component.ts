@@ -25,7 +25,10 @@ export class EmailLogComponent implements OnInit {
       else {
         $('footer').removeClass('footer_fixed');
       }
-    }, 1000);
+      $("#collapseExample3").addClass("in");
+      $("#test_logs").removeClass("collapsed");
+      $("#test_logs").attr("aria-expanded", "true");
+    }, 100);
     this.emailList = [];
     this.globals.isLoading = true;
     this.AuditLogService.getEmailLog()

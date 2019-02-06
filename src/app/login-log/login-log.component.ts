@@ -28,61 +28,64 @@ export class LoginLogComponent implements OnInit {
       else {
         $('footer').removeClass('footer_fixed');
       }
-    }, 1000);
-    
+      $("#collapseExample3").addClass("in");
+      $("#test_logs").removeClass("collapsed");
+      $("#test_logs").attr("aria-expanded", "true");
+    }, 100);
+
     this.loginList = [];
     this.globals.isLoading = true;
     this.AuditLogService.getLoginLog()
-    .then((data) => {
-      debugger
-      this.globals.isLoading = false;
-      //dataTables-example
-      setTimeout(function () {
-        var table = $('#dataTables-loginlog').DataTable({
-          // scrollY: '55vh',
-          responsive: {
-            details: {
-              display: $.fn.dataTable.Responsive.display.childRowImmediate,
-              type: ''
-            }
-          },
-          scrollCollapse: true,
-          "oLanguage": {
-            "sLengthMenu": "_MENU_ Login Logs per Page",
-            "sInfo": "Showing _START_ to _END_ of _TOTAL_ Login Logs",
-            "sInfoFiltered": "(filtered from _MAX_ total Login Logs)",
-            "sInfoEmpty": "Showing 0 to 0 of 0 Login Logs"
-          },
-          dom: 'lBfrtip',
-          buttons: [
-            {
-              extend: 'excel',
-              title: 'Login Log',
-              exportOptions: {
-                columns: [0, 1, 2, 3]
-              }
-            },
-            {
-              extend: 'print',
-              title: 'Login Log',
-              exportOptions: {
-                columns: [0, 1, 2, 3]
-              }
-            },
-          ]
-        });
-        $('.buttons-excel').attr('data-original-title', 'Export as Excel').tooltip();
-        $('.buttons-print').attr('data-original-title', 'Print').tooltip();
-      }, 100);
-      if (data) {
-        this.loginList = data;
-      }
-
-    },
-      (error) => {
+      .then((data) => {
+        debugger
         this.globals.isLoading = false;
-        this.router.navigate(['/pagenotfound']);
-      });
+        //dataTables-example
+        setTimeout(function () {
+          var table = $('#dataTables-loginlog').DataTable({
+            // scrollY: '55vh',
+            responsive: {
+              details: {
+                display: $.fn.dataTable.Responsive.display.childRowImmediate,
+                type: ''
+              }
+            },
+            scrollCollapse: true,
+            "oLanguage": {
+              "sLengthMenu": "_MENU_ Login Logs per Page",
+              "sInfo": "Showing _START_ to _END_ of _TOTAL_ Login Logs",
+              "sInfoFiltered": "(filtered from _MAX_ total Login Logs)",
+              "sInfoEmpty": "Showing 0 to 0 of 0 Login Logs"
+            },
+            dom: 'lBfrtip',
+            buttons: [
+              {
+                extend: 'excel',
+                title: 'Login Log',
+                exportOptions: {
+                  columns: [0, 1, 2, 3]
+                }
+              },
+              {
+                extend: 'print',
+                title: 'Login Log',
+                exportOptions: {
+                  columns: [0, 1, 2, 3]
+                }
+              },
+            ]
+          });
+          $('.buttons-excel').attr('data-original-title', 'Export as Excel').tooltip();
+          $('.buttons-print').attr('data-original-title', 'Print').tooltip();
+        }, 100);
+        if (data) {
+          this.loginList = data;
+        }
+
+      },
+        (error) => {
+          this.globals.isLoading = false;
+          this.router.navigate(['/pagenotfound']);
+        });
 
 
   }

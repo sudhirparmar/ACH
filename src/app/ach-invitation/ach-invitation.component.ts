@@ -31,14 +31,15 @@ export class AchInvitationComponent implements OnInit {
       }
     }, 1000);
     this.InvitationEntity = {};
+
   }
 
   inviteUser(inviteUserForm) {
 
     debugger
+    this.submitted = true;
 
     var email = this.InvitationEntity.EmailAddress;
-
 
     if (inviteUserForm.valid) {
 
@@ -66,17 +67,15 @@ export class AchInvitationComponent implements OnInit {
               showConfirmButton: false,
               timer: 1500
             })
-            this.router.navigate(['/ach-invitation-list']);
+            this.router.navigate(['/ach-invitation/list']);
           }
         },
           (error) => {
             this.btn_disable = false;
             this.submitted = false;
             this.globals.isLoading = false;
-            this.router.navigate(['/ach-invitation-list']);
+            this.router.navigate(['/ach-invitation/list']);
           });
-    } else {
-      alert('invalid');
     }
   }
 }

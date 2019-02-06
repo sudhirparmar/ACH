@@ -109,7 +109,7 @@
              $data = array( 
               'InvitationCode' => $InviteCode,
               'Statusid'	=>  0
-            );
+              );
                $this->db->where('UserId', $UserId);
                $res = $this->db->update('tbluser',$data);
               
@@ -159,10 +159,22 @@
           } 
           else 
           {
+            if(isset($post_Invitation['PhoneNumber']) && !empty($post_Invitation['PhoneNumber'])) {
+							$PhoneNumber = $post_Invitation['PhoneNumber'];
+						}	else {
+							$PhoneNumber = '';
+						}
             $Invitation_data = array(
+              'RoleId' => 2,
+              'FirstName' => trim($post_Invitation['FirstName']),
+              'LastName' => trim($post_Invitation['LastName']),
               'EmailAddress' =>  trim($post_Invitation['EmailAddress']),
+              'PhoneNumber' => $PhoneNumber,
               'StatusId' =>  0,
-              'InvitationCode' =>  trim($post_Invitation['InvitationCode']),
+              'Password' =>  md5(trim($post_Invitation['Password'])),
+              'CreatedBy' => 1,
+              'CreatedOn' => date('y-m-d H:i:s'),
+              'UpdatedBy' => 1,
               'UpdatedOn' => date('y-m-d H:i:s')
             );
             $res = $this->db->insert('tbluser',$Invitation_data);

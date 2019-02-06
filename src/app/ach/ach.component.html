@@ -17,7 +17,7 @@
             <form class="form-validate" role="form" #achForm="ngForm" (ngSubmit)="addAchForm(achForm)">
                 <div class="form-group col-md-6">
                     <label><span class="required">*</span>First Name</label>
-                    <input type="text" class="form-control" #FirstName="ngModel" [(ngModel)]="achEntity.FirstName"
+                    <input type="text" class="form-control" #FirstName="ngModel" [(ngModel)]="UserInfoEntity.FirstName"
                         [ngClass]="{red_border: (FirstName.dirty && FirstName.invalid) || (FirstName.pristine && submitted)}"
                         name="FirstName" pattern="[a-zA-Z',&.$\ ]{2,}" maxlength="50" required>
                     <span class="error_span" *ngIf="(FirstName.dirty && FirstName.invalid) || (FirstName.pristine && submitted)">
@@ -29,7 +29,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label><span class="required">*</span>Last Name</label>
-                    <input type="text" class="form-control" #LastName="ngModel" [(ngModel)]="achEntity.LastName"
+                    <input type="text" class="form-control" #LastName="ngModel" [(ngModel)]="UserInfoEntity.LastName"
                         [ngClass]="{red_border: (LastName.dirty && LastName.invalid) || (LastName.pristine && submitted)}"
                         name="LastName" pattern="[a-zA-Z',&.$\ ]{2,}" maxlength="50" required>
                     <span class="error_span" *ngIf="(LastName.dirty && LastName.invalid) || (LastName.pristine && submitted)">
@@ -41,22 +41,8 @@
                 </div>
                 <div class="clearfix"></div>
                 <div class="form-group col-md-6">
-                    <label><span class="required">*</span>Resident Address</label>
-                    <textarea class="form-control" #Address="ngModel" [(ngModel)]="achEntity.Address" [ngClass]="{red_border: (Address.dirty && Address.invalid) || (Address.pristine && submitted)}"
-                        name="Address" maxlength="500" required> </textarea>
-                    <span class="error_span" *ngIf="(Address.dirty && Address.invalid) || (Address.pristine && submitted)">
-                        <span *ngIf="Address.errors.required || (Address.pristine && submitted)">Please
-                            enter Resident Address</span>
-                    </span>
-                </div>
-                <div class="form-group col-md-6">
-                    <label><span class="required">*</span>Email Address</label>
-                    <input type="text" class="form-control" #EmailAddress="ngModel" [(ngModel)]="achEntity.EmailAddress"
-                        name="EmailAddress" disabled>
-                </div>
-                <div class="form-group col-md-6">
                     <label><span class="required">*</span>Phone Number</label>
-                    <input type="text" class="form-control" #PhoneNumber="ngModel" [(ngModel)]="achEntity.PhoneNumber"
+                    <input type="text" class="form-control" #PhoneNumber="ngModel" [(ngModel)]="UserInfoEntity.PhoneNumber"
                         [ngClass]="{red_border: (PhoneNumber.dirty && PhoneNumber.invalid) || (PhoneNumber.pristine && submitted)}"
                         name="PhoneNumber" pattern="[0-9\-.()+\s]{3,13}" maxlength="13" required>
                     <span class="error_span" *ngIf="(PhoneNumber.dirty && PhoneNumber.invalid) || (PhoneNumber.pristine && submitted)">
@@ -67,14 +53,88 @@
                     </span>
                 </div>
                 <div class="form-group col-md-6">
+                    <label><span class="required">*</span>Email Address</label>
+                    <input type="text" class="form-control" #EmailAddress="ngModel" [(ngModel)]="UserInfoEntity.EmailAddress"
+                        name="EmailAddress" disabled>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group col-md-12">
+                    <label><span class="required">*</span>Resident Address</label>
+                    <textarea class="form-control" #Address="ngModel" [(ngModel)]="AddressEntity.Address" [ngClass]="{red_border: (Address.dirty && Address.invalid) || (Address.pristine && submitted)}"
+                        name="Address" maxlength="500" required> </textarea>
+                    <span class="error_span" *ngIf="(Address.dirty && Address.invalid) || (Address.pristine && submitted)">
+                        <span *ngIf="Address.errors.required || (Address.pristine && submitted)">Please
+                            enter Resident Address</span>
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group col-md-6">
+                    <label><span class="required">*</span>City</label>
+                    <input type="text" class="form-control" #City="ngModel" [(ngModel)]="AddressEntity.City" [ngClass]="{red_border: (City.dirty && City.invalid) || (City.pristine && submitted)}"
+                        name="City" pattern="[a-zA-Z,.' ]{2,100}" maxlength="100" required>
+                    <span class="error_span" *ngIf="(City.dirty && City.invalid) || (City.pristine && submitted)">
+                        <span *ngIf="City.errors.required || (City.pristine && submitted)">Please
+                            enter City</span>
+                        <span *ngIf="City.errors && City.errors.pattern">Please
+                            enter valid City</span>
+                    </span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label><span class="required">*</span>Zip Code</label>
+                    <input type="text" class="form-control" #ZipCode="ngModel" [(ngModel)]="AddressEntity.ZipCode"
+                        [ngClass]="{red_border: (ZipCode.dirty && ZipCode.invalid) || (ZipCode.pristine && submitted)}"
+                        name="ZipCode" pattern="[0-9]{5,6}" maxlength="6" required>
+                    <span class="error_span" *ngIf="(ZipCode.dirty && ZipCode.invalid) || (ZipCode.pristine && submitted)">
+                        <span *ngIf="ZipCode.errors.required || (ZipCode.pristine && submitted)">Please
+                            enter Zip Code</span>
+                        <span *ngIf="ZipCode.errors && ZipCode.errors.pattern">Please
+                            enter valid Zip Code</span>
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <label><span class="required">*</span>Country</label>
+                        <select class='select-option' required class="form-control" #CountryId="ngModel" [(ngModel)]="AddressEntity.CountryId"
+                            name="CountryId" (change)="getStateList(AddressEntity)">
+                            <option value="" ngSelected='AddressEntity.CountryId==""'>Select</option>
+                            <ng-container *ngFor='let country of countryList'>
+                                <option class='option' [value]="country.CountryId" ngSelected="AddressEntity.CountryId==country.CountryId">{{country.CountryName}}</option>
+                            </ng-container>
+                        </select>
+                        <span class="error_span" *ngIf="(CountryId.dirty && CountryId.invalid) || (CountryId.pristine && submitted)">
+                            <span *ngIf="CountryId.errors.required || (CountryId.pristine && submitted)">Please select
+                                Country </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <label><span class="required">*</span>State</label>
+                        <select class='select-option' required class="form-control" #StateId="ngModel" [(ngModel)]="AddressEntity.StateId"
+                            name="StateId" [ngClass]="{red_border: (StateId.dirty && StateId.invalid) || (StateId.pristine && submitted)}">
+                            <option value="" ngSelected='AddressEntity.StateId==""'>Select</option>
+                            <ng-container *ngFor='let state of stateList'>
+                                <option class='option' [value]="state.StateId" ngSelected="AddressEntity.StateId==state.StateId">{{state.StateName}}</option>
+                            </ng-container>
+                        </select>
+                        <span class="error_span" *ngIf="(StateId.dirty && StateId.invalid) || (StateId.pristine && submitted)">
+                            <span *ngIf="StateId.errors.required || (StateId.pristine && submitted)">Please select
+                                State </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="form-group col-md-6">
                     <label><span class="required">*</span>Attach PAN Card</label>
-                    <input type="file" #PanCard="ngModel" [(ngModel)]="achEntity.PanCard" class="form-control" id="PanCard"
-                        name="PanCard" accept="application/pdf,image/jpg,image/jpeg,image/png" />
+                    <input type="file" #PanCard="ngModel" [(ngModel)]="UserDocumentEntity.PanCard" class="form-control"
+                        id="PanCard" name="PanCard" accept="application/pdf,image/jpg,image/jpeg,image/png" />
                     <h5>allowed format (.pdf .jpg .jpeg .png)</h5>
                 </div>
                 <div class="form-group col-md-6">
                     <label><span class="required">*</span>Attach Address Proof</label>
-                    <input type="file" #AddressProof="ngModel" [(ngModel)]="achEntity.AddressProof" class="form-control"
+                    <input type="file" #AddressProof="ngModel" [(ngModel)]="UserDocumentEntity.AddressProof" class="form-control"
                         id="AddressProof" name="AddressProof" accept="application/pdf,image/jpg,image/jpeg,image/png" />
                     <h5>allowed format (.pdf .jpg .jpeg .png)</h5>
                 </div>
@@ -83,16 +143,6 @@
                 <h1 class="text-center">Bank Information</h1>
                 <div class="clearfix"></div>
                 <div class="r-group" *ngFor="let Bank of bankList; let i = index; let last = last;">
-                    <div class="form-group col-md-6">
-                        <label><span class="required">*</span>Bank Name</label>
-                        <input type="text" class="form-control" #BankName="ngModel" [(ngModel)]="bankList[i].BankName"
-                            [ngClass]="{red_border: (BankName.dirty && BankName.invalid) || (BankName.pristine && submitted)}"
-                            name="BankName{{i}}" maxlength="50" required>
-                        <span class="error_span" *ngIf="(BankName.dirty && BankName.invalid) || (BankName.pristine && submitted)">
-                            <span *ngIf="BankName.errors.required || (BankName.pristine && submitted)">Please
-                                enter Bank Name</span>
-                        </span>
-                    </div>
                     <div class="form-group col-md-6">
                         <label><span class="required">*</span>Account Number</label>
                         <input type="text" class="form-control" #BankAccountNumber="ngModel" [(ngModel)]="bankList[i].BankAccountNumber"
@@ -105,11 +155,10 @@
                                 should be of 9 numeric characters to 18 numeric characters.</span>
                         </span>
                     </div>
-                    <div class="clearfix"></div>
                     <div class="form-group col-md-6">
                         <label><span class="required">*</span>IFSC Code</label>
-                        <input type="text" class="form-control" #BankIFSCCode="ngModel" [(ngModel)]="bankList[i].BankIFSCCode"
-                            [ngClass]="{red_border: (BankIFSCCode.dirty && BankIFSCCode.invalid) || (BankIFSCCode.pristine && submitted)}"
+                        <input type="text" class="form-control" #BankIFSCCode="ngModel" (change)="getFromIFSC(bankList[i].BankIFSCCode, i)"
+                            [(ngModel)]="bankList[i].BankIFSCCode" [ngClass]="{red_border: (BankIFSCCode.dirty && BankIFSCCode.invalid) || (BankIFSCCode.pristine && submitted)}"
                             name="BankIFSCCode{{i}}" pattern="^[A-Za-z]{4}[0-9]{6,7}$" maxlength="11" required>
                         <span class="error_span" *ngIf="(BankIFSCCode.dirty && BankIFSCCode.invalid) || (BankIFSCCode.pristine && submitted)">
                             <span *ngIf="BankIFSCCode.errors.required || (BankIFSCCode.pristine && submitted)">Please
@@ -118,28 +167,28 @@
                                 IFSC Code (Should like ABCD1234567)</span>
                         </span>
                     </div>
+                    <div class="clearfix"></div>
                     <div class="form-group col-md-6">
-                        <label><span class="required">*</span>Phone Number</label>
-                        <input type="text" class="form-control" #BankPhoneNumber="ngModel" [(ngModel)]="bankList[i].BankPhoneNumber"
-                            [ngClass]="{red_border: (BankPhoneNumber.dirty && BankPhoneNumber.invalid) || (BankPhoneNumber.pristine && submitted)}"
-                            name="BankPhoneNumber{{i}}" pattern="[0-9\-.()+\s]{3,13}" maxlength="13" required>
-                        <span class="error_span" *ngIf="(BankPhoneNumber.dirty && BankPhoneNumber.invalid) || (BankPhoneNumber.pristine && submitted)">
-                            <span *ngIf="BankPhoneNumber.errors.required || (BankPhoneNumber.pristine && submitted)">Please
-                                enter Bank Phone Number</span>
-                            <span *ngIf="BankPhoneNumber.errors && BankPhoneNumber.errors.pattern">Please
-                                enter valid Bank Phone Number</span>
-                        </span>
+                        <label><span class="required">*</span>Bank Name</label>
+                        <input type="text" class="form-control" #BankName="ngModel" [(ngModel)]="bankList[i].BankName"
+                            name="BankName{{i}}" disabled>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label><span class="required">*</span>Branch</label>
+                        <input type="text" class="form-control" #BankBranch="ngModel" [(ngModel)]="bankList[i].BankBranch"
+                            name="BankBranch{{i}}" disabled>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group col-md-12">
+                        <label><span class="required">*</span>Address</label>
+                        <textarea class="form-control" #BankAddress="ngModel" [(ngModel)]="bankList[i].BankAddress"
+                            name="BankAddress{{i}}" disabled> </textarea>
                     </div>
                     <div class="clearfix"></div>
                     <div class="form-group col-md-6">
-                        <label><span class="required">*</span>Address</label>
-                        <textarea class="form-control" #BankAddress="ngModel" [(ngModel)]="bankList[i].BankAddress"
-                            [ngClass]="{red_border: (BankAddress.dirty && BankAddress.invalid) || (BankAddress.pristine && submitted)}"
-                            name="BankAddress{{i}}" maxlength="500" required> </textarea>
-                        <span class="error_span" *ngIf="(BankAddress.dirty && BankAddress.invalid) || (BankAddress.pristine && submitted)">
-                            <span *ngIf="BankAddress.errors.required || (BankAddress.pristine && submitted)">Please
-                                enter Bank Address</span>
-                        </span>
+                        <label><span class="required">*</span>Phone Number</label>
+                        <input type="text" class="form-control" #BankPhoneNumber="ngModel" [(ngModel)]="bankList[i].BankPhoneNumber"
+                            name="BankPhoneNumber{{i}}" disabled>
                     </div>
                     <div class="form-group col-md-6">
                         <label><span class="required">*</span>Payment Percentage</label>
@@ -153,6 +202,13 @@
                                 Percentage should be only in range of 1 to 100.</span>
                         </span>
                     </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group col-md-6">
+                        <!-- <label><span class="required">*</span>Attach Void Cheque</label>
+                        <input type="file" #VoidCheque="ngModel" [(ngModel)]="bankList[i].VoidCheque" class="form-control"
+                            id="VoidCheque{{i}}" name="VoidCheque{{i}}" accept="application/pdf,image/jpg,image/jpeg,image/png" />
+                        <h5>allowed format (.pdf .jpg .jpeg .png)</h5> -->
+                    </div>
                     <div class="form-group col-md-4">
                         <label><span class="required">*</span>Account Type</label>
                         <div class="radio_box">
@@ -164,8 +220,8 @@
                             <label for="Saving{{i}}">Saving</label>
                         </div>
                     </div>
-                    <button type="button" (click)="RemoveBank(Question)" *ngIf="i!=0" class="r-btnRemove btn btn-danger btn-rounded btn-sm"
-                        title="Remove Bank">
+                    <button type="button" (click)="RemoveBank(bankList[i])" *ngIf="(i!=0 && last) || (i!=0 && !last) || (i==0 && !last)"
+                        class="r-btnRemove btn btn-danger btn-rounded btn-sm" title="Remove Bank">
                         <span class="fa fa-times"></span>
                     </button>
                     <button type="button" (click)="AddBank(i)" *ngIf="last" class="r-btnAdd btn btn-default btn-rounded btn-sm"

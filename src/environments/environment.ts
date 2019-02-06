@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
    // baseUrl: 'http://ach.devbyopeneyes.com',
-   baseUrl: 'http://localhost/ACH-master',
+   baseUrl: 'http://localhost/ACH',
    //baseUrl: 'http://ach.uatbyopeneyes.com',
   env: 'dev' 
 };

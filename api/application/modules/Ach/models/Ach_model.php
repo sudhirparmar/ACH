@@ -6,25 +6,21 @@
          parent::__construct();  
       }  
 
-      public function getACHLink($post_achlink) 
+      public function getUserInfo($post_userinfo) 
       {
-        if($post_achlink)
+        if($post_userinfo)
         {
-          $this->db->select('UserId,InvitationCode,EmailAddress');				
-          $this->db->where('UserId',trim($post_achlink['UserId']));
-          $this->db->where('InvitationCode',trim($post_achlink['InvitationCode']));
+          $this->db->select('UserId,FirstName,LastName,EmailAddress,PhoneNumber');				
+          $this->db->where('UserId',trim($post_userinfo['UserId']));
           $this->db->limit(1);
           $this->db->from('tbluser');
-          $query= $this->db->get();
+          $result= $this->db->get();
 
-            if ($query->num_rows() == 1) 
-            {
-              return true;
-            } 
-            else
-            {
-              return false;
-            }
+          $UserInfo = array();
+          foreach($result->result() as $row){
+            $UserInfo = $row;
+          }
+          return $UserInfo;
         } 
         else
         {
@@ -37,99 +33,144 @@
         try{
           if($data)
           {
-            $UserDetails = $data['UserDetails'];
-            $UserId = $UserDetails['UserId'];
+            $UserInfo = $data['UserInfo'];
+            $UserAddress = $data['UserAddress'];
+            $UserDocument = $data['UserDocument'];
             $BankDetails = $data['BankDetails'];
+
+            $UserId = $UserInfo['UserId'];
             
-            //add user detail
-            $ach_data=array(
-              "FirstName"=>trim($UserDetails['FirstName']),
-              "LastName"=>trim($UserDetails['LastName']),
-              "Address"=>trim($UserDetails['Address']),
-              "PhoneNumber"=>trim($UserDetails['PhoneNumber']),
-              "PanCard"=>trim($UserDetails['PanCard']),
-              "AddressProof"=>trim($UserDetails['AddressProof']),
-              'InvitationCode' =>'',
+            //add user info
+            $UserInfo_data=array(
+              "FirstName"=>trim($UserInfo['FirstName']),
+              "LastName"=>trim($UserInfo['LastName']),
+              "PhoneNumber"=>trim($UserInfo['PhoneNumber']),
               'StatusId'=>1
             );
             $this->db->where('UserId',$UserId);
-            $this->db->where('EmailAddress',trim($UserDetails['EmailAddress']));
-            $result = $this->db->update('tbluser', $ach_data);
+            $this->db->where('EmailAddress',trim($UserInfo['EmailAddress']));
+            $UserInfoResult = $this->db->update('tbluser', $UserInfo_data);
 
-            if($result) {
+            if($UserInfoResult){
+              //add user address
+              $UserAddress_data=array(
+                "UserId"=>$UserId,
+                "Address"=>trim($UserAddress['Address']),
+                "City"=>trim($UserAddress['City']),
+                "ZipCode"=>trim($UserAddress['ZipCode']),
+                "StateId"=>trim($UserAddress['StateId'])
+              );
+              $AddressResult = $this->db->insert('tbluseraddress', $UserAddress_data);
 
-              //loop start
-              foreach($BankDetails as $Bank){
-                
-                              
-                $this->db->select('BankId,BankIFSCCode');
-                $this->db->where('BankIFSCCode',trim($Bank['BankIFSCCode']));
-                $this->db->limit(1);
-                $this->db->from('tblmstbank');
-                $query = $this->db->get();                            
+              if($AddressResult) {
+                //add user document
+                $UserDocument_data=array(
+                  "UserId"=>$UserId,
+                  "PanCard"=>trim($UserDocument['PanCard']),
+                  "AddressProof"=>trim($UserDocument['AddressProof'])
+                );
+                $DocumentResult = $this->db->insert('tbluserdocument', $UserDocument_data);
 
-                if ($query->num_rows() != 1) {
-                  $bank_data=array(
-                    "BankName"=>trim($Bank['BankName']),
-                    "BankIFSCCode"=>trim($Bank['BankIFSCCode']),
-                    "BankPhoneNumber"=>trim($Bank['BankPhoneNumber']),
-                    "BankAddress"=>trim($Bank['BankAddress'])
-                  );
-                  $result2 = $this->db->insert('tblmstbank', $bank_data);
-                  $BankId = $this->db->insert_id();
+                if($DocumentResult) {                  
+                  //Add Bank Details
+                  foreach($BankDetails as $Bank){                                 
+                    $this->db->select('BankId,BankIFSCCode');
+                    $this->db->where('BankIFSCCode',trim($Bank['BankIFSCCode']));
+                    $this->db->limit(1);
+                    $this->db->from('tblmstbank');
+                    $query = $this->db->get();                            
 
-                  
+                    if ($query->num_rows() != 1) {
+                      $bank_data=array(
+                        "BankName"=>trim($Bank['BankName']),
+                        "BankBranch"=>trim($Bank['BankBranch']),
+                        "BankIFSCCode"=>trim($Bank['BankIFSCCode']),
+                        "BankPhoneNumber"=>trim($Bank['BankPhoneNumber']),
+                        "BankAddress"=>trim($Bank['BankAddress'])
+                      );
+                      $BankResult = $this->db->insert('tblmstbank', $bank_data);
+                      $BankId = $this->db->insert_id();                      
+                    } else {
+                      foreach($query->result() as $row) {
+                        $BankId=$row->BankId;
+                      }
+                    }
+                    if($BankId){
+                      $userbank_data=array(
+                        "UserId"=>$UserId,
+                        "BankId"=>$BankId,
+                        "BankAccountNumber"=>trim($Bank['BankAccountNumber']),
+                        "AccountType"=>trim($Bank['AccountType']),
+                        "PercOfSalary"=>trim($Bank['PercOfSalary'])
+                      );                
+                      $UserBankResult = $this->db->insert('tbluserbank', $userbank_data);
+                      if($UserBankResult){
+                        /* ACTIVITY LOG */
+                        $activity_log = array(
+                          'UserId'=>$UserId,
+                          'Module' =>'AchForm',
+                          'Activity'=>'Fill Ach form by - '.$UserDetails['FirstName']
+                        );
 
-                  
-                } else {
-                  foreach($query->result() as $row) {
-                    $BankId=$row->BankId;
+                        $log = $this->db->insert('tblactivitylog',$activity_log);
+                        /* END */
+                      } else {
+                        return false;
+                      }
+                    } else {
+                      return false;
+                    }
                   }
-                }
-
-                if($BankId){
-                  $userbank_data=array(
-                    "UserId"=>$UserId,
-                    "BankId"=>$BankId,
-                    "BankAccountNumber"=>trim($Bank['BankAccountNumber']),
-                    "AccountType"=>trim($Bank['AccountType']),
-                    "PercOfSalary"=>trim($Bank['PercOfSalary'])
-                  );                
-                  $result3 = $this->db->insert('tbluserbank', $userbank_data);
-                  if($result3){
-
-                    /* ACTIVITY LOG */
-                    $activity_log = array(
-                      'UserId'=>$UserId,
-                      'Module' =>'AchForm',
-                      'Activity'=>'Fill Ach form by - '.$UserDetails['FirstName']
-                    );
-
-                    $log = $this->db->insert('tblactivitylog',$activity_log);
-                    /* END */
-                  } else {
-                    return false;
-                  }
+                  //loop end
+                  return true;
                 } else {
                   return false;
                 }
+              } else {
+                return false;
               }
-              //loop end
-              return true;
-            
             } else {
               return false;
-            }
+            }            
           } else {
             return false;
           }
         }
-          catch(Exception $e){
-            trigger_error($e->getMessage(), E_USER_ERROR);
-            return false;
-          }
+        catch(Exception $e){
+          trigger_error($e->getMessage(), E_USER_ERROR);
+          return false;
+        }
       }
+
+      public function getCountryList() {	
+        $this->db->select('CountryId,CountryName');
+        $this->db->where('IsActive="1"');
+        $this->db->order_by('CountryName','asc');
+        $result = $this->db->get('tblmstcountry');
+        $res = array();
+        if($result->result()) {
+          $res = $result->result();
+        }
+        return $res;        
+      }  
       
+      public function getStateList($CountryId = NULL) {		
+        if($CountryId) {          
+          $this->db->select('StateId,StateName');
+          $this->db->order_by('StateName','asc');
+          $this->db->where('IsActive="1"');
+          $this->db->where('CountryId',$CountryId);
+          $result = $this->db->get('tblmststate');           
+          
+          $res = array();
+          if($result->result()) {
+            $res = $result->result();
+          }
+          return $res;          
+        } else {
+          return false;
+        }
+      }
   }
     
 ?>  
