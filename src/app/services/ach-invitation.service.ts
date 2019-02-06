@@ -16,9 +16,11 @@ export class AchInvitationService {
         .toPromise()
         .then(
           res => {
+            alert("success");
             resolve(res);
           },
           msg => {
+            alert("reject");
             reject(msg);
           }
         );
@@ -42,6 +44,24 @@ export class AchInvitationService {
     });
     return promise;
   }
+  /* 6/2 */
+  getAddressDetails(userid) {
+    debugger
+    let promise = new Promise((resolve, reject) => {
+      this.http.post(this.globals.baseAPIUrl + 'InviteUser/getAddressDetails/', userid)
+        .toPromise()
+        .then(
+          res => {
+            resolve(res);
+          },
+          msg => {
+            reject(msg);
+          }
+        );
+    });
+    return promise;
+  }
+  /* end */
   
   inviteUser(InvitationEntity) {
     debugger
