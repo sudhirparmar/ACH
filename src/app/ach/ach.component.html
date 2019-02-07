@@ -169,24 +169,24 @@
                     </div>
                     <div class="clearfix"></div>
                     <div class="form-group col-md-6">
-                        <label><span class="required">*</span>Bank Name</label>
+                        <label>Bank Name</label>
                         <input type="text" class="form-control" #BankName="ngModel" [(ngModel)]="bankList[i].BankName"
                             name="BankName{{i}}" disabled>
                     </div>
                     <div class="form-group col-md-6">
-                        <label><span class="required">*</span>Branch</label>
+                        <label>Branch</label>
                         <input type="text" class="form-control" #BankBranch="ngModel" [(ngModel)]="bankList[i].BankBranch"
                             name="BankBranch{{i}}" disabled>
                     </div>
                     <div class="clearfix"></div>
                     <div class="form-group col-md-12">
-                        <label><span class="required">*</span>Address</label>
+                        <label>Address</label>
                         <textarea class="form-control" #BankAddress="ngModel" [(ngModel)]="bankList[i].BankAddress"
                             name="BankAddress{{i}}" disabled> </textarea>
                     </div>
                     <div class="clearfix"></div>
                     <div class="form-group col-md-6">
-                        <label><span class="required">*</span>Phone Number</label>
+                        <label>Phone Number</label>
                         <input type="text" class="form-control" #BankPhoneNumber="ngModel" [(ngModel)]="bankList[i].BankPhoneNumber"
                             name="BankPhoneNumber{{i}}" disabled>
                     </div>
@@ -243,3 +243,63 @@
 </div>
 <div class="clearfix"></div>
 <!-- End Inner Section -->
+
+
+<!-- MODAL POP UP -->
+<div class="modal fade bs-example-modal-sm" id="BankDetails_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="pull-left">
+                            <h3 class="modal-title" id="myModalLabel">Check your Information</h3>
+                        </div>
+                        <div class="pull-right">
+                            <div class="btn-group add-right">
+                                <button type="button" class="btn btn-danger btn-rounded btn-sm delete-user-row-with-ajax-button"
+                                    data-dismiss="modal"><span class="fa fa-times"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="modal-body">
+                <div class="col-lg-12 col-md-12">
+
+
+                    <h3>Personal Information</h3>
+                    <p><strong>First Name</strong> : {{UserInfoEntity.FirstName}}</p>
+                    <p><strong>Last Name</strong> : {{UserInfoEntity.LastName}}</p>
+                    <p><strong>Email Address</strong> : {{UserInfoEntity.EmailAddress}}</p>
+                    <p><strong>Phone Number</strong> : {{UserInfoEntity.PhoneNumber}}</p>
+                    <p><strong>Address</strong> : {{AddressEntity.Address}}</p>
+                    <p><strong>City</strong> : {{AddressEntity.City}}</p>
+                    <p><strong>Zip Code</strong> : {{AddressEntity.ZipCode}}</p>
+
+                    <br>
+                    <h3>Bank Information</h3>
+                    <div *ngFor="let bank of bankList; let i = index">
+                        <h4 *ngIf="bankList.length > 1">Bank - {{i+1}}</h4>
+                        <p><strong>Account Number</strong> : {{bank.BankAccountNumber}}</p>
+                        <p><strong>IFSC Code</strong> : {{bank.BankIFSCCode}}</p>
+                        <p><strong>Name</strong> : {{bank.BankName}}</p>
+                        <p><strong>Branch</strong> : {{bank.BankBranch}}</p>
+                        <p><strong>Address</strong> : {{bank.BankAddress}}</p>
+                        <p><strong>Phone Number</strong> : {{bank.BankPhoneNumber}}</p>
+                        <p><strong>Account Type</strong> : {{bank.AccountType}}</p>
+                        <p><strong>Percentage Of Salary</strong> : {{bank.PercOfSalary}} %</p><br>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <input type="button" id="successbtn" class="btn btn-success" value="Confirm" (click)="finalSubmit(achForm)" />
+                        <button type="button" id="cancelbtn" class="btn btn-danger btn-rounded btn-sm delete-user-row-with-ajax-button"
+                            data-dismiss="modal" value="Cancel"><span class="fa fa-times"></span></button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END-->

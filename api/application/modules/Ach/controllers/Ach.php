@@ -9,39 +9,53 @@ class Ach extends CI_Controller
 		$this->load->model('Ach_model');
 	}
     
-	public function getUserInfo()
-		{				
-		$post_userinfo = json_decode(trim(file_get_contents('php://input')), true);		
-		if ($post_userinfo)
-			{
-				$result = $this->Ach_model->getUserInfo($post_userinfo);
-				if($result)
-				{
-					echo json_encode($result);
-				}	
-				else
-				{
-					echo json_encode('fail');
-				}
-										
-			}
-		
+	public function getUserInfo() {				
+	$post_userinfo = json_decode(trim(file_get_contents('php://input')), true);		
+		if ($post_userinfo) {
+			$result = $this->Ach_model->getUserInfo($post_userinfo);
+			if($result) {
+				echo json_encode($result);
+			} else {
+				echo json_encode('fail');
+			}									
+		}	
+	}
+	public function getUserAddress() {				
+		$post_userAddress = json_decode(trim(file_get_contents('php://input')), true);		
+		if ($post_userAddress) {
+			$result = $this->Ach_model->getUserAddress($post_userAddress);
+			if($result) {
+				echo json_encode($result);
+			} else {
+				echo json_encode('fail');
+			}									
+		}	
+	}
+
+	public function getUserBank()
+	{	
+		$post_userBank = json_decode(trim(file_get_contents('php://input')), true);		
+		if ($post_userBank) {
+			$result = $this->Ach_model->getUserBank($post_userBank);
+			if($result) {
+				echo json_encode($result);
+			} else {
+				echo json_encode('fail');
+			}									
 		}
+	}
 
 	public function addAchForm()
 	{
 		$data = json_decode(trim(file_get_contents('php://input')), true);
-		if ($data) {
-			
-				$result = $this->Ach_model->addAchForm($data); 
-				if($result) {
-					echo json_encode($data);	
-				}
+		if ($data) {			
+			$result = $this->Ach_model->addAchForm($data); 
+			if($result) {
+				echo json_encode($data);	
 			}
-			else {
-			
+		} else {			
 			return false;
-			}		
+		}		
 	}
 	
 	public function uploadFile()

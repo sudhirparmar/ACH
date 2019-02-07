@@ -10,7 +10,7 @@
       {
         if($post_userinfo)
         {
-          $this->db->select('UserId,FirstName,LastName,EmailAddress,PhoneNumber');				
+          $this->db->select('UserId,FirstName,LastName,EmailAddress,PhoneNumber,StatusId');				
           $this->db->where('UserId',trim($post_userinfo['UserId']));
           $this->db->limit(1);
           $this->db->from('tbluser');
@@ -26,6 +26,46 @@
         {
             return false;
         }	
+      }
+
+      public function getUserAddress($post_userAddress) 
+      {
+        if($post_userAddress)
+        {
+          $this->db->select('UserId,Address,City,ZipCode,StateId,CountryId');	
+          $this->db->where('UserId',trim($post_userAddress['UserId']));
+          $this->db->limit(1);
+          $this->db->from('tbluseraddress');
+          $result= $this->db->get();
+
+          $UserAddress = array();
+          foreach($result->result() as $row){
+            $UserAddress = $row;
+          }
+          return $UserAddress;
+        } 
+        else
+        {
+            return false;
+        }	
+      }
+
+      public function getUserBank($post_userAddress)
+      {
+        if($post_userAddress) {
+
+          $this->db->select('tub.BankId,tmb.BankIFSCCode,tub.BankAccountNumber,tub.AccountType,tub.PercOfSalary,tmb.BankName,tmb.BankAddress,tmb.BankBranch,tmb.BankPhoneNumber');
+          $this->db->join('tblmstbank tmb','tmb.BankId = tub.BankId','left');
+          $this->db->where('UserId',trim($post_userAddress['UserId']));
+          $result=$this->db->get('tbluserbank tub');
+          $bank_data= array();
+          if($result->result()) {
+            $bank_data=$result->result();
+          }
+        return $bank_data;
+        } else {
+          return false;
+        }
       }
   
       public function addAchForm($data)
@@ -58,6 +98,7 @@
                 "Address"=>trim($UserAddress['Address']),
                 "City"=>trim($UserAddress['City']),
                 "ZipCode"=>trim($UserAddress['ZipCode']),
+                "CountryId"=>trim($UserAddress['CountryId']),
                 "StateId"=>trim($UserAddress['StateId'])
               );
               $AddressResult = $this->db->insert('tbluseraddress', $UserAddress_data);

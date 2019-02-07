@@ -23,6 +23,7 @@ export class AchComponent implements OnInit {
   stateList;
   submitted;
   bankList;
+  IsUpdate;
 
   constructor(private http: Http, private router: Router, public globals: Globals, private route: ActivatedRoute, private AchService: AchService, private elem: ElementRef) {
 
@@ -32,12 +33,16 @@ export class AchComponent implements OnInit {
     debugger
     this.globals.isLoading = false;
 
+    this.IsUpdate = false;
+
     this.countryList = [];
     this.stateList = [];
 
     this.UserInfoEntity = {};
     this.AddressEntity = {};
     this.UserDocumentEntity = {};
+
+
 
     let id = this.route.snapshot.paramMap.get('id');
     var UserInfo = { 'UserId': id }
@@ -55,7 +60,39 @@ export class AchComponent implements OnInit {
     this.AchService.getUserInfo(UserInfo)
       .then((data) => {
         this.UserInfoEntity = data;
-        console.log(this.UserInfoEntity);
+
+        if (this.UserInfoEntity.StatusId == 1) {
+          this.AchService.getUserAddress(UserInfo)
+            .then((data) => {
+              this.AddressEntity = data;
+              var StateId = data['StateId'];
+              this.getStateList(this.AddressEntity);
+              this.AddressEntity.StateId = StateId;
+
+              this.AchService.getUserBank(UserInfo)
+                .then((data) => {
+                  this.bankList = data;
+                  this.globals.isLoading = false;
+                },
+                  (error) => {
+                    this.submitted = false;
+                    this.globals.isLoading = false;
+                    this.router.navigate(['/pagenotfound']);
+                  });
+            },
+              (error) => {
+                this.submitted = false;
+                this.globals.isLoading = false;
+                this.router.navigate(['/pagenotfound']);
+              });
+        } else {
+          this.globals.isLoading = false;
+          var item = { 'BankName': '', 'BankAccountNumber': '', 'BankBranch': '', 'BankIFSCCode': '', 'BankPhoneNumber': '', 'BankAddress': '', 'PercOfSalary': '', 'AccountType': 'Current' };
+          this.bankList = [];
+          this.bankList.push(item);
+          this.AddressEntity.StateId = "";
+          this.AddressEntity.CountryId = "";
+        }
       },
         (error) => {
           //this.btn_disable = false;
@@ -63,44 +100,6 @@ export class AchComponent implements OnInit {
           this.globals.isLoading = false;
           this.router.navigate(['/pagenotfound']);
         });
-
-
-
-    if (this.globals.authData.StatusId == 1) {
-      this.AchService.getUserAddress(UserInfo)
-        .then((data) => {
-          this.AddressEntity = data;
-          console.log(this.AddressEntity);
-        },
-          (error) => {
-            //this.btn_disable = false;
-            this.submitted = false;
-            this.globals.isLoading = false;
-            this.router.navigate(['/pagenotfound']);
-          });
-      // this.AchService.getBankDetails(UserInfo)
-      //   .then((data) => {
-      //     this.BankEntity = data;
-      //     console.log(this.BankEntity);
-      //   },
-      //     (error) => {
-      //       //this.btn_disable = false;
-      //       this.submitted = false;
-      //       this.globals.isLoading = false;
-      //       this.router.navigate(['/pagenotfound']);
-      //     });
-
-    } else {
-      this.globals.isLoading = false;
-      var item = { 'BankName': '', 'BankAccountNumber': '', 'BankBranch': '', 'BankIFSCCode': '', 'BankPhoneNumber': '', 'BankAddress': '', 'PercOfSalary': '', 'AccountType': 'Current' };
-      this.bankList = [];
-      this.bankList.push(item);
-      this.AddressEntity.StateId = "";
-      this.AddressEntity.CountryId = "";
-    }
-
-
-
   }
 
   getStateList(AddressEntity) {
@@ -119,6 +118,7 @@ export class AchComponent implements OnInit {
           });
     } else {
       this.stateList = [];
+      this.globals.isLoading = false;
     }
   }
 
@@ -162,16 +162,53 @@ export class AchComponent implements OnInit {
     if (this.bankList.length <= index + 1) {
       this.bankList.splice(index + 1, 0, item);
     }
+    this.submitted = false;
   }
 
   RemoveBank(item) {
-    alert(item);
     var index = this.bankList.indexOf(item);
     alert(index);
     this.bankList.splice(index, 1);
   }
 
   addAchForm(achForm) {
+    this.submitted = true;
+    let PanCardFile = this.elem.nativeElement.querySelector('#PanCard').files[0];
+    let AddressProofFile = this.elem.nativeElement.querySelector('#AddressProof').files[0];
+    if (PanCardFile == undefined) {
+      swal({
+        title: "Please input PAN Card.",
+        type: "warning",
+        showConfirmButton: true
+      })
+    } else if (AddressProofFile == undefined) {
+      swal({
+        title: "Please input Address Proof.",
+        type: "warning",
+        showConfirmButton: true
+      })
+    } else {
+      if (achForm.valid) {
+        let sum = 0;
+        for (let i = 0; i < this.bankList.length; i++) {
+          sum += parseInt(this.bankList[i].PercOfSalary);
+        }
+        if (sum == 100) {
+          $('#BankDetails_Modal').modal('show');
+          $('.right_content_block').addClass('style_position');
+        } else {
+          swal({
+            title: "Percentage of salary should be sum of 100.",
+            type: "warning",
+            showConfirmButton: true
+          })
+        }
+      }
+    }
+  }
+
+  finalSubmit(achForm) {
+
     let PanCardFile = this.elem.nativeElement.querySelector('#PanCard').files[0];
     let AddressProofFile = this.elem.nativeElement.querySelector('#AddressProof').files[0];
     var fd = new FormData();
@@ -195,7 +232,6 @@ export class AchComponent implements OnInit {
       this.UserDocumentEntity.AddressProof = null;
     }
 
-    this.submitted = true;
 
     if (achForm.valid) {
       this.globals.isLoading = true;
@@ -207,6 +243,8 @@ export class AchComponent implements OnInit {
             this.AchService.uploadFile(fd)
               .then((data) => {
                 this.submitted = false;
+                $('#BankDetails_Modal').modal('hide');
+                $('.right_content_block').removeClass('style_position');
                 this.UserInfoEntity = {};
                 this.AddressEntity = {};
                 this.UserDocumentEntity = {};

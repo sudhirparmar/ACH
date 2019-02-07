@@ -49,6 +49,24 @@ export class AchService {
     });
     return promise;
   }
+  getUserBank(UserInfo) {
+    debugger
+    let promise = new Promise((resolve, reject) => {
+      this.http.post(this.globals.baseAPIUrl + 'Ach/getUserBank', UserInfo)
+        .toPromise()
+        .then(
+          res => { // Success
+            resolve(res.json());
+          },
+          msg => { // Error
+            reject(msg);
+            // this.globals.isLoading = false;
+            this.router.navigate(['/pagenotfound']);
+          }
+        );
+    });
+    return promise;
+  }
   getBankDetails(UserInfo) {
     debugger
     let promise = new Promise((resolve, reject) => {
