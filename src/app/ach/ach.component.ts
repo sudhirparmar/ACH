@@ -44,6 +44,8 @@ export class AchComponent implements OnInit {
 
 
 
+
+
     let id = this.route.snapshot.paramMap.get('id');
     var UserInfo = { 'UserId': id }
 
@@ -57,11 +59,14 @@ export class AchComponent implements OnInit {
           //alert('error');
         });
 
+
+
     this.AchService.getUserInfo(UserInfo)
       .then((data) => {
         this.UserInfoEntity = data;
 
         if (this.UserInfoEntity.StatusId == 1) {
+          this.IsUpdate = true;
           this.AchService.getUserAddress(UserInfo)
             .then((data) => {
               this.AddressEntity = data;
@@ -243,6 +248,7 @@ export class AchComponent implements OnInit {
             this.AchService.uploadFile(fd)
               .then((data) => {
                 this.submitted = false;
+                this.globals.authData.StatusId = 1;
                 $('#BankDetails_Modal').modal('hide');
                 $('.right_content_block').removeClass('style_position');
                 this.UserInfoEntity = {};
@@ -260,7 +266,12 @@ export class AchComponent implements OnInit {
                   showConfirmButton: false,
                   timer: 1500
                 })
-                this.router.navigate(['/login']);
+                if(this.globals.authData.RoleId==1){
+                  this.router.navigate(['/ach-list']);
+                }
+                else{
+                  this.router.navigate(['/thank-you']);
+                }                
               },
                 (error) => {
                   this.submitted = false;

@@ -232,8 +232,12 @@
                     <hr *ngIf="!last">
                 </div>
                 <div class="clearfix"></div>
-                <div class="col-md-12 col-sm-12 text-center">
+                <div *ngIf="!IsUpdate" class="col-md-12 col-sm-12 text-center">
                     <button type="submit" [disabled]="btn_disable" class="next_btn"><span>Submit</span></button>
+                </div>
+                <div *ngIf="IsUpdate" class="col-md-12 col-sm-12 text-center">
+                    <button type="submit" [disabled]="btn_disable" class="next_btn"><span>Update</span></button>
+                    <button type="button" routerLink="/thank-you" [disabled]="btn_disable" class="cancel_btn"><span>Cancel</span></button>
                 </div>
                 <div class="clearfix"></div>
             </form>

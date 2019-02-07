@@ -46,6 +46,10 @@ import { StateComponent } from './state/state.component';
 import { StateListComponent } from './state-list/state-list.component';
 import { StateService } from './services/state.service';
 
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ForgotResetService } from './services/forgot-reset.service';
+
 
 
 
@@ -75,7 +79,10 @@ import { StateService } from './services/state.service';
     CountryListComponent,
 
     StateComponent,
-    StateListComponent
+    StateListComponent,
+
+    ForgotPasswordComponent,
+    ResetPasswordComponent
 
   ],
   imports: [
@@ -89,7 +96,9 @@ import { StateService } from './services/state.service';
 
       { path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard] },
 
-      { path: 'ach/:id', component: AchComponent },
+      { path: 'ach/:id', component: AchComponent, canActivate: [AuthGuard] },
+      { path: 'thank-you', component: ThankYouComponent, canActivate: [AuthGuard] },
+
       { path: 'ach-list', component: AchListComponent, canActivate: [AuthGuard] },
       { path: 'ach-invitation', component: AchInvitationComponent, canActivate: [AuthGuard] },
       { path: 'ach-invitation/list', component: AchInvitationListComponent, canActivate: [AuthGuard] },
@@ -106,13 +115,15 @@ import { StateService } from './services/state.service';
       { path: 'state/edit/:id', component: StateComponent, canActivate: [AuthGuard] },
       { path: 'state/list', component: StateListComponent, canActivate: [AuthGuard] },
 
+      { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [AuthGuard] },
+      { path: 'reset-password/:id', component: ResetPasswordComponent, canActivate: [AuthGuard] },
 
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: '**', redirectTo: 'login' }
 
     ])
   ],
-  providers: [Globals, AuthGuard, AuthService, AchService, AchInvitationService, AuditLogService, ChangePasswordService, CountryService, StateService],
+  providers: [Globals, AuthGuard, AuthService, AchService, AchInvitationService, AuditLogService, ChangePasswordService, CountryService, StateService, ForgotResetService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

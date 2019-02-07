@@ -46,7 +46,7 @@ export class ChangePasswordComponent implements OnInit {
     debugger
     let id = this.route.snapshot.paramMap.get('id');
 
-    
+
     this.changepasswordEntity.UserId = id;
     if (id) {
       this.submitted = false;
@@ -91,7 +91,12 @@ export class ChangePasswordComponent implements OnInit {
               showConfirmButton: false,
               timer: 1500
             })
-            this.router.navigate(['/dashboard']);
+            if (this.globals.authData.RoleId == 1) {
+              this.router.navigate(['/dashboard']);
+            } else {
+              this.router.navigate(['/thank-you']);
+            }
+
           }
         },
           (error) => {

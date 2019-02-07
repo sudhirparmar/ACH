@@ -87,6 +87,8 @@ select option{ background:#f4f4f4!important; padding:7px!important; color:#555!i
 textarea{height:150px; resize:none;}
 .next_btn { font-family: 'Titillium Web', sans-serif; font-size:15px; line-height: 15px; padding: 10px 15px; text-align: center; background: #0061af; color: #ffffff; box-shadow: none; position: relative; transition:all 0.8s ease 0s; display:inline-block; border: solid #0061af 1px; opacity: 0.8; border-radius: 5px; min-width: 100px; cursor: pointer;}
 .next_btn:hover,.next_btn:focus{ color: #ffffff; opacity: 1;}
+.cancel_btn { font-family: 'Titillium Web', sans-serif; font-size:15px; line-height: 15px; padding: 10px 15px; text-align: center; background: #ff0000; color: #ffffff; box-shadow: none; position: relative; transition:all 0.8s ease 0s; display:inline-block; border: solid #ff0000 1px; opacity: 0.8; border-radius: 5px; min-width: 100px; cursor: pointer;}
+.cancel_btn:hover,.cancel_btn:focus{ color: #ffffff; opacity: 1;}
 .back_btn { font-family: 'Titillium Web', sans-serif; font-size:15px; line-height: 15px; padding: 10px 15px; text-align: center; background: #a6ce39; color: #000; box-shadow: none; position: relative; transition:all 0.8s ease 0s; display:inline-block; border: solid #a6ce39 1px; opacity: 0.8; border-radius: 5px; min-width: 100px; cursor: pointer;}
 .back_btn:hover,.back_btn:focus{ color: #000; opacity: 1;}
 input[type="radio"] { visibility:hidden; position:absolute;}

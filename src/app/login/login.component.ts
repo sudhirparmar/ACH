@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
             timer: 1500
           })
           if (this.globals.authData.RoleId == 2) {
-            window.location.href = '/ach/' + this.globals.authData.UserId;
+            window.location.href = '/thank-you';
           }
           else {
             window.location.href = '/ach-list';
