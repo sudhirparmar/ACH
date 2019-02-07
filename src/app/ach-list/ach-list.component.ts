@@ -16,6 +16,7 @@ export class AchListComponent implements OnInit {
   bankDetails;
   Userid;
   Name;
+  addressDetails;
   constructor(private http: Http, private router: Router, public globals: Globals, private route: ActivatedRoute, private AchInvitationService: AchInvitationService) {
 
 
@@ -112,6 +113,53 @@ export class AchListComponent implements OnInit {
           //this.globals.isLoading = false;
           this.router.navigate(['/pagenotfound']);
         });
+  }
+  editDetails(userid) {
+    debugger
+    alert(userid);
+   // this.router.navigate(['/ach'], { queryParams: { userid: userid } });
+    window.location.href = '/ach/'+   userid;
+    // this.bankDetails = {};
+    // this.Userid = UserDetail.UserId;
+    // this.Name = UserDetail.FirstName;
+    // var user = { 'UserId': UserDetail.UserId };
+    //this.globals.isLoading = true;
+
+    // this.AchInvitationService.getBankDetails(user)
+    //   .then((data) => {
+    //     if (data) {
+    //       this.bankDetails = data;
+    //     }
+    //     //this.globals.isLoading = false;
+    //     $('#BankDetails_Modal').modal('show');
+    //     $('.right_content_block').addClass('style_position');
+    //   },
+    //     (error) => {
+    //       alert("data not found");
+    //       //this.globals.isLoading = false;
+    //       this.router.navigate(['/pagenotfound']);
+    //     });
+  }
+
+  viewAddressDetails(userid)
+  {
+    alert(userid);
+    this.Userid = userid;
+
+
+   this.AchInvitationService.getAddressDetails(userid)
+    .then((data)=>{
+        if(data)
+        {
+          this.addressDetails = data;
+        }
+        $('#addressDetails_Modal').modal('show');
+        $('.right_content_block').addClass('style_position');
+    },
+    (error)=>{
+      alert("data not found");
+    })
+
   }
 
 }

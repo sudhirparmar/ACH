@@ -30,7 +30,16 @@ class InviteUser extends CI_Controller
 			echo json_encode($data);
 		}		
 	}
-
+	public function getAddressDetails()
+	{
+		$post_data= json_decode(trim(file_get_contents('php://input')), true);
+		if ($post_data)
+		{
+			$data=$this->InviteUser_model->getAddressDetails($post_data);			
+			echo json_encode($data);
+		}		
+	}
+	
 	public function getUserInvitationList()
 	{
 		$data=$this->InviteUser_model->getUserInvitationList();

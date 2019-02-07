@@ -125,7 +125,7 @@
                       $bank_data=array(
                         "BankName"=>trim($Bank['BankName']),
                         "BankBranch"=>trim($Bank['BankBranch']),
-                        "BankIFSCCode"=>trim($Bank['BankIFSCCode']),
+                        "BankIFSCCode"=>trim($Bank['BankIFSCCode']),  
                         "BankPhoneNumber"=>trim($Bank['BankPhoneNumber']),
                         "BankAddress"=>trim($Bank['BankAddress'])
                       );

@@ -9,7 +9,7 @@
       public function getUserData()
       {
         try{
-          $this->db->select('UserId, FirstName, LastName, Address, PhoneNumber, EmailAddress, PanCard, AddressProof');
+          $this->db->select('UserId,FirstName,LastName,EmailAddress,PhoneNumber');
           $this->db->where('StatusId','1');
           $result = $this->db->get('tbluser');
           $db_error = $this->db->error();
@@ -41,6 +41,34 @@
         return $res;
       }
       
+      public function getAddressDetails($post_data) {
+
+
+      $this->db->select('ua.UserAddressId,ua.Address,ua.City,ua.Zipcode,ua.StateId,ms.StateName,ms.CountryId,mc.CountryName');
+      $this->db->join('tbluseraddress ua','ua.StateId=ms.StateId','left');
+      $this->db->join('tblmstcountry mc','mc.CountryId=ms.CountryId','left');
+			$this->db->where('ua.UserId',$post_data);
+			$result = $this->db->get('tblmststate as ms');
+
+      $res = array();
+      if($result->result()) {
+        $res = $result->result();
+      }
+      return $res;
+            // if($result)
+            // {
+            //   $this->db->select('StateName,CountryId');
+            //    $this->db->where('IsActive','1');
+            //   $this->db->where('UserId',$post_data);
+            //   $result = $this->db->get('tbluseraddress');
+            // }
+        
+        // $res = array();
+        // if($result->result()) {
+        //   $res = $result->result();
+        // }
+        // return $res;
+      }
       public function getUserInvitationList()
       {
         try{
