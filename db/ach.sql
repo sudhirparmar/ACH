@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 06, 2019 at 07:24 AM
+-- Generation Time: Feb 07, 2019 at 11:32 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -52,7 +52,17 @@ INSERT INTO `tblactivitylog` (`ActivityLogId`, `UserId`, `Module`, `Activity`, `
 (9, 0, 'Invite User', 'Invitation sent to - sparmar@theopeneyes.in', '2019-02-04 14:20:49'),
 (10, 0, 'Invite User', 'Invitation sent to - uttam.bhut@theopeneyes.in', '2019-02-05 06:15:50'),
 (11, 2, 'AchForm', 'Fill Ach form by - ', '2019-02-06 06:19:14'),
-(12, 2, 'AchForm', 'Fill Ach form by - ', '2019-02-06 06:19:14');
+(12, 2, 'AchForm', 'Fill Ach form by - ', '2019-02-06 06:19:14'),
+(13, 2, 'AchForm', 'Fill Ach form by - ', '2019-02-06 14:14:49'),
+(14, 2, 'AchForm', 'Fill Ach form by - ', '2019-02-06 14:14:49'),
+(15, 2, 'AchForm', 'Fill Ach form by - ', '2019-02-07 06:00:24'),
+(16, 2, 'AchForm', 'Fill Ach form by - ', '2019-02-07 06:11:30'),
+(17, 2, 'AchForm', 'Fill Ach form by - ', '2019-02-07 06:13:42'),
+(18, 2, 'Password', 'Change Password after Login', '2019-02-07 06:52:14'),
+(19, 2, 'AchForm', 'Fill Ach form by - ', '2019-02-07 07:48:23'),
+(20, 2, 'AchForm', 'Fill Ach form by - ', '2019-02-07 07:59:28'),
+(21, 2, 'Password', 'Send Password reset Link', '2019-02-07 09:26:01'),
+(22, 2, 'Password', 'Reset Password without Login', '2019-02-07 09:27:17');
 
 -- --------------------------------------------------------
 
@@ -80,7 +90,9 @@ INSERT INTO `tblemaillog` (`EmailLogId`, `TokenId`, `From`, `Cc`, `Bcc`, `To`, `
 (1, 0, 'myopeneyes3937@gmail.com', '', '', 'uttam.bhut@theopeneyes.in', 'OpenEyes Software Soluations - Fill ACH Form', '\r\n				<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"border:1px solid #333333; color:#000000; font-family:Arial,Helvetica,sans-serif; font-size:15px; line-height:22px; margin:0 auto; width:600px\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"background-color:#fff; background:#fff; padding:10px 10px 5px 10px; text-align:center\"><img alt=\"\" style=\"width:130px\" src=\"https://devbyopeneyes.com/emailer_images/oess.png\" /></td>\r\n						</tr>\r\n						<tr>\r\n							<td style=\"border-width:0; padding:20px 10px 10px 10px; text-align:center\">\r\n								<p style=\"color:#000; font-size: 14px; line-height:20px; padding: 0; margin: 0 0;\">Find your link to fill ACH Form:</p>\r\n							</td>\r\n						</tr>\r\n						<tr>\r\n							<td style=\"border-width:0; padding:0; text-align:center; vertical-align:middle\">\r\n							<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"border:0; font-family:Arial,Helvetica,sans-serif; font-size:15px; line-height:22px; margin:0 auto\">\r\n								<tbody>\r\n									<tr>\r\n										<td style=\"background-color:#0061AF; background:#0061AF; border-radius:4px; border-width:0; clear:both; color:#ffffff; font-size:14px; line-height:13px; opacity:1; padding:10px; text-align:center; text-decoration:none; width:130px\"><a href=\"http://localhost:4200/ach/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJVc2VySWQiOjEsIkludml0YXRpb25Db2RlIjoiWERDS1IzIiwiRW1haWxBZGRyZXNzIjoidXR0YW0uYmh1dEB0aGVvcGVuZXllcy5pbiJ9.sCZLK1okmatWzKraEeSZQIYI8N0MzrpBQP6mvlfkK28\" style=\"color:#fff; text-decoration:none;\">Fill ACH Form</a></td>\r\n									</tr>\r\n								</tbody>\r\n							</table>\r\n							</td>\r\n						</tr>\r\n						<tr>\r\n							<td style=\"border-width:0; padding:20px 10px 10px 10px; text-align:center; vertical-align:middle\">\r\n								<p style=\"color:#777; font-size: 12px; line-height:20px; padding: 0; margin: 0 0 10px; text-align: left;\">If you&rsquo;re having trouble with the button above, copy and paste the URL below into your web browser. <a href=\"http://localhost:4200/ach/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJVc2VySWQiOjEsIkludml0YXRpb25Db2RlIjoiWERDS1IzIiwiRW1haWxBZGRyZXNzIjoidXR0YW0uYmh1dEB0aGVvcGVuZXllcy5pbiJ9.sCZLK1okmatWzKraEeSZQIYI8N0MzrpBQP6mvlfkK28\" style=\"cursor:pointer;\">click here</a></p>\r\n							</td>\r\n						</tr>\r\n						<tr>\r\n							<td style=\"background-color:#a6ce39; background:#a6ce39; border-top:1px solid #cccccc; color:#000; font-size:13px; padding:7px; text-align:center\">Copyright &copy; 2019 OpenEyes Software Solutions</td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n				', '2019-02-04 06:42:47'),
 (2, 0, 'myopeneyes3937@gmail.com', '', '', 'uttam.bhut@theopeneyes.in', 'OpenEyes Software Soluations - Fill ACH Form', '\r\n				<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"border:1px solid #333333; color:#000000; font-family:Arial,Helvetica,sans-serif; font-size:15px; line-height:22px; margin:0 auto; width:600px\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"background-color:#fff; background:#fff; padding:10px 10px 5px 10px; text-align:center\"><img alt=\"\" style=\"width:130px\" src=\"https://devbyopeneyes.com/emailer_images/oess.png\" /></td>\r\n						</tr>\r\n						<tr>\r\n							<td style=\"border-width:0; padding:20px 10px 10px 10px; text-align:center\">\r\n								<p style=\"color:#000; font-size: 14px; line-height:20px; padding: 0; margin: 0 0;\">Find your link to fill ACH Form:</p>\r\n							</td>\r\n						</tr>\r\n						<tr>\r\n							<td style=\"border-width:0; padding:0; text-align:center; vertical-align:middle\">\r\n							<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"border:0; font-family:Arial,Helvetica,sans-serif; font-size:15px; line-height:22px; margin:0 auto\">\r\n								<tbody>\r\n									<tr>\r\n										<td style=\"background-color:#0061AF; background:#0061AF; border-radius:4px; border-width:0; clear:both; color:#ffffff; font-size:14px; line-height:13px; opacity:1; padding:10px; text-align:center; text-decoration:none; width:130px\"><a href=\"http://localhost:4200/ach/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJVc2VySWQiOjIsIkludml0YXRpb25Db2RlIjoiN09VM1FOIiwiRW1haWxBZGRyZXNzIjoidXR0YW0uYmh1dEB0aGVvcGVuZXllcy5pbiJ9.GLpJovIjhMG4hmr0gF4FMXMICoOp8lfkOVqT2ct-aAQ\" style=\"color:#fff; text-decoration:none;\">Fill ACH Form</a></td>\r\n									</tr>\r\n								</tbody>\r\n							</table>\r\n							</td>\r\n						</tr>\r\n						<tr>\r\n							<td style=\"border-width:0; padding:20px 10px 10px 10px; text-align:center; vertical-align:middle\">\r\n								<p style=\"color:#777; font-size: 12px; line-height:20px; padding: 0; margin: 0 0 10px; text-align: left;\">If you&rsquo;re having trouble with the button above, copy and paste the URL below into your web browser. <a href=\"http://localhost:4200/ach/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJVc2VySWQiOjIsIkludml0YXRpb25Db2RlIjoiN09VM1FOIiwiRW1haWxBZGRyZXNzIjoidXR0YW0uYmh1dEB0aGVvcGVuZXllcy5pbiJ9.GLpJovIjhMG4hmr0gF4FMXMICoOp8lfkOVqT2ct-aAQ\" style=\"cursor:pointer;\">click here</a></p>\r\n							</td>\r\n						</tr>\r\n						<tr>\r\n							<td style=\"background-color:#a6ce39; background:#a6ce39; border-top:1px solid #cccccc; color:#000; font-size:13px; padding:7px; text-align:center\">Copyright &copy; 2019 OpenEyes Software Solutions</td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n				', '2019-02-04 14:19:59'),
 (3, 0, 'myopeneyes3937@gmail.com', '', '', 'sparmar@theopeneyes.in', 'OpenEyes Software Soluations - Fill ACH Form', '\r\n				<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"border:1px solid #333333; color:#000000; font-family:Arial,Helvetica,sans-serif; font-size:15px; line-height:22px; margin:0 auto; width:600px\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"background-color:#fff; background:#fff; padding:10px 10px 5px 10px; text-align:center\"><img alt=\"\" style=\"width:130px\" src=\"https://devbyopeneyes.com/emailer_images/oess.png\" /></td>\r\n						</tr>\r\n						<tr>\r\n							<td style=\"border-width:0; padding:20px 10px 10px 10px; text-align:center\">\r\n								<p style=\"color:#000; font-size: 14px; line-height:20px; padding: 0; margin: 0 0;\">Find your link to fill ACH Form:</p>\r\n							</td>\r\n						</tr>\r\n						<tr>\r\n							<td style=\"border-width:0; padding:0; text-align:center; vertical-align:middle\">\r\n							<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"border:0; font-family:Arial,Helvetica,sans-serif; font-size:15px; line-height:22px; margin:0 auto\">\r\n								<tbody>\r\n									<tr>\r\n										<td style=\"background-color:#0061AF; background:#0061AF; border-radius:4px; border-width:0; clear:both; color:#ffffff; font-size:14px; line-height:13px; opacity:1; padding:10px; text-align:center; text-decoration:none; width:130px\"><a href=\"http://localhost:4200/ach/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJVc2VySWQiOjMsIkludml0YXRpb25Db2RlIjoiUUtVS1k4IiwiRW1haWxBZGRyZXNzIjoic3Bhcm1hckB0aGVvcGVuZXllcy5pbiJ9.cLRTz7X6GbSuTrsFxM3_zAiR5lnFfnr7Oqvp5gTWuaI\" style=\"color:#fff; text-decoration:none;\">Fill ACH Form</a></td>\r\n									</tr>\r\n								</tbody>\r\n							</table>\r\n							</td>\r\n						</tr>\r\n						<tr>\r\n							<td style=\"border-width:0; padding:20px 10px 10px 10px; text-align:center; vertical-align:middle\">\r\n								<p style=\"color:#777; font-size: 12px; line-height:20px; padding: 0; margin: 0 0 10px; text-align: left;\">If you&rsquo;re having trouble with the button above, copy and paste the URL below into your web browser. <a href=\"http://localhost:4200/ach/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJVc2VySWQiOjMsIkludml0YXRpb25Db2RlIjoiUUtVS1k4IiwiRW1haWxBZGRyZXNzIjoic3Bhcm1hckB0aGVvcGVuZXllcy5pbiJ9.cLRTz7X6GbSuTrsFxM3_zAiR5lnFfnr7Oqvp5gTWuaI\" style=\"cursor:pointer;\">click here</a></p>\r\n							</td>\r\n						</tr>\r\n						<tr>\r\n							<td style=\"background-color:#a6ce39; background:#a6ce39; border-top:1px solid #cccccc; color:#000; font-size:13px; padding:7px; text-align:center\">Copyright &copy; 2019 OpenEyes Software Solutions</td>\r\n						</tr>\r\n					</tbody>\r\n				</table>\r\n				', '2019-02-04 14:20:54'),
-(4, 0, 'myopeneyes3937@gmail.com', '', '', 'uttam.bhut@theopeneyes.in', 'OpenEyes Software Soluations - Invitation', '\r\n					<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"border:1px solid #333333; color:#000000; font-family:Arial,Helvetica,sans-serif; font-size:15px; line-height:22px; margin:0 auto; width:600px\">\r\n						<tbody>\r\n							<tr>\r\n								<td style=\"background-color:#fff; background:#fff; padding:10px 10px 5px 10px; text-align:center\"><img alt=\"\" style=\"width:130px\" src=\"https://devbyopeneyes.com/emailer_images/oess.png\" /></td>\r\n							</tr>\r\n							<tr>\r\n								<td style=\"border-width:0; padding:20px 10px 10px 10px; text-align:center\">\r\n								<p style=\"color:#000; font-size: 25px; line-height: 25px; font-weight: bold;padding: 0; margin: 0 0 10px;\">Welcome, <strong>Uttam Bhut!</strong></p>\r\n\r\n								<p style=\"color:#000; font-size: 18px; line-height: 18px; font-weight: bold; padding: 0; margin: 0 0 10px;\">Find your login credential for ACH below:</p>\r\n\r\n								<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"margin:20px 0; width:100%; color:#000000; font-family:Arial,Helvetica,sans-serif; font-size:15px; line-height:22px; margin:0 auto;\">\r\n									<tbody>\r\n										<tr>\r\n											<td style=\"padding:5px; text-align:right; width:35%\">Login Id</td>\r\n											<td style=\"padding:5px; text-align:center; width:4%\">:</td>\r\n											<td style=\"padding:5px; text-align:left; width:48%\">uttam.bhut@theopeneyes.in</td>\r\n										</tr>\r\n										<tr>\r\n											<td style=\"padding:5px; text-align:right; width:35%\">Password</td>\r\n											<td style=\"padding:5px; text-align:center; width:4%\">:</td>\r\n											<td style=\"padding:5px; text-align:left; width:48%\">s1l0skaJ</td>\r\n										</tr>\r\n									</tbody>\r\n								</table>\r\n								<p style=\"color:#000; font-size: 14px; line-height:20px; padding: 0; margin:20px 0 0;\">Use the button below to access your account:</p>\r\n								</td>\r\n							</tr>\r\n							<tr>\r\n								<td style=\"border-width:0; padding:0; text-align:center; vertical-align:middle\">\r\n								<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"border:0; font-family:Arial,Helvetica,sans-serif; font-size:15px; line-height:22px; margin:0 auto\">\r\n									<tbody>\r\n										<tr>\r\n											<td style=\"background-color:#0061AF; background:#0061AF; border-radius:4px; border-width:0; clear:both; color:#ffffff; font-size:14px; line-height:13px; opacity:1; padding:10px; text-align:center; text-decoration:none; width:130px\"><a href=\"http://localhost:4200/login/\" style=\"color:#fff; text-decoration:none;\">Login to Account</a></td>\r\n										</tr>\r\n									</tbody>\r\n								</table>\r\n								</td>\r\n							</tr>\r\n							<tr>\r\n								<td style=\"border-width:0; padding:20px 10px 10px 10px; text-align:center; vertical-align:middle\">\r\n									<p style=\"color:#777; font-size: 12px; line-height:20px; padding: 0; margin: 0 0 10px; text-align: left;\">If you&rsquo;re having trouble with the button above, copy and paste the URL below into your web browser. <a href=\"http://localhost:4200/login/\" style=\"cursor:pointer;\">click here</a></p>\r\n								</td>\r\n							</tr>\r\n							<tr>\r\n								<td style=\"background-color:#a6ce39; background:#a6ce39; border-top:1px solid #cccccc; color:#000; font-size:13px; padding:7px; text-align:center\">Copyright &copy; 2019 OpenEyes Software Solutions</td>\r\n							</tr>\r\n						</tbody>\r\n					</table>\r\n					', '2019-02-05 06:15:54');
+(4, 0, 'myopeneyes3937@gmail.com', '', '', 'uttam.bhut@theopeneyes.in', 'OpenEyes Software Soluations - Invitation', '\r\n					<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"border:1px solid #333333; color:#000000; font-family:Arial,Helvetica,sans-serif; font-size:15px; line-height:22px; margin:0 auto; width:600px\">\r\n						<tbody>\r\n							<tr>\r\n								<td style=\"background-color:#fff; background:#fff; padding:10px 10px 5px 10px; text-align:center\"><img alt=\"\" style=\"width:130px\" src=\"https://devbyopeneyes.com/emailer_images/oess.png\" /></td>\r\n							</tr>\r\n							<tr>\r\n								<td style=\"border-width:0; padding:20px 10px 10px 10px; text-align:center\">\r\n								<p style=\"color:#000; font-size: 25px; line-height: 25px; font-weight: bold;padding: 0; margin: 0 0 10px;\">Welcome, <strong>Uttam Bhut!</strong></p>\r\n\r\n								<p style=\"color:#000; font-size: 18px; line-height: 18px; font-weight: bold; padding: 0; margin: 0 0 10px;\">Find your login credential for ACH below:</p>\r\n\r\n								<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"margin:20px 0; width:100%; color:#000000; font-family:Arial,Helvetica,sans-serif; font-size:15px; line-height:22px; margin:0 auto;\">\r\n									<tbody>\r\n										<tr>\r\n											<td style=\"padding:5px; text-align:right; width:35%\">Login Id</td>\r\n											<td style=\"padding:5px; text-align:center; width:4%\">:</td>\r\n											<td style=\"padding:5px; text-align:left; width:48%\">uttam.bhut@theopeneyes.in</td>\r\n										</tr>\r\n										<tr>\r\n											<td style=\"padding:5px; text-align:right; width:35%\">Password</td>\r\n											<td style=\"padding:5px; text-align:center; width:4%\">:</td>\r\n											<td style=\"padding:5px; text-align:left; width:48%\">s1l0skaJ</td>\r\n										</tr>\r\n									</tbody>\r\n								</table>\r\n								<p style=\"color:#000; font-size: 14px; line-height:20px; padding: 0; margin:20px 0 0;\">Use the button below to access your account:</p>\r\n								</td>\r\n							</tr>\r\n							<tr>\r\n								<td style=\"border-width:0; padding:0; text-align:center; vertical-align:middle\">\r\n								<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"border:0; font-family:Arial,Helvetica,sans-serif; font-size:15px; line-height:22px; margin:0 auto\">\r\n									<tbody>\r\n										<tr>\r\n											<td style=\"background-color:#0061AF; background:#0061AF; border-radius:4px; border-width:0; clear:both; color:#ffffff; font-size:14px; line-height:13px; opacity:1; padding:10px; text-align:center; text-decoration:none; width:130px\"><a href=\"http://localhost:4200/login/\" style=\"color:#fff; text-decoration:none;\">Login to Account</a></td>\r\n										</tr>\r\n									</tbody>\r\n								</table>\r\n								</td>\r\n							</tr>\r\n							<tr>\r\n								<td style=\"border-width:0; padding:20px 10px 10px 10px; text-align:center; vertical-align:middle\">\r\n									<p style=\"color:#777; font-size: 12px; line-height:20px; padding: 0; margin: 0 0 10px; text-align: left;\">If you&rsquo;re having trouble with the button above, copy and paste the URL below into your web browser. <a href=\"http://localhost:4200/login/\" style=\"cursor:pointer;\">click here</a></p>\r\n								</td>\r\n							</tr>\r\n							<tr>\r\n								<td style=\"background-color:#a6ce39; background:#a6ce39; border-top:1px solid #cccccc; color:#000; font-size:13px; padding:7px; text-align:center\">Copyright &copy; 2019 OpenEyes Software Solutions</td>\r\n							</tr>\r\n						</tbody>\r\n					</table>\r\n					', '2019-02-05 06:15:54'),
+(5, 0, 'myopeneyes3937@gmail.com', '', '', 'uttam.bhut@theopeneyes.in', 'ACH - Password Reset Request', '\r\n				<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"border:1px solid #333333; color:#000000; font-family:Arial,Helvetica,sans-serif; font-size:15px; line-height:22px; margin:0 auto; width:600px\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"background-color:#fff; background:#fff; padding:10px 10px 5px 10px; text-align:center\"><img alt=\"\" style=\"width:130px\" src=\"https://devbyopeneyes.com/emailer_images/oess.png\" /></td>\r\n						</tr>\r\n						<tr>\r\n							<td style=\"border-width:0; padding:20px 10px 10px 10px; text-align:center\">\r\n								<p style=\"color:#000; font-size: 25px; line-height: 25px; font-weight: bold;padding: 0; margin: 0 0 10px;\"><strong>Forgot</strong></p>\r\n								<p style=\"color:#000; font-size: 18px; line-height: 18px; font-weight: bold; padding: 0; margin: 0 0 10px;\">Your Password?</p>\r\n								<p style=\"color:#000; font-size: 14px; line-height:20px; padding: 0; margin: 0 0;\">Not to worry, we got you! Let&#39;s get you a new password.</p>\r\n							</td>\r\n						</tr>\r\n						<tr>\r\n							<td style=\"border-width:0; padding:0; text-align:center; vertical-align:middle\">\r\n							<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"border:0; font-family:Arial,Helvetica,sans-serif; font-size:15px; line-height:22px; margin:0 auto\">\r\n								<tbody>\r\n									<tr>\r\n										<td style=\"background-color:#0061AF; background:#0061AF; border-radius:4px; border-width:0; clear:both; color:#ffffff; font-size:14px; line-height:13px; opacity:1; padding:10px; text-align:center; text-decoration:none; width:130px\"><a href=\"http://localhost:4200/reset-password/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJVc2VySWQiOiIyIiwiRm9yZ290UGFzc3dvcmRDb2RlIjo2MTM5NDMsIkVtYWlsQWRkcmVzcyI6InV0dGFtLmJodXRAdGhlb3BlbmV5ZXMuaW4ifQ.93jXU6pR_pOfD8P_iCvf9EZ9AuR2rczmT6pyXqZZqo0\" style=\"color:#fff; text-decoration:none;\">Reset Password</a></td>\r\n									</tr>\r\n								</tbody>\r\n							</table>\r\n							</td>\r\n						</tr>\r\n						<tr>\r\n							<td style=\"border-width:0; padding:20px 10px 10px 10px; text-align:center; vertical-align:middle\">\r\n								<p style=\"color:#777; font-size: 14px; line-height:20px; padding: 0; margin: 0 0 25px;\">If you did not request a password reset, please ignore this email.</p>\r\n								<p style=\"color:#777; font-size: 12px; line-height:20px; padding: 0; margin: 0 0 10px; text-align: left;\">If you&rsquo;re having trouble with the button above, copy and paste the URL below into your web browser. <a href=\"http://localhost:4200/reset-password/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJVc2VySWQiOiIyIiwiRm9yZ290UGFzc3dvcmRDb2RlIjo2MTM5NDMsIkVtYWlsQWRkcmVzcyI6InV0dGFtLmJodXRAdGhlb3BlbmV5ZXMuaW4ifQ.93jXU6pR_pOfD8P_iCvf9EZ9AuR2rczmT6pyXqZZqo0\" style=\"cursor:pointer;\">click here</a></p>\r\n							</td>\r\n						</tr>\r\n						<tr>\r\n							<td style=\"background-color:#a6ce39; background:#a6ce39; border-top:1px solid #cccccc; color:#000; font-size:13px; padding:7px; text-align:center\">Copyright &copy; 2019 OpenEyes Software Solutions</td>\r\n						</tr>\r\n					</tbody>\r\n				</table>', '2019-02-07 09:26:09'),
+(6, 0, 'myopeneyes3937@gmail.com', '', '', 'uttam.bhut@theopeneyes.in', 'ACH - Password has been Changed', '\r\n				<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"border:1px solid #333333; color:#000000; font-family:Arial,Helvetica,sans-serif; font-size:15px; line-height:22px; margin:0 auto; width:600px\">\r\n					<tbody>\r\n						<tr>\r\n							<td style=\"background-color:#fff; background:#fff; padding:10px 10px 5px 10px; text-align:center\"><img alt=\"\" style=\"width:130px\" src=\"https://devbyopeneyes.com/emailer_images/oess.png\" /></td>\r\n						</tr>\r\n						<tr>\r\n							<td style=\"border-width:0; padding:10px 10px 10px 10px; text-align:center\">\r\n								<p style=\"color:#000; font-size: 25px; line-height: 25px; font-weight: bold;padding: 0; margin: 0 0 10px;\"><strong>Password Reset!</strong></p>\r\n								<p style=\"color:#000; font-size: 18px; line-height: 18px; font-weight: bold; padding: 0; margin: 0 0 10px;\">Your new password has been set.</p>\r\n								<p style=\"color:#000; font-size: 14px; line-height:20px; padding: 0; margin: 0 0;\">Use the button below to access your account:</p>\r\n							</td>\r\n						</tr>\r\n						<tr>\r\n							<td style=\"border-width:0; padding:0; text-align:center; vertical-align:middle\">\r\n							<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"border:0; font-family:Arial,Helvetica,sans-serif; font-size:15px; line-height:22px; margin:0 auto\">\r\n								<tbody>\r\n									<tr>\r\n										<td style=\"background-color:#0061AF; background:#0061AF; border-radius:4px; border-width:0; clear:both; color:#ffffff; font-size:14px; line-height:13px; opacity:1; padding:10px; text-align:center; text-decoration:none; width:130px\"><a href=\"http://localhost:4200/login/\" style=\"color:#fff; text-decoration:none;\">Login to Account</a></td>\r\n									</tr>\r\n								</tbody>\r\n							</table>\r\n							</td>\r\n						</tr>\r\n						<tr>\r\n							<td style=\"border-width:0; padding:20px 10px 10px 10px; text-align:center; vertical-align:middle\">\r\n								<p style=\"color:#777; font-size: 14px; line-height:20px; padding: 0; margin: 0 0 25px;\">If the changes described above are accurate, no further action is needed. If anything doesn&#39;t look right, follow the link below to make changes: <a href=\"http://localhost:4200/forgot-password/\">Restore password</a></p>\r\n								<p style=\"color:#777; font-size: 14px; line-height:20px; padding: 0; margin: 0 0 25px;\">If you have any questions, you can reply to this email and it will go right to them.</p>\r\n								<p style=\"color:#777; font-size: 12px; line-height:20px; padding: 0; margin: 0 0 10px; text-align: left;\">If you&rsquo;re having trouble with the button above, copy and paste the URL below into your web browser. <a href=\"http://localhost:4200/login/\" style=\"cursor:pointer;\">click here</a></p>\r\n							</td>\r\n						</tr>\r\n						<tr>\r\n							<td style=\"background-color:#a6ce39; background:#a6ce39; border-top:1px solid #cccccc; color:#000; font-size:13px; padding:7px; text-align:center\">Copyright &copy; 2019 OpenEyes Software Solutions</td>\r\n						</tr>\r\n					</tbody>\r\n				</table>', '2019-02-07 09:27:22');
 
 -- --------------------------------------------------------
 
@@ -192,7 +204,44 @@ INSERT INTO `tblerrorlog` (`id`, `errno`, `errtype`, `errstr`, `errfile`, `errli
 (85, 0, '0', 'syntax error, unexpected \'\"BankIFSCCode\"\' (T_CONSTANT_ENCAPSED_STRING), expecting \')\'', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\Ach\\models\\Ach_model.php', 87, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-06 11:46:24'),
 (86, 8, 'Notice', 'Undefined variable: UserDetails', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\Ach\\models\\Ach_model.php', 112, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-06 11:49:13'),
 (87, 8, 'Notice', 'Undefined variable: UserDetails', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\Ach\\models\\Ach_model.php', 112, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-06 11:49:14'),
-(88, 256, 'User Error', 'Database error! Error Code [1054] Error: Unknown column \'Address\' in \'field list\'', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\InviteUser\\models\\InviteUser_model.php', 27, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-06 11:49:15');
+(88, 256, 'User Error', 'Database error! Error Code [1054] Error: Unknown column \'Address\' in \'field list\'', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\InviteUser\\models\\InviteUser_model.php', 27, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-06 11:49:15'),
+(89, 256, 'User Error', 'Database error! Error Code [1054] Error: Unknown column \'Address\' in \'field list\'', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\InviteUser\\models\\InviteUser_model.php', 27, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-06 11:55:30'),
+(90, 0, '0', 'syntax error, unexpected \')\'', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\Ach\\models\\Ach_model.php', 36, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-06 12:26:10'),
+(91, 0, '0', 'syntax error, unexpected \')\'', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\Ach\\models\\Ach_model.php', 36, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-06 12:26:10'),
+(92, 0, '0', 'syntax error, unexpected \')\'', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\Ach\\models\\Ach_model.php', 36, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-06 12:26:10'),
+(93, 0, '0', 'syntax error, unexpected \')\'', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\Ach\\models\\Ach_model.php', 36, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-06 12:26:52'),
+(94, 0, '0', 'syntax error, unexpected \')\'', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\Ach\\models\\Ach_model.php', 36, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-06 12:26:52'),
+(95, 0, '0', 'syntax error, unexpected \')\'', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\Ach\\models\\Ach_model.php', 36, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-06 12:26:52'),
+(96, 0, '0', 'Call to a member function result() on boolean', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\Ach\\models\\Ach_model.php', 42, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-06 13:12:42'),
+(97, 256, 'User Error', 'Database error! Error Code [1054] Error: Unknown column \'Address\' in \'field list\'', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\InviteUser\\models\\InviteUser_model.php', 27, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-06 15:45:08'),
+(98, 8, 'Notice', 'Undefined variable: UserDetails', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\Ach\\models\\Ach_model.php', 153, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-06 19:44:49'),
+(99, 8, 'Notice', 'Undefined variable: UserDetails', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\Ach\\models\\Ach_model.php', 153, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-06 19:44:49'),
+(100, 256, 'User Error', 'Database error! Error Code [1054] Error: Unknown column \'Address\' in \'field list\'', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\InviteUser\\models\\InviteUser_model.php', 27, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-06 19:44:50'),
+(101, 256, 'User Error', 'Database error! Error Code [1054] Error: Unknown column \'Address\' in \'field list\'', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\InviteUser\\models\\InviteUser_model.php', 27, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-06 19:46:07'),
+(102, 256, 'User Error', 'Database error! Error Code [1054] Error: Unknown column \'Address\' in \'field list\'', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\InviteUser\\models\\InviteUser_model.php', 27, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-06 19:48:28'),
+(103, 256, 'User Error', 'Database error! Error Code [1054] Error: Unknown column \'Address\' in \'field list\'', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\InviteUser\\models\\InviteUser_model.php', 27, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-07 11:13:55'),
+(104, 8, 'Notice', 'Undefined index: AdminUserId', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\Login\\controllers\\Login.php', 57, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-07 11:14:03'),
+(105, 8, 'Notice', 'Undefined variable: UserDetails', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\Ach\\models\\Ach_model.php', 153, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-07 11:30:24'),
+(106, 256, 'User Error', 'Database error! Error Code [1054] Error: Unknown column \'Address\' in \'field list\'', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\InviteUser\\models\\InviteUser_model.php', 27, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-07 11:30:25'),
+(107, 256, 'User Error', 'Database error! Error Code [1054] Error: Unknown column \'Address\' in \'field list\'', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\InviteUser\\models\\InviteUser_model.php', 27, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-07 11:32:22'),
+(108, 256, 'User Error', 'Database error! Error Code [1054] Error: Unknown column \'Address\' in \'field list\'', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\InviteUser\\models\\InviteUser_model.php', 27, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-07 11:34:25'),
+(109, 8, 'Notice', 'Undefined variable: UserDetails', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\Ach\\models\\Ach_model.php', 153, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-07 11:41:30'),
+(110, 256, 'User Error', 'Database error! Error Code [1054] Error: Unknown column \'Address\' in \'field list\'', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\InviteUser\\models\\InviteUser_model.php', 27, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-07 11:41:31'),
+(111, 256, 'User Error', 'Database error! Error Code [1054] Error: Unknown column \'Address\' in \'field list\'', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\InviteUser\\models\\InviteUser_model.php', 27, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-07 11:42:27'),
+(112, 8, 'Notice', 'Undefined variable: UserDetails', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\Ach\\models\\Ach_model.php', 153, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-07 11:43:42'),
+(113, 256, 'User Error', 'Database error! Error Code [1054] Error: Unknown column \'Address\' in \'field list\'', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\InviteUser\\models\\InviteUser_model.php', 27, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-07 11:43:43'),
+(114, 256, 'User Error', 'Database error! Error Code [1054] Error: Unknown column \'Address\' in \'field list\'', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\InviteUser\\models\\InviteUser_model.php', 27, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-07 11:44:53'),
+(115, 256, 'User Error', 'Database error! Error Code [1054] Error: Unknown column \'Address\' in \'field list\'', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\InviteUser\\models\\InviteUser_model.php', 27, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-07 11:44:58'),
+(116, 0, '0', 'Call to a member function num_rows() on boolean', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\ChangePassword\\models\\ChangePassword_model.php', 14, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-07 12:14:14'),
+(117, 8, 'Notice', 'Undefined index: AdminUserId', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\Login\\controllers\\Login.php', 57, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-07 12:14:41'),
+(118, 8, 'Notice', 'Undefined index: AdminUserId', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\Login\\controllers\\Login.php', 57, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-07 12:21:29'),
+(119, 8, 'Notice', 'Undefined index: AdminUserId', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\Login\\controllers\\Login.php', 57, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-07 12:22:47'),
+(120, 8, 'Notice', 'Undefined index: AdminUserId', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\Login\\controllers\\Login.php', 57, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-07 13:13:18'),
+(121, 8, 'Notice', 'Undefined index: AdminUserId', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\Login\\controllers\\Login.php', 57, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-07 13:14:10'),
+(122, 8, 'Notice', 'Undefined variable: UserDetails', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\Ach\\models\\Ach_model.php', 153, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-07 13:18:23'),
+(123, 8, 'Notice', 'Undefined variable: UserDetails', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\Ach\\models\\Ach_model.php', 153, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-07 13:29:28'),
+(124, 8, 'Notice', 'Undefined index: AdminUserId', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\Login\\controllers\\Login.php', 57, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-07 13:29:51'),
+(125, 8, 'Notice', 'Undefined index: AdminUserId', 'C:\\xampp\\htdocs\\ACH\\api\\application\\modules\\Login\\controllers\\Login.php', 57, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', '::1', '2019-02-07 13:56:36');
 
 -- --------------------------------------------------------
 
@@ -225,7 +274,17 @@ INSERT INTO `tblloginlog` (`LoginLogId`, `UserId`, `LoginType`, `UserAgent`, `IP
 (9, 2, 1, NULL, NULL, '2019-02-05 07:03:56'),
 (10, 2, 1, NULL, NULL, '2019-02-05 09:39:52'),
 (11, 2, 1, NULL, NULL, '2019-02-06 05:06:24'),
-(12, 2, 1, NULL, NULL, '2019-02-06 05:15:27');
+(12, 2, 1, NULL, NULL, '2019-02-06 05:15:27'),
+(13, 2, 1, NULL, NULL, '2019-02-06 10:50:55'),
+(14, 1, 1, NULL, NULL, '2019-02-07 05:43:50'),
+(15, 2, 1, NULL, NULL, '2019-02-07 05:44:34'),
+(16, 2, 1, NULL, NULL, '2019-02-07 06:08:11'),
+(17, 2, 1, NULL, NULL, '2019-02-07 06:48:34'),
+(18, 2, 1, NULL, NULL, '2019-02-07 06:51:45'),
+(19, 2, 1, NULL, NULL, '2019-02-07 06:53:06'),
+(20, 2, 1, NULL, NULL, '2019-02-07 07:43:40'),
+(21, 2, 1, NULL, NULL, '2019-02-07 07:45:14'),
+(22, 2, 1, NULL, NULL, '2019-02-07 08:00:11');
 
 -- --------------------------------------------------------
 
@@ -252,8 +311,7 @@ CREATE TABLE `tblmstbank` (
 --
 
 INSERT INTO `tblmstbank` (`BankId`, `BankName`, `BankIFSCCode`, `BankAddress`, `BankBranch`, `BankPhoneNumber`, `IsActive`, `CreatedBy`, `CreatedOn`, `UpdatedBy`, `UpdatedOn`) VALUES
-(1, 'Yes Bank', 'YESB0000027', 'GROUND AND FIRST FLOOR,, PLOT-SANTO AGOSTINHO,18TH JUNE ROAD, OPP HDFC BANK,, PANAJI, GOA-403001', 'PANJIM, GOA', '6659000', b'1', 0, '2019-02-06 11:49:13', 0, '2019-02-06 11:49:13'),
-(2, 'HDFC Bank', 'HDFC0000389', 'ARPAN COMPLEX,101,FIRST FLOOR,NIZAMPURABARODAGUJARAT390002', 'NIZAMPURA-BARODA-GUJARAT', '9898271111', b'1', 0, '2019-02-06 11:49:14', 0, '2019-02-06 11:49:14');
+(5, 'Yes Bank', 'yesb0000001', 'GROUND AND FIRST FLOOR,MOTI MAHAL, DR. ANNIE BESANT ROAD,, NEXT TO CITY BAKERY, WORLI, MUMBAI, MAHARASHTRA-400018', 'RTGS-HO', '66699293', b'1', 0, '2019-02-07 13:29:28', 0, '2019-02-07 13:29:28');
 
 -- --------------------------------------------------------
 
@@ -4202,7 +4260,7 @@ CREATE TABLE `tbluser` (
 
 INSERT INTO `tbluser` (`UserId`, `RoleId`, `FirstName`, `LastName`, `PhoneNumber`, `EmailAddress`, `Password`, `ForgotPasswordCode`, `StatusId`, `IsActive`, `CreatedBy`, `CreatedOn`, `UpdatedBy`, `UpdatedOn`) VALUES
 (1, 1, 'IT', 'Admin', NULL, 'it@theopeneyes.com', '25d55ad283aa400af464c76d713c07ad', NULL, 0, b'1', 0, '2019-02-05 12:14:20', 0, '2019-02-05 12:14:20'),
-(2, 2, 'Uttam', 'Bhut', '9898989898', 'uttam.bhut@theopeneyes.in', '25d55ad283aa400af464c76d713c07ad', NULL, 1, b'1', 0, '2019-02-05 12:16:11', 0, '2019-02-05 12:16:11');
+(2, 2, 'Uttam', 'Bhut', '9898989898', 'uttam.bhut@theopeneyes.in', '25d55ad283aa400af464c76d713c07ad', '', 1, b'1', 0, '2019-02-05 12:16:11', 2, '2019-02-07 14:57:17');
 
 -- --------------------------------------------------------
 
@@ -4216,6 +4274,7 @@ CREATE TABLE `tbluseraddress` (
   `Address` varchar(250) NOT NULL,
   `City` varchar(100) NOT NULL,
   `ZipCode` varchar(6) NOT NULL,
+  `CountryId` int(11) NOT NULL,
   `StateId` int(11) NOT NULL,
   `IsActive` bit(1) NOT NULL DEFAULT b'1',
   `CreatedBy` int(11) NOT NULL DEFAULT '1',
@@ -4228,8 +4287,8 @@ CREATE TABLE `tbluseraddress` (
 -- Dumping data for table `tbluseraddress`
 --
 
-INSERT INTO `tbluseraddress` (`UserAddressId`, `UserId`, `Address`, `City`, `ZipCode`, `StateId`, `IsActive`, `CreatedBy`, `CreatedOn`, `UpdatedBy`, `UpdatedOn`) VALUES
-(1, 2, 'Gotri', 'Vadodara', '390007', 82, b'1', 1, '2019-02-06 06:19:13', 1, '2019-02-06 06:19:13');
+INSERT INTO `tbluseraddress` (`UserAddressId`, `UserId`, `Address`, `City`, `ZipCode`, `CountryId`, `StateId`, `IsActive`, `CreatedBy`, `CreatedOn`, `UpdatedBy`, `UpdatedOn`) VALUES
+(5, 2, 'rtyu', 'ertyu', '456789', 101, 82, b'1', 1, '2019-02-07 07:59:28', 1, '2019-02-07 07:59:28');
 
 -- --------------------------------------------------------
 
@@ -4243,7 +4302,7 @@ CREATE TABLE `tbluserbank` (
   `BankId` int(11) NOT NULL,
   `BankAccountNumber` varchar(20) NOT NULL,
   `AccountType` varchar(10) NOT NULL,
-  `PercOfSalary` decimal(5,2) NOT NULL,
+  `PercOfSalary` int(3) NOT NULL,
   `VoidCheque` text NOT NULL,
   `IsActive` bit(1) NOT NULL DEFAULT b'1',
   `CreatedBy` int(11) NOT NULL,
@@ -4257,8 +4316,7 @@ CREATE TABLE `tbluserbank` (
 --
 
 INSERT INTO `tbluserbank` (`UserBankId`, `UserId`, `BankId`, `BankAccountNumber`, `AccountType`, `PercOfSalary`, `VoidCheque`, `IsActive`, `CreatedBy`, `CreatedOn`, `UpdatedBy`, `UpdatedOn`) VALUES
-(1, 2, 1, '390000000012322232', 'Saving', '50.00', '', b'1', 0, '2019-02-06 11:49:13', 0, '2019-02-06 11:49:13'),
-(2, 2, 2, '320000000000034567', 'Current', '50.00', '', b'1', 0, '2019-02-06 11:49:14', 0, '2019-02-06 11:49:14');
+(4, 2, 5, '456785432', 'Current', 100, '', b'1', 0, '2019-02-07 13:29:28', 0, '2019-02-07 13:29:28');
 
 -- --------------------------------------------------------
 
@@ -4283,7 +4341,7 @@ CREATE TABLE `tbluserdocument` (
 --
 
 INSERT INTO `tbluserdocument` (`UserDocumentId`, `UserId`, `PanCard`, `AddressProof`, `IsActive`, `CreatedBy`, `CreatedOn`, `UpdatedBy`, `UpdatedOn`) VALUES
-(1, 2, '1549433953397_PanCard.pdf', '1549433953397_Address_Proof.pdf', b'1', 0, '2019-02-06 11:49:13', 0, '2019-02-06 11:49:13');
+(4, 2, '1549526367708_PanCard.pdf', '1549526367708_Address_Proof.pdf', b'1', 0, '2019-02-07 13:29:28', 0, '2019-02-07 13:29:28');
 
 --
 -- Indexes for dumped tables
@@ -4370,31 +4428,31 @@ ALTER TABLE `tbluserdocument`
 -- AUTO_INCREMENT for table `tblactivitylog`
 --
 ALTER TABLE `tblactivitylog`
-  MODIFY `ActivityLogId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ActivityLogId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `tblemaillog`
 --
 ALTER TABLE `tblemaillog`
-  MODIFY `EmailLogId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `EmailLogId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tblerrorlog`
 --
 ALTER TABLE `tblerrorlog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 
 --
 -- AUTO_INCREMENT for table `tblloginlog`
 --
 ALTER TABLE `tblloginlog`
-  MODIFY `LoginLogId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `LoginLogId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `tblmstbank`
 --
 ALTER TABLE `tblmstbank`
-  MODIFY `BankId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `BankId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tblmstcountry`
@@ -4424,19 +4482,19 @@ ALTER TABLE `tbluser`
 -- AUTO_INCREMENT for table `tbluseraddress`
 --
 ALTER TABLE `tbluseraddress`
-  MODIFY `UserAddressId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `UserAddressId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbluserbank`
 --
 ALTER TABLE `tbluserbank`
-  MODIFY `UserBankId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `UserBankId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbluserdocument`
 --
 ALTER TABLE `tbluserdocument`
-  MODIFY `UserDocumentId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `UserDocumentId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
