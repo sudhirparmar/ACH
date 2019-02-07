@@ -49,6 +49,7 @@ import { StateService } from './services/state.service';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +76,8 @@ import { StateService } from './services/state.service';
     CountryListComponent,
 
     StateComponent,
-    StateListComponent
+    StateListComponent,
+ 
 
   ],
   imports: [
@@ -106,6 +108,8 @@ import { StateService } from './services/state.service';
       { path: 'state/edit/:id', component: StateComponent, canActivate: [AuthGuard] },
       { path: 'state/list', component: StateListComponent, canActivate: [AuthGuard] },
 
+
+   
 
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: '**', redirectTo: 'login' }

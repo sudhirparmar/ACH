@@ -16,7 +16,7 @@ export class AchInvitationService {
         .toPromise()
         .then(
           res => {
-            alert("success");
+            //alert("success");
             resolve(res);
           },
           msg => {
@@ -123,6 +123,24 @@ export class AchInvitationService {
             reject(msg);
             //this.globals.isLoading = false;
             this.router.navigate(['/pagenotfound']);
+          }
+        );
+    });
+    return promise;
+  }
+
+  isActiveChange(userEntity) {
+    let promise = new Promise((resolve, reject) => {
+      this.http.post(this.globals.baseAPIUrl + 'InviteUser/isActiveChange', userEntity)
+        .toPromise()
+        .then(
+          res => { // Success
+            resolve(res);
+          },
+          msg => { // Error
+            reject(msg);
+            //   this.globals.isLoading = false;
+            //this.router.navigate(['/pagenotfound']);      
           }
         );
     });

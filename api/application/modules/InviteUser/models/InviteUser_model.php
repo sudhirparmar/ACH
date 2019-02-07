@@ -9,7 +9,7 @@
       public function getUserData()
       {
         try{
-          $this->db->select('UserId,FirstName,LastName,EmailAddress,PhoneNumber');
+          $this->db->select('UserId,FirstName,LastName,EmailAddress,PhoneNumber,IsActive');
           $this->db->where('StatusId','1');
           $result = $this->db->get('tbluser');
           $db_error = $this->db->error();
@@ -23,6 +23,37 @@
             $res=$result->result();
           }
           return $res;
+        }catch(Exception $e){
+          trigger_error($e->getMessage(), E_USER_ERROR);
+          return false;
+        }
+      }
+
+      public function isActiveChange($data)
+      {
+        try{
+          if($data) {
+
+            if(trim($data['IsActive'])==1){
+              $IsActive = true;
+            } else {
+              $IsActive = false;
+            }
+            $updatedata = array(
+              'IsActive' => $IsActive
+            );	
+           
+            $this->db->where('UserId',trim($data['UserId']));
+            $res = $this->db->update('tbluser',$updatedata);
+          
+            if($res){
+               return $res;
+            }else{
+              return false;
+            }
+          }else{
+            return false;
+          }
         }catch(Exception $e){
           trigger_error($e->getMessage(), E_USER_ERROR);
           return false;

@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AchInvitationService } from '../services/ach-invitation.service';
 import { Globals } from '../globals';
 declare var $: any;
+declare var $, swal: any;
 
 @Component({
   selector: 'app-ach-list',
@@ -159,6 +160,72 @@ export class AchListComponent implements OnInit {
     (error)=>{
       alert("data not found");
     })
+
+  }
+
+  
+  isActiveChange(userEntity,i)
+  {
+    // alert(userEntity);
+    alert("i"+i);
+    if (this.userList[i].IsActive == 1) {
+      this.userList[i].IsActive = 0;
+      userEntity.IsActive = 0;
+      alert("if"+userEntity.IsActive);
+    } else {
+      this.userList[i].IsActive = 1;
+      userEntity.IsActive = 1;
+      alert(userEntity.IsActive);
+    }
+    this.globals.isLoading = true;
+    userEntity.UpdatedBy = this.globals.authData.UserId;
+
+    this.AchInvitationService.isActiveChange(userEntity)
+      .then((data) => {
+        debugger
+        this.globals.isLoading = false;
+
+        if(data['IsActive']==1)
+        {
+          swal({
+            position: 'top-end',
+            type: 'success',
+            title: 'User active Successfully!',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        }
+        else
+        {
+          swal({
+            position: 'top-end',
+            type: 'success',
+            title: 'User Deactive Successfully!',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        }
+      },
+        (error) => {
+          this.globals.isLoading = false;
+          this.router.navigate(['/pagenotfound']);
+        });
+   // alert(i);
+   // this.Userid = userid;
+
+
+  //  this.AchInvitationService.isActiveChange(userid)
+  //   .then((data)=>{
+  //       if(data)
+  //       {
+  //         this.addressDetails = data;
+  //       }
+  //       $('#addressDetails_Modal').modal('show');
+  //       $('.right_content_block').addClass('style_position');
+  //   },
+  //   (error)=>{
+  //     alert("data not found");
+  //   })
 
   }
 
