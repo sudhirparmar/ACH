@@ -64,6 +64,22 @@ class InviteUser extends CI_Controller
 			return false;
 			}		
 	}
+	
+	public function isActiveChange()
+	{
+		$data = json_decode(trim(file_get_contents('php://input')), true);
+		if ($data) {
+			
+				$result = $this->InviteUser_model->isActiveChange($data); 
+				if($result) {
+					echo json_encode($data);	
+				}
+			}
+			else {
+			echo "no data";
+			return false;
+			}		
+	}
 	public function ReInviteUser()
 	{
 		$data = json_decode(trim(file_get_contents('php://input')), true);		

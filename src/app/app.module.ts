@@ -53,6 +53,7 @@ import { ForgotResetService } from './services/forgot-reset.service';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -117,6 +118,8 @@ import { ForgotResetService } from './services/forgot-reset.service';
 
       { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [AuthGuard] },
       { path: 'reset-password/:id', component: ResetPasswordComponent, canActivate: [AuthGuard] },
+
+   
 
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: '**', redirectTo: 'login' }
