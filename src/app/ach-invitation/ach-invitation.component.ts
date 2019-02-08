@@ -53,7 +53,7 @@ export class AchInvitationComponent implements OnInit {
             swal({
               type: 'warning',
               title: 'Oops...',
-              text: 'You already invited this Email Address',
+              text: 'You have already invited this Email Address',
             })
           } else if (data == 'success') {
             this.btn_disable = false;

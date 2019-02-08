@@ -118,8 +118,6 @@ export class AchListComponent implements OnInit {
 
   viewAddressDetails(userid) {
     this.Userid = userid;
-
-
     this.AchInvitationService.getAddressDetails(userid)
       .then((data) => {
         if (data) {
@@ -131,7 +129,6 @@ export class AchListComponent implements OnInit {
         (error) => {
           alert("data not found");
         })
-
   }
 
 

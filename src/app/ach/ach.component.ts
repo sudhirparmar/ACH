@@ -25,6 +25,7 @@ export class AchComponent implements OnInit {
   bankList;
   IsUpdate;
 
+
   constructor(private http: Http, private router: Router, public globals: Globals, private route: ActivatedRoute, private AchService: AchService, private elem: ElementRef) {
 
   }
@@ -41,10 +42,6 @@ export class AchComponent implements OnInit {
     this.UserInfoEntity = {};
     this.AddressEntity = {};
     this.UserDocumentEntity = {};
-
-
-
-
 
     let id = this.route.snapshot.paramMap.get('id');
     var UserInfo = { 'UserId': id }
