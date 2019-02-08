@@ -62,7 +62,7 @@
       }
       
       public function getBankDetails($post_data) {
-        $this->db->select('tb.BankName,tb.BankBranch,tb.BankIFSCCode, tb.BankAddress, tb.BankPhoneNumber, tub.BankAccountNumber, tub.AccountType, tub.PercOfSalary');
+        $this->db->select('tb.BankName,tb.BankBranch,tb.BankIFSCCode, tb.BankAddress, tb.BankPhoneNumber, tub.BankAccountNumber, tub.AccountType, tub.PercOfSalary, tub.VoidCheque');
         $this->db->join('tblmstbank tb','tb.BankId=tub.BankId','left');
         $this->db->where('tub.UserId',$post_data['UserId']);
         $result = $this->db->get('tbluserbank as tub');	
