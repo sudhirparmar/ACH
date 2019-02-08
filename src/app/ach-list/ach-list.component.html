@@ -49,7 +49,7 @@
                   <th class="text-center">PAN card</th>
                   <th class="text-center">Address Proof</th>
                   <th class="text-center">Action</th>
-                
+
                 </tr>
               </thead>
               <tbody>
@@ -60,7 +60,8 @@
                   <td>{{UserDetail.EmailAddress}}</td>
 
                   <td class="text-center">
-                    <div class="activeyes_box" data-toggle="tooltip" data-placement="top" [attr.title]="UserDetail.IsActive==1 ? 'Active' : 'Deactive'">
+                    <div class="activeyes_box" data-toggle="tooltip" data-placement="top"
+                      [attr.title]="UserDetail.IsActive==1 ? 'Active' : 'Deactive'">
                       <input type="checkbox" name="active1" id="active{{i}}" (change)="isActiveChange(UserDetail,i)"
                         [checked]="UserDetail.IsActive==1" value="Yes">
                       <label for="active{{i}}"></label>
@@ -68,23 +69,37 @@
                   </td>
 
                   <td class="text-center">
-                    <a href="../src/assets/document/PAN_Card/{{UserDetail.PanCard}}" Download><span class="fa fa-download tooltip_inline"
-                        data-placement="bottom" title="Download PAN Card"></span></a>
+                    <a href="assets/document/PAN_Card/{{UserDetail.PanCard | slice : 0 : 1 }}/{{UserDetail.PanCard}}"
+                      Download><span class="fa fa-download tooltip_inline" data-placement="bottom"
+                        title="Download PAN Card"></span></a>
                   </td>
                   <td class="text-center">
-                    <a href="../src/assets/document/Address_Proof/{{UserDetail.AddressProof}}" Download><span class="fa fa-download tooltip_inline"
-                        data-placement="bottom" title="Download Address Proof"></span></a>
+                    <a href="assets/document/Address_Proof/{{UserDetail.AddressProof | slice : 0 : 1 }}/{{UserDetail.AddressProof}}"
+                      Download><span class="fa fa-download tooltip_inline" data-placement="bottom"
+                        title="Download Address Proof"></span></a>
                   </td>
-                  <td  class="text-center"><button class="btn btn-success" value="View Bank Details"
-                      (click)="ViewBankDetails(UserDetail);"> <span>View bank detail</span></button>
-                    
-                      <button class="btn btn-success" value="Edit"
-                      (click)="editDetails(UserDetail.UserId);"> <span>Edit</span></button>
-                    
-                      <button class="btn btn-success" value="View Address"
-                          (click)="viewAddressDetails(UserDetail.UserId);"> <span>View Address</span></button>
-                  </td> 
-              
+                  <td class="text-center">
+
+                    <div class="inline_delbtn tooltip_inline" title="View Bank Details" data-toggle="tooltip"
+                      data-placement="bottom">
+                      <button class="btn btn-success btn-rounded btn-sm" (click)="ViewBankDetails(UserDetail);">
+                        <span class="fa fa-university"></span>
+                      </button>
+                    </div>
+                    <div class="inline_delbtn tooltip_inline" title="Edit" data-toggle="tooltip"
+                      data-placement="bottom">
+                      <button class="btn btn-default btn-rounded btn-sm" routerLink="/ach/{{UserDetail.UserId}}">
+                        <span class="fa fa-pencil"></span>
+                      </button>
+                    </div>
+                    <div class="inline_delbtn tooltip_inline" title="View Address" data-toggle="tooltip"
+                      data-placement="bottom">
+                      <button class="btn btn-primary btn-rounded btn-sm"
+                        (click)="viewAddressDetails(UserDetail.UserId);">
+                        <span class="fa fa-address-card"></span>
+                      </button>
+                    </div>
+                  </td>
                 </tr>
                 <tr class="text-center" *ngIf="userList.length == 0">
                   <td colspan="8">There is no record found.</td>
@@ -102,7 +117,8 @@
 
 
 <!-- BANK DETAIL MODAL -->
-<div class="modal fade bs-example-modal-sm" id="BankDetails_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade bs-example-modal-sm" id="BankDetails_Modal" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -125,7 +141,9 @@
         <div class="col-lg-12 col-md-12">
           <div *ngFor="let BankDetail of bankDetails; let i = index">
             <div class="col-lg-6 col-md-6">
-               <h3><p *ngIf="bankDetails.length > 1"><strong>Bank - {{i+1}}</strong></p></h3>
+              <h3>
+                <p *ngIf="bankDetails.length > 1"><strong>Bank - {{i+1}}</strong></p>
+              </h3>
               <p><strong>Name</strong> : {{BankDetail.BankName}}</p>
               <p><strong>Branch Name </strong> : {{BankDetail.BankBranch}}</p>
               <p><strong>Account Number</strong> : {{BankDetail.BankAccountNumber}}</p>
@@ -146,7 +164,8 @@
 
 <!-- ADDRESS DETAIL MODAL -->
 
-<div class="modal fade bs-example-modal-sm" id="addressDetails_Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade bs-example-modal-sm" id="addressDetails_Modal" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -167,17 +186,15 @@
       <div class="clearfix"></div>
       <div class="modal-body">
         <div class="col-lg-12 col-md-12">
-        <div *ngFor="let address of addressDetails; let i = index">
+          <div *ngFor="let address of addressDetails; let i = index">
             <div class="col-lg-6 col-md-6">
-               
               <p><strong>Address </strong>: {{address.Address}}</p>
               <p><strong>City </strong>: {{address.City}}</p>
               <p><strong>Zipcode </strong> : {{address.Zipcode}}</p>
               <p><strong>State </strong>: {{address.StateName}}</p>
-              <p><strong>Country  </strong>: {{address.CountryName}}</p>
-              
+              <p><strong>Country </strong>: {{address.CountryName}}</p>
             </div>
-          </div> 
+          </div>
           <div class="clearfix"></div>
         </div>
       </div>

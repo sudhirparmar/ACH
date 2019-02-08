@@ -49,10 +49,10 @@ export class AchService {
     });
     return promise;
   }
-  getUserBank(UserInfo) {
+  getUserDocument(UserInfo) {
     debugger
     let promise = new Promise((resolve, reject) => {
-      this.http.post(this.globals.baseAPIUrl + 'Ach/getUserBank', UserInfo)
+      this.http.post(this.globals.baseAPIUrl + 'Ach/getUserDocument', UserInfo)
         .toPromise()
         .then(
           res => { // Success
@@ -67,10 +67,10 @@ export class AchService {
     });
     return promise;
   }
-  getBankDetails(UserInfo) {
+  getUserBank(UserInfo) {
     debugger
     let promise = new Promise((resolve, reject) => {
-      this.http.post(this.globals.baseAPIUrl + 'Ach/getBankDetails', UserInfo)
+      this.http.post(this.globals.baseAPIUrl + 'Ach/getUserBank', UserInfo)
         .toPromise()
         .then(
           res => { // Success
@@ -103,12 +103,27 @@ export class AchService {
     return promise;
   }
 
-
-
-
-  uploadFile(file) {
+  uploadDocs(file) {
     let promise = new Promise((resolve, reject) => {
-      this.http.post(this.globals.baseAPIUrl + 'Ach/uploadFile', file)
+      this.http.post(this.globals.baseAPIUrl + 'Ach/uploadDocs', file)
+        .toPromise()
+        .then(
+          res => { // Success
+            resolve(res.json());
+          },
+          msg => { // Error
+            reject(msg);
+            //this.globals.isLoading = false;
+            this.router.navigate(['/pagenotfound']);
+          }
+        );
+    });
+    return promise;
+  }
+
+  uploadCheque(file, TotalCheque) {
+    let promise = new Promise((resolve, reject) => {
+      this.http.post(this.globals.baseAPIUrl + 'Ach/uploadCheque/' + TotalCheque, file)
         .toPromise()
         .then(
           res => { // Success
