@@ -150,7 +150,7 @@
                         $activity_log = array(
                           'UserId'=>$UserId,
                           'Module' =>'AchForm',
-                          'Activity'=>'Fill Ach form by - '.$UserDetails['FirstName']
+                          'Activity'=>'Fill Ach form by - '.$UserInfo['FirstName']
                         );
 
                         $log = $this->db->insert('tblactivitylog',$activity_log);

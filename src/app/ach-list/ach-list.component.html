@@ -68,11 +68,11 @@
                   </td>
 
                   <td class="text-center">
-                    <a href="assets/document/PAN_Card/{{UserDetail.PanCard}}" Download><span class="fa fa-download tooltip_inline"
+                    <a href="../src/assets/document/PAN_Card/{{UserDetail.PanCard}}" Download><span class="fa fa-download tooltip_inline"
                         data-placement="bottom" title="Download PAN Card"></span></a>
                   </td>
                   <td class="text-center">
-                    <a href="assets/document/Address_Proof/{{UserDetail.AddressProof}}" Download><span class="fa fa-download tooltip_inline"
+                    <a href="../src/assets/document/Address_Proof/{{UserDetail.AddressProof}}" Download><span class="fa fa-download tooltip_inline"
                         data-placement="bottom" title="Download Address Proof"></span></a>
                   </td>
                   <td  class="text-center"><button class="btn btn-success" value="View Bank Details"
@@ -125,14 +125,14 @@
         <div class="col-lg-12 col-md-12">
           <div *ngFor="let BankDetail of bankDetails; let i = index">
             <div class="col-lg-6 col-md-6">
-               <p *ngIf="bankDetails.length > 1"><strong>Bank - {{i+1}}</strong></p>
-              <p>Name : {{BankDetail.BankName}}</p>
-              <p>Account Number : {{BankDetail.BankAccountNumber}}</p>
-              <p>IFSC Code : {{BankDetail.BankIFSCCode}}</p>
-              <p>Account Type : {{BankDetail.AccountType}}</p>
-              <p>Address : {{BankDetail.BankAddress}}</p>
-              <p>Phone Number : {{BankDetail.BankPhoneNumber}}</p>
-              <p>Percentage Of Salary : {{BankDetail.PercOfSalary}} %</p>
+               <h3><p *ngIf="bankDetails.length > 1"><strong>Bank - {{i+1}}</strong></p></h3>
+              <p><strong>Name</strong> : {{BankDetail.BankName}}</p>
+              <p><strong>Account Number</strong> : {{BankDetail.BankAccountNumber}}</p>
+              <p><strong>IFSC Code</strong> : {{BankDetail.BankIFSCCode}}</p>
+              <p><strong>Account Type </strong>: {{BankDetail.AccountType}}</p>
+              <p><strong>Address</strong> : {{BankDetail.BankAddress}}</p>
+              <p><strong>Phone Number</strong> : {{BankDetail.BankPhoneNumber}}</p>
+              <p><strong>Percentage Of Salary </strong>: {{BankDetail.PercOfSalary}} %</p>
             </div>
           </div>
           <div class="clearfix"></div>
@@ -169,11 +169,11 @@
         <div *ngFor="let address of addressDetails; let i = index">
             <div class="col-lg-6 col-md-6">
                
-              <p> Address : {{address.Address}}</p>
-              <p>City : {{address.City}}</p>
-              <p>Zipcode : {{address.Zipcode}}</p>
-              <p>State : {{address.StateName}}</p>
-              <p>Country : {{address.CountryName}}</p>
+              <p><strong>Address </strong>: {{address.Address}}</p>
+              <p><strong>City </strong>: {{address.City}}</p>
+              <p><strong>Zipcode </strong> : {{address.Zipcode}}</p>
+              <p><strong>State </strong>: {{address.StateName}}</p>
+              <p><strong>Country  </strong>: {{address.CountryName}}</p>
               
             </div>
           </div> 

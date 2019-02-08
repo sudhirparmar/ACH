@@ -12,6 +12,7 @@
     </div>
 </div>
 <div class="row">
+  
     <div class="col-lg-8 col-lg-offset-2">
         <div class="form-bg">
             <form class="form-validate" role="form" #achForm="ngForm" (ngSubmit)="addAchForm(achForm)">
@@ -131,6 +132,7 @@
                     <input type="file" #PanCard="ngModel" [(ngModel)]="UserDocumentEntity.PanCard" class="form-control"
                         id="PanCard" name="PanCard" accept="application/pdf,image/jpg,image/jpeg,image/png" />
                     <h5>allowed format (.pdf .jpg .jpeg .png)</h5>
+                    <h5 id="value"></h5>
                 </div>
                 <div class="form-group col-md-6">
                     <label><span class="required">*</span>Attach Address Proof</label>

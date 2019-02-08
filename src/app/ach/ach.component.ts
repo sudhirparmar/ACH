@@ -24,6 +24,7 @@ export class AchComponent implements OnInit {
   submitted;
   bankList;
   IsUpdate;
+  
 
   constructor(private http: Http, private router: Router, public globals: Globals, private route: ActivatedRoute, private AchService: AchService, private elem: ElementRef) {
 
@@ -41,10 +42,6 @@ export class AchComponent implements OnInit {
     this.UserInfoEntity = {};
     this.AddressEntity = {};
     this.UserDocumentEntity = {};
-
-
-
-
 
     let id = this.route.snapshot.paramMap.get('id');
     var UserInfo = { 'UserId': id }
@@ -218,18 +215,34 @@ export class AchComponent implements OnInit {
     let AddressProofFile = this.elem.nativeElement.querySelector('#AddressProof').files[0];
     var fd = new FormData();
     if (PanCardFile) {
-      var PanCard = Date.now() + '_' + PanCardFile['name'];
-      PanCard = PanCard.replace(/ /g, "_");
+
+      let pan = PanCardFile['name'];
+      var mystring = this.UserInfoEntity.FirstName+"_"+this.UserInfoEntity.LastName+"_PanCard_"+ Date.now();
+      var ind1 = pan .lastIndexOf('/');
+      var ind2 = pan .lastIndexOf('.');
+      
+      var PanCard= pan.substring(0,ind1+1 )+ mystring + pan.substring(ind2);
+      alert(PanCard); 
+      
       fd.append('PanCard', PanCardFile, PanCard);
       this.UserDocumentEntity.PanCard = PanCard;
-      //alert(PanCard);
+     
+
+
     } else {
       fd.append('PanCard', null);
       this.UserDocumentEntity.PanCard = null;
     }
     if (AddressProofFile) {
-      var AddressProof = Date.now() + '_' + AddressProofFile['name'];
-      AddressProof = AddressProof.replace(/ /g, "_");
+
+      let address = AddressProofFile['name'];
+      var mystring = this.UserInfoEntity.FirstName+"_"+this.UserInfoEntity.LastName+"_AddressProof_"+ Date.now();
+      var ind1 = address .lastIndexOf('/');
+      var ind2 = address .lastIndexOf('.');
+      
+      var AddressProof= address.substring(0,ind1+1 )+ mystring + address.substring(ind2);
+      alert(AddressProof); 
+
       fd.append('AddressProof', AddressProofFile, AddressProof);
       this.UserDocumentEntity.AddressProof = AddressProof;
     } else {
