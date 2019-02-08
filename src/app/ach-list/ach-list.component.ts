@@ -115,67 +115,34 @@ export class AchListComponent implements OnInit {
           this.router.navigate(['/pagenotfound']);
         });
   }
-  editDetails(userid) {
-    debugger
-    alert(userid);
-   // this.router.navigate(['/ach'], { queryParams: { userid: userid } });
-    window.location.href = '/ach/'+   userid;
-    // this.bankDetails = {};
-    // this.Userid = UserDetail.UserId;
-    // this.Name = UserDetail.FirstName;
-    // var user = { 'UserId': UserDetail.UserId };
-    //this.globals.isLoading = true;
 
-    // this.AchInvitationService.getBankDetails(user)
-    //   .then((data) => {
-    //     if (data) {
-    //       this.bankDetails = data;
-    //     }
-    //     //this.globals.isLoading = false;
-    //     $('#BankDetails_Modal').modal('show');
-    //     $('.right_content_block').addClass('style_position');
-    //   },
-    //     (error) => {
-    //       alert("data not found");
-    //       //this.globals.isLoading = false;
-    //       this.router.navigate(['/pagenotfound']);
-    //     });
-  }
-
-  viewAddressDetails(userid)
-  {
-    alert(userid);
+  viewAddressDetails(userid) {
     this.Userid = userid;
 
 
-   this.AchInvitationService.getAddressDetails(userid)
-    .then((data)=>{
-        if(data)
-        {
+    this.AchInvitationService.getAddressDetails(userid)
+      .then((data) => {
+        if (data) {
           this.addressDetails = data;
         }
         $('#addressDetails_Modal').modal('show');
         $('.right_content_block').addClass('style_position');
-    },
-    (error)=>{
-      alert("data not found");
-    })
+      },
+        (error) => {
+          alert("data not found");
+        })
 
   }
 
-  
-  isActiveChange(userEntity,i)
-  {
-    // alert(userEntity);
-    alert("i"+i);
+
+  isActiveChange(userEntity, i) {
+
     if (this.userList[i].IsActive == 1) {
       this.userList[i].IsActive = 0;
       userEntity.IsActive = 0;
-      alert("if"+userEntity.IsActive);
     } else {
       this.userList[i].IsActive = 1;
       userEntity.IsActive = 1;
-      alert(userEntity.IsActive);
     }
     this.globals.isLoading = true;
     userEntity.UpdatedBy = this.globals.authData.UserId;
@@ -185,8 +152,7 @@ export class AchListComponent implements OnInit {
         debugger
         this.globals.isLoading = false;
 
-        if(data['IsActive']==1)
-        {
+        if (data['IsActive'] == 1) {
           swal({
             position: 'top-end',
             type: 'success',
@@ -195,8 +161,7 @@ export class AchListComponent implements OnInit {
             timer: 1500
           })
         }
-        else
-        {
+        else {
           swal({
             position: 'top-end',
             type: 'success',
@@ -210,23 +175,6 @@ export class AchListComponent implements OnInit {
           this.globals.isLoading = false;
           this.router.navigate(['/pagenotfound']);
         });
-   // alert(i);
-   // this.Userid = userid;
-
-
-  //  this.AchInvitationService.isActiveChange(userid)
-  //   .then((data)=>{
-  //       if(data)
-  //       {
-  //         this.addressDetails = data;
-  //       }
-  //       $('#addressDetails_Modal').modal('show');
-  //       $('.right_content_block').addClass('style_position');
-  //   },
-  //   (error)=>{
-  //     alert("data not found");
-  //   })
-
   }
 
 }

@@ -74,16 +74,29 @@ export class AchComponent implements OnInit {
               this.getStateList(this.AddressEntity);
               this.AddressEntity.StateId = StateId;
 
-              this.AchService.getUserBank(UserInfo)
+              this.AchService.getUserDocument(UserInfo)
                 .then((data) => {
-                  this.bankList = data;
-                  this.globals.isLoading = false;
+
+                  this.UserDocumentEntity = data;
+
+                  this.AchService.getUserBank(UserInfo)
+                    .then((data) => {
+                      this.bankList = data;
+                      this.globals.isLoading = false;
+                    },
+                      (error) => {
+                        this.submitted = false;
+                        this.globals.isLoading = false;
+                        this.router.navigate(['/pagenotfound']);
+                      });
                 },
                   (error) => {
                     this.submitted = false;
                     this.globals.isLoading = false;
                     this.router.navigate(['/pagenotfound']);
                   });
+
+
             },
               (error) => {
                 this.submitted = false;
@@ -92,7 +105,7 @@ export class AchComponent implements OnInit {
               });
         } else {
           this.globals.isLoading = false;
-          var item = { 'BankName': '', 'BankAccountNumber': '', 'BankBranch': '', 'BankIFSCCode': '', 'BankPhoneNumber': '', 'BankAddress': '', 'PercOfSalary': '', 'AccountType': 'Current' };
+          var item = { 'BankName': '', 'BankAccountNumber': '', 'BankBranch': '', 'BankIFSCCode': '', 'BankPhoneNumber': '', 'BankAddress': '', 'PercOfSalary': '', 'AccountType': 'Current', 'VoidCheque': '' };
           this.bankList = [];
           this.bankList.push(item);
           this.AddressEntity.StateId = "";
@@ -163,7 +176,7 @@ export class AchComponent implements OnInit {
 
   AddBank(index) {
 
-    var item = { 'BankName': '', 'BankAccountNumber': '', 'BankBranch': '', 'BankIFSCCode': '', 'BankPhoneNumber': '', 'BankAddress': '', 'PercOfSalary': '', 'AccountType': 'Current' };
+    var item = { 'BankName': '', 'BankAccountNumber': '', 'BankBranch': '', 'BankIFSCCode': '', 'BankPhoneNumber': '', 'BankAddress': '', 'PercOfSalary': '', 'AccountType': 'Current', 'VoidCheque': '' };
     if (this.bankList.length <= index + 1) {
       this.bankList.splice(index + 1, 0, item);
     }
@@ -172,7 +185,6 @@ export class AchComponent implements OnInit {
 
   RemoveBank(item) {
     var index = this.bankList.indexOf(item);
-    alert(index);
     this.bankList.splice(index, 1);
   }
 
@@ -216,25 +228,54 @@ export class AchComponent implements OnInit {
 
     let PanCardFile = this.elem.nativeElement.querySelector('#PanCard').files[0];
     let AddressProofFile = this.elem.nativeElement.querySelector('#AddressProof').files[0];
+
     var fd = new FormData();
+    var vc = new FormData();
     if (PanCardFile) {
-      var PanCard = Date.now() + '_' + PanCardFile['name'];
-      PanCard = PanCard.replace(/ /g, "_");
+      let pan = PanCardFile['name'];
+      var mystring = this.UserInfoEntity.FirstName + "_" + this.UserInfoEntity.LastName + "_PanCard_" + Date.now();
+      var ind1 = pan.lastIndexOf('/');
+      var ind2 = pan.lastIndexOf('.');
+      var PanCard = pan.substring(0, ind1 + 1) + mystring + pan.substring(ind2);
       fd.append('PanCard', PanCardFile, PanCard);
       this.UserDocumentEntity.PanCard = PanCard;
-      //alert(PanCard);
     } else {
       fd.append('PanCard', null);
       this.UserDocumentEntity.PanCard = null;
     }
     if (AddressProofFile) {
-      var AddressProof = Date.now() + '_' + AddressProofFile['name'];
-      AddressProof = AddressProof.replace(/ /g, "_");
+      let address = AddressProofFile['name'];
+      var mystring = this.UserInfoEntity.FirstName + "_" + this.UserInfoEntity.LastName + "_AddressProof_" + Date.now();
+      var ind1 = address.lastIndexOf('/');
+      var ind2 = address.lastIndexOf('.');
+      var AddressProof = address.substring(0, ind1 + 1) + mystring + address.substring(ind2);
       fd.append('AddressProof', AddressProofFile, AddressProof);
       this.UserDocumentEntity.AddressProof = AddressProof;
     } else {
       fd.append('AddressProof', null);
       this.UserDocumentEntity.AddressProof = null;
+    }
+
+    var TotalCheque = this.bankList.length;
+
+    for (var j = 0, k = 1; j < this.bankList.length; j++ , k++) {
+      let ChequeFile = this.elem.nativeElement.querySelector('#VoidCheque' + j).files[0];
+
+
+
+      if (ChequeFile) {
+        let cheque = ChequeFile['name'];
+        var mystring = this.UserInfoEntity.FirstName + "_" + this.UserInfoEntity.LastName + "_VoidCheque" + k + "_" + Date.now();
+        var ind1 = cheque.lastIndexOf('/');
+        var ind2 = cheque.lastIndexOf('.');
+        var VoidCheque = cheque.substring(0, ind1 + 1) + mystring + cheque.substring(ind2);
+
+        vc.append('VoidCheque' + j, ChequeFile, VoidCheque);
+        this.bankList[j].VoidCheque = VoidCheque;
+      } else {
+        vc.append('VoidCheque' + j, null);
+        this.bankList[j].VoidCheque = null;
+      }
     }
 
 
@@ -245,33 +286,42 @@ export class AchComponent implements OnInit {
       this.AchService.addAchForm(obj)
         .then((data) => {
           if (PanCardFile && AddressProofFile) {
-            this.AchService.uploadFile(fd)
+            this.AchService.uploadDocs(fd)
               .then((data) => {
-                this.submitted = false;
-                this.globals.authData.StatusId = 1;
-                $('#BankDetails_Modal').modal('hide');
-                $('.right_content_block').removeClass('style_position');
-                this.UserInfoEntity = {};
-                this.AddressEntity = {};
-                this.UserDocumentEntity = {};
-                var item = { 'BankName': '', 'BankAccountNumber': '', 'BankBranch': '', 'BankIFSCCode': '', 'BankPhoneNumber': '', 'BankAddress': '', 'PercOfSalary': '', 'AccountType': 'Current' };
-                this.bankList = [];
-                this.bankList.push(item);
-                this.globals.isLoading = false;
-                achForm.form.markAsPristine();
-                swal({
-                  position: 'top-end',
-                  type: 'success',
-                  title: 'ACH Form submitted successfully!',
-                  showConfirmButton: false,
-                  timer: 1500
-                })
-                if(this.globals.authData.RoleId==1){
-                  this.router.navigate(['/ach-list']);
-                }
-                else{
-                  this.router.navigate(['/thank-you']);
-                }                
+                this.AchService.uploadCheque(vc, TotalCheque)
+                  .then((data) => {
+                    this.submitted = false;
+                    this.globals.authData.StatusId = 1;
+                    $('#BankDetails_Modal').modal('hide');
+                    $('.right_content_block').removeClass('style_position');
+                    this.UserInfoEntity = {};
+                    this.AddressEntity = {};
+                    this.UserDocumentEntity = {};
+                    var item = { 'BankName': '', 'BankAccountNumber': '', 'BankBranch': '', 'BankIFSCCode': '', 'BankPhoneNumber': '', 'BankAddress': '', 'PercOfSalary': '', 'AccountType': 'Current', 'VoidCheque': '' };
+                    this.bankList = [];
+                    this.bankList.push(item);
+                    this.globals.isLoading = false;
+                    achForm.form.markAsPristine();
+                    swal({
+                      position: 'top-end',
+                      type: 'success',
+                      title: 'ACH Form submitted successfully!',
+                      showConfirmButton: false,
+                      timer: 1500
+                    })
+                    if (this.globals.authData.RoleId == 1) {
+                      this.router.navigate(['/ach-list']);
+                    }
+                    else {
+                      this.router.navigate(['/thank-you']);
+                    }
+                  },
+                    (error) => {
+                      this.submitted = false;
+                      this.globals.isLoading = false;
+                      this.router.navigate(['/pagenotfound']);
+                    }
+                  );
               },
                 (error) => {
                   this.submitted = false;
@@ -284,7 +334,7 @@ export class AchComponent implements OnInit {
             this.UserInfoEntity = {};
             this.AddressEntity = {};
             this.UserDocumentEntity = {};
-            var item = { 'BankName': '', 'BankAccountNumber': '', 'BankBranch': '', 'BankIFSCCode': '', 'BankPhoneNumber': '', 'BankAddress': '', 'PercOfSalary': '', 'AccountType': 'Current' };
+            var item = { 'BankName': '', 'BankAccountNumber': '', 'BankBranch': '', 'BankIFSCCode': '', 'BankPhoneNumber': '', 'BankAddress': '', 'PercOfSalary': '', 'AccountType': 'Current', 'VoidCheque': '' };
             this.bankList = [];
             this.bankList.push(item);
             achForm.form.markAsPristine();

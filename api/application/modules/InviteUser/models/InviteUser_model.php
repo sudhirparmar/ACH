@@ -9,9 +9,10 @@
       public function getUserData()
       {
         try{
-          $this->db->select('UserId,FirstName,LastName,EmailAddress,PhoneNumber,IsActive');
-          $this->db->where('StatusId','1');
-          $result = $this->db->get('tbluser');
+          $this->db->select('tu.UserId,tu.FirstName,tu.LastName,tu.EmailAddress,tu.PhoneNumber,tu.IsActive,tud.PanCard,tud.AddressProof');
+          $this->db->join('tbluserdocument tud','tud.UserId=tu.UserId','left');
+          $this->db->where('tu.StatusId','1');
+          $result = $this->db->get('tbluser tu');
           $db_error = $this->db->error();
               if (!empty($db_error) && !empty($db_error['code'])) { 
                 throw new Exception('Database error! Error Code [' . $db_error['code'] . '] Error: ' . $db_error['message']);
@@ -104,6 +105,7 @@
       {
         try{
           $this->db->select('UserId, EmailAddress, StatusId');
+          $this->db->where('RoleId',2);
           $result = $this->db->get('tbluser');
           $db_error = $this->db->error();
               if (!empty($db_error) && !empty($db_error['code'])) { 

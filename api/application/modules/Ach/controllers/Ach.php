@@ -32,6 +32,18 @@ class Ach extends CI_Controller
 		}	
 	}
 
+	public function getUserDocument() {				
+		$post_userDocument = json_decode(trim(file_get_contents('php://input')), true);		
+		if ($post_userDocument) {
+			$result = $this->Ach_model->getUserDocument($post_userDocument);
+			if($result) {
+				echo json_encode($result);
+			} else {
+				echo json_encode('fail');
+			}									
+		}	
+	}
+
 	public function getUserBank()
 	{	
 		$post_userBank = json_decode(trim(file_get_contents('php://input')), true);		
@@ -48,24 +60,68 @@ class Ach extends CI_Controller
 	public function addAchForm()
 	{
 		$data = json_decode(trim(file_get_contents('php://input')), true);
-		if ($data) {			
-			$result = $this->Ach_model->addAchForm($data); 
-			if($result) {
-				echo json_encode($data);	
+		if ($data) {
+			$UserInfo=$data['UserInfo'];			
+			if($UserInfo['StatusId']==0) {
+				$result = $this->Ach_model->addAchForm($data); 
+				if($result) {
+					echo json_encode($data);	
+				}	
 			}
+			else if ($UserInfo['StatusId']==1){
+				$result = $this->Ach_model->updateAchForm($data); 
+				if($result) {
+					echo json_encode($data);	
+				}
+			}	 
 		} else {			
 			return false;
 		}		
 	}
 	
-	public function uploadFile()
+	public function uploadDocs()
 	{
 		if($_FILES){
-			if(isset($_FILES['PanCard']) && !empty($_FILES['PanCard'])){
-				move_uploaded_file($_FILES["PanCard"]["tmp_name"], "../src/assets/document/PAN_Card/".$_FILES["PanCard"]["name"]);
+			if(isset($_FILES['PanCard']) && !empty($_FILES['PanCard'])){				
+				$fileName = $_FILES["PanCard"]["name"];
+				$char = strtoupper(substr($fileName,0,1));
+				$directoryName = "../src/assets/document/PAN_Card/" . $char . "/";
+				$source_file = $_FILES["PanCard"]["tmp_name"];
+				$target_file = $directoryName . $fileName;
+				if(!is_dir($directoryName)){
+					mkdir($directoryName, 0755, true); //Create New folder if not exist
+				}
+				move_uploaded_file($source_file, $target_file);
 			}
-			if(isset($_FILES['AddressProof']) && !empty($_FILES['AddressProof'])){
-				move_uploaded_file($_FILES["AddressProof"]["tmp_name"], "../src/assets/document/Address_Proof/".$_FILES["AddressProof"]["name"]);
+			if(isset($_FILES['AddressProof']) && !empty($_FILES['AddressProof'])){				
+				$fileName = $_FILES["AddressProof"]["name"];
+				$char = strtoupper(substr($fileName,0,1));
+				$directoryName = "../src/assets/document/Address_Proof/" . $char . "/";
+				$source_file = $_FILES["AddressProof"]["tmp_name"];
+				$target_file = $directoryName . $fileName;
+				if(!is_dir($directoryName)){
+					mkdir($directoryName, 0755, true); //Create New folder if not exist
+				}
+				move_uploaded_file($source_file, $target_file);
+			}
+			echo json_encode('success');
+		}
+	}
+	public function uploadCheque($TotalCheque=null)
+	{
+		if($_FILES){
+			for( $j = 0 ; $j < $TotalCheque ; $j++ ){
+				if(isset($_FILES['VoidCheque'.$j]) && !empty($_FILES['VoidCheque'.$j])){
+					$fileName = $_FILES["VoidCheque".$j]["name"];
+					$char = strtoupper(substr($fileName,0,1));
+					$directoryName = "../src/assets/document/Void_Cheque/" . $char . "/";
+					$source_file = $_FILES["VoidCheque".$j]["tmp_name"];
+					$target_file = $directoryName . $fileName;
+					if(!is_dir($directoryName)){
+						mkdir($directoryName, 0755, true); //Create New folder if not exist
+					}
+					move_uploaded_file($source_file, $target_file);
+				}
 			}
 			echo json_encode('success');
 		}
