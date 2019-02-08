@@ -69,12 +69,12 @@
                   </td>
 
                   <td class="text-center">
-                    <a href="assets/document/PAN_Card/{{UserDetail.PanCard | slice : 0 : 1 }}/{{UserDetail.PanCard}}"
+                    <a href="assets/document/PAN_Card/{{UserDetail.PanCard | slice : 0 : 1 | uppercase }}/{{UserDetail.PanCard}}"
                       Download><span class="fa fa-download tooltip_inline" data-placement="bottom"
                         title="Download PAN Card"></span></a>
                   </td>
                   <td class="text-center">
-                    <a href="assets/document/Address_Proof/{{UserDetail.AddressProof | slice : 0 : 1 }}/{{UserDetail.AddressProof}}"
+                    <a href="assets/document/Address_Proof/{{UserDetail.AddressProof | slice : 0 : 1 | uppercase }}/{{UserDetail.AddressProof}}"
                       Download><span class="fa fa-download tooltip_inline" data-placement="bottom"
                         title="Download Address Proof"></span></a>
                   </td>
@@ -153,7 +153,7 @@
               <p><strong>Phone Number</strong> : {{BankDetail.BankPhoneNumber}}</p>
               <p><strong>Percentage Of Salary </strong>: {{BankDetail.PercOfSalary}} %</p>
               <p><strong>Void Cheque </strong>:
-                <a href="assets/document/PAN_Card/{{BankDetail.VoidCheque | slice : 0 : 1 }}/{{BankDetail.VoidCheque}}"
+                <a href="assets/document/PAN_Card/{{BankDetail.VoidCheque | slice : 0 : 1 | uppercase }}/{{BankDetail.VoidCheque}}"
                   Download><span class="fa fa-download tooltip_inline" data-placement="bottom"
                     title="Download Void Cheque"></span></a>
               </p>
