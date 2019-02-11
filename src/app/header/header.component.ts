@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    var panel = { 'AdminUserId': this.globals.authData.AdminUserId, 'paneltype': 0 };
+    var panel = { 'UserId': this.globals.authData.UserId, 'paneltype': 0 };
     this.AuthService.logout(panel)
       //.map(res => res.json())
       .then((data) => {

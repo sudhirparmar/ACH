@@ -18,10 +18,12 @@ export class ThankYouComponent implements OnInit {
 
   ngOnInit() {
     debugger
+    this.globals.isLoading = true;
     this.UserId = this.globals.authData.UserId;
     if (this.globals.authData.StatusId == 0) {
       window.location.href = '/ach/' + this.globals.authData.UserId;
-    }    
+    }   
+    this.globals.isLoading = false; 
   }
 
 }

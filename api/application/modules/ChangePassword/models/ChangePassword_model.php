@@ -117,7 +117,6 @@ class ChangePassword_model extends CI_Model {
 			);
 			
 			$this->db->where('UserId',trim($post_pass['UserId']));
-			//$this->db->where('Status',0);
 			$res = $this->db->update('tbluser',$pass_data);
 			
 			if($res) {

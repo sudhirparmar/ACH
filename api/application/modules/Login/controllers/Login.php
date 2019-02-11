@@ -54,7 +54,7 @@ class Login extends CI_Controller {
 
 		if ($post_logout) {
 			$login_data = array(
-				'UserId ' => $post_logout['AdminUserId'],
+				'UserId ' => $post_logout['UserId'],
 				'LoginType' => 0
 			);
 			$res = $this->db->insert('tblloginlog',$login_data);

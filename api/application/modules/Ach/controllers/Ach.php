@@ -65,12 +65,28 @@ class Ach extends CI_Controller
 			if($UserInfo['StatusId']==0) {
 				$result = $this->Ach_model->addAchForm($data); 
 				if($result) {
+					/* ACTIVITY LOG */
+					$activity_log = array(
+						'UserId'=>$UserInfo['UserId'],
+						'Module' =>'AchForm',
+						'Activity'=>'Fill Ach form of '.$UserInfo['FirstName'].' '.$UserInfo['LastName']
+					  );
+					  $log = $this->db->insert('tblactivitylog',$activity_log);
+					/* END */
 					echo json_encode($data);	
 				}	
 			}
 			else if ($UserInfo['StatusId']==1){
 				$result = $this->Ach_model->updateAchForm($data); 
 				if($result) {
+					/* ACTIVITY LOG */
+					$activity_log = array(
+						'UserId'=>$UserInfo['UserId'],
+						'Module' =>'AchForm',
+						'Activity'=>'Update Ach form of '.$UserInfo['FirstName'].' '.$UserInfo['LastName']
+					  );
+					  $log = $this->db->insert('tblactivitylog',$activity_log);
+					/* END */
 					echo json_encode($data);	
 				}
 			}	 

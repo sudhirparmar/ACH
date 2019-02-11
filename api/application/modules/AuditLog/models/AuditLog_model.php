@@ -9,13 +9,10 @@
       public function getLoginLog()
       {
         try{
-          // $this->db->select('LoginLogId, UserId, LoginType, UserAgent, IPAddress, CreatedOn');
-          // $result = $this->db->get('tblloginlog');
-
          
-          $this->db->select('tblloginlog.LoginLogId,tblloginlog.LoginType,tblloginlog.LoginType,tblloginlog.UserAgent,tblloginlog.IPAddress,tblloginlog.CreatedOn,tbladminuser.EmailAddress');
+          $this->db->select('tblloginlog.LoginLogId,tblloginlog.LoginType,tblloginlog.LoginType,tblloginlog.UserAgent,tblloginlog.IPAddress,tblloginlog.CreatedOn,tbluser.EmailAddress');
           $this->db->from('tblloginlog');
-          $this->db->join('tbladminuser','tblloginlog.UserId=tbladminuser.AdminUserId','inner');
+          $this->db->join('tbluser','tblloginlog.UserId=tbluser.UserId','inner');
           $result=$this->db->get();
 
           $db_error = $this->db->error();

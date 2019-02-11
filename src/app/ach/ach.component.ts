@@ -187,38 +187,23 @@ export class AchComponent implements OnInit {
 
   addAchForm(achForm) {
     this.submitted = true;
-    let PanCardFile = this.elem.nativeElement.querySelector('#PanCard').files[0];
-    let AddressProofFile = this.elem.nativeElement.querySelector('#AddressProof').files[0];
-    if (PanCardFile == undefined) {
-      swal({
-        title: "Please input PAN Card.",
-        type: "warning",
-        showConfirmButton: true
-      })
-    } else if (AddressProofFile == undefined) {
-      swal({
-        title: "Please input Address Proof.",
-        type: "warning",
-        showConfirmButton: true
-      })
-    } else {
-      if (achForm.valid) {
-        let sum = 0;
-        for (let i = 0; i < this.bankList.length; i++) {
-          sum += parseInt(this.bankList[i].PercOfSalary);
-        }
-        if (sum == 100) {
-          $('#BankDetails_Modal').modal('show');
-          $('.right_content_block').addClass('style_position');
-        } else {
-          swal({
-            title: "Percentage of salary should be sum of 100.",
-            type: "warning",
-            showConfirmButton: true
-          })
-        }
+    if (achForm.valid) {
+      let sum = 0;
+      for (let i = 0; i < this.bankList.length; i++) {
+        sum += parseInt(this.bankList[i].PercOfSalary);
+      }
+      if (sum == 100) {
+        $('#BankDetails_Modal').modal('show');
+        $('.right_content_block').addClass('style_position');
+      } else {
+        swal({
+          title: "Percentage of salary should be sum of 100.",
+          type: "warning",
+          showConfirmButton: true
+        })
       }
     }
+
   }
 
   finalSubmit(achForm) {
@@ -288,24 +273,34 @@ export class AchComponent implements OnInit {
                 this.AchService.uploadCheque(vc, TotalCheque)
                   .then((data) => {
                     this.submitted = false;
-                    this.globals.authData.StatusId = 1;
                     $('#BankDetails_Modal').modal('hide');
                     $('.right_content_block').removeClass('style_position');
+                    this.globals.isLoading = false;
+                    achForm.form.markAsPristine();
+                    if (this.UserInfoEntity.StatusId == 1) {
+                      swal({
+                        position: 'top-end',
+                        type: 'success',
+                        title: 'ACH Form updated successfully!',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                    } else {
+                      swal({
+                        position: 'top-end',
+                        type: 'success',
+                        title: 'ACH Form submitted successfully!',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                    }
+                    this.globals.authData.StatusId = 1;
                     this.UserInfoEntity = {};
                     this.AddressEntity = {};
                     this.UserDocumentEntity = {};
                     var item = { 'BankName': '', 'BankAccountNumber': '', 'BankBranch': '', 'BankIFSCCode': '', 'BankPhoneNumber': '', 'BankAddress': '', 'PercOfSalary': '', 'AccountType': 'Current', 'VoidCheque': '' };
                     this.bankList = [];
                     this.bankList.push(item);
-                    this.globals.isLoading = false;
-                    achForm.form.markAsPristine();
-                    swal({
-                      position: 'top-end',
-                      type: 'success',
-                      title: 'ACH Form submitted successfully!',
-                      showConfirmButton: false,
-                      timer: 1500
-                    })
                     if (this.globals.authData.RoleId == 1) {
                       this.router.navigate(['/ach-list']);
                     }

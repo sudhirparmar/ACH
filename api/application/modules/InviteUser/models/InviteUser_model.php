@@ -87,19 +87,6 @@
         $res = $result->result();
       }
       return $res;
-            // if($result)
-            // {
-            //   $this->db->select('StateName,CountryId');
-            //    $this->db->where('IsActive','1');
-            //   $this->db->where('UserId',$post_data);
-            //   $result = $this->db->get('tbluseraddress');
-            // }
-        
-        // $res = array();
-        // if($result->result()) {
-        //   $res = $result->result();
-        // }
-        // return $res;
       }
       public function getUserInvitationList()
       {
@@ -132,13 +119,14 @@
             $Email = $data['Email'];
             $data = array( 
               'Statusid'	=>  2,
-              'InvitationCode' => ''
+              'IsActive' => 0
             );
             $this->db->where('UserId', $UserId);
             $res = $this->db->update('tbluser',$data);
             if($res){
               /* ACTIVITY LOG */
               $activity_log = array(
+                'UserId' => '1',
                 'Module' =>'Revoke User',
                 'Activity'=>'Revoke Invitation of - '.$Email
               );
@@ -164,11 +152,11 @@
            if($data)
            {
              $UserId = $data['id'];
-             $InviteCode = $data['InvitationCode'];
              $Email = $data['Email'];
             
              $data = array( 
-              'InvitationCode' => $InviteCode,
+              'Password' =>  md5(trim($data['Password'])),
+              'IsActive' => 1,
               'Statusid'	=>  0
               );
                $this->db->where('UserId', $UserId);
@@ -178,6 +166,7 @@
                {
                  /* ACTIVITY LOG */
                 $activity_log = array(
+                  'UserId' => '1',
                   'Module' =>'Re-Invite User',
                   'Activity'=>'Re-Invitation sent to - '.$Email
                 );
@@ -252,6 +241,7 @@
             if($res) { 
               /* ACTIVITY LOG */
                 $activity_log = array(
+                  'UserId' => '1',
                   'Module' =>'Invite User',
                   'Activity'=>'Invitation sent to - '.$post_Invitation['EmailAddress']
                 );

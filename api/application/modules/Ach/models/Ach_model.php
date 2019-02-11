@@ -147,7 +147,7 @@
                       $bank_data=array(
                         "BankName"=>trim($Bank['BankName']),
                         "BankBranch"=>trim($Bank['BankBranch']),
-                        "BankIFSCCode"=>trim($Bank['BankIFSCCode']),  
+                        "BankIFSCCode"=>strtoupper(trim($Bank['BankIFSCCode'])),  
                         "BankPhoneNumber"=>trim($Bank['BankPhoneNumber']),
                         "BankAddress"=>trim($Bank['BankAddress'])
                       );
@@ -169,15 +169,7 @@
                       );                
                       $UserBankResult = $this->db->insert('tbluserbank', $userbank_data);
                       if($UserBankResult){
-                        /* ACTIVITY LOG */
-                        $activity_log = array(
-                          'UserId'=>$UserId,
-                          'Module' =>'AchForm',
-                          'Activity'=>'Fill Ach form by - '.$UserInfo['FirstName']
-                        );
-
-                        $log = $this->db->insert('tblactivitylog',$activity_log);
-                        /* END */
+                        return true;
                       } else {
                         return false;
                       }
@@ -267,7 +259,7 @@
                       $bank_data=array(
                         "BankName"=>trim($Bank['BankName']),
                         "BankBranch"=>trim($Bank['BankBranch']),
-                        "BankIFSCCode"=>trim($Bank['BankIFSCCode']),  
+                        "BankIFSCCode"=>strtoupper(trim($Bank['BankIFSCCode'])),  
                         "BankPhoneNumber"=>trim($Bank['BankPhoneNumber']),
                         "BankAddress"=>trim($Bank['BankAddress'])
                       );
@@ -293,7 +285,7 @@
                         $activity_log = array(
                           'UserId'=>$UserId,
                           'Module' =>'AchForm',
-                          'Activity'=>'Fill Ach form by - '.$UserInfo['FirstName']
+                          'Activity'=>'Update Ach form by - '.$UserInfo['FirstName']
                         );
 
                         $log = $this->db->insert('tblactivitylog',$activity_log);

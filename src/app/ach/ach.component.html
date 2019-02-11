@@ -12,7 +12,7 @@
     </div>
 </div>
 <div class="row">
-  
+
     <div class="col-lg-8 col-lg-offset-2">
         <div class="form-bg">
             <form class="form-validate" role="form" #achForm="ngForm" (ngSubmit)="addAchForm(achForm)">
@@ -145,16 +145,27 @@
                 <div class="form-group col-md-6">
                     <label><span class="required">*</span>Attach PAN Card</label>
                     <input type="file" #PanCard="ngModel" [(ngModel)]="UserDocumentEntity.PanCard" class="form-control"
-                        id="PanCard" name="PanCard" accept="application/pdf,image/jpg,image/jpeg,image/png" />
+                        id="PanCard" name="PanCard" accept="application/pdf,image/jpg,image/jpeg,image/png" required/>
                     <h5>allowed format (.pdf .jpg .jpeg .png)</h5>
-                    <h5 id="value"></h5>
+                    <span class="error_span"
+                        *ngIf="(PanCard.dirty && PanCard.invalid) || (PanCard.pristine && submitted)">
+                        <span *ngIf="PanCard.errors && PanCard.errors.required">
+                            Please input Pan Card
+                        </span>
+                    </span>
                 </div>
                 <div class="form-group col-md-6">
                     <label><span class="required">*</span>Attach Address Proof</label>
                     <input type="file" #AddressProof="ngModel" [(ngModel)]="UserDocumentEntity.AddressProof"
                         class="form-control" id="AddressProof" name="AddressProof"
-                        accept="application/pdf,image/jpg,image/jpeg,image/png" />
+                        accept="application/pdf,image/jpg,image/jpeg,image/png" required/>
                     <h5>allowed format (.pdf .jpg .jpeg .png)</h5>
+                    <span class="error_span"
+                        *ngIf="(AddressProof.dirty && AddressProof.invalid) || (AddressProof.pristine && submitted)">
+                        <span *ngIf="AddressProof.errors && AddressProof.errors.required">
+                            Please input Address Proof
+                        </span>
+                    </span>
                 </div>
                 <div class="clearfix"></div>
                 <hr>
@@ -232,8 +243,14 @@
                         <label><span class="required">*</span>Attach Void Cheque</label>
                         <input type="file" #VoidCheque="ngModel" [(ngModel)]="bankList[i].VoidCheque"
                             class="form-control" id="VoidCheque{{i}}" name="VoidCheque{{i}}"
-                            accept="application/pdf,image/jpg,image/jpeg,image/png" />
+                            accept="application/pdf,image/jpg,image/jpeg,image/png" required />
                         <h5>allowed format (.pdf .jpg .jpeg .png)</h5>
+                        <span class="error_span"
+                            *ngIf="(VoidCheque.dirty && VoidCheque.invalid) || (VoidCheque.pristine && submitted)">
+                            <span *ngIf="VoidCheque.errors && VoidCheque.errors.required">
+                                Please input Void Cheque
+                            </span>
+                        </span>
                     </div>
                     <div class="form-group col-md-4">
                         <label><span class="required">*</span>Account Type</label>
