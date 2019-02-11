@@ -207,8 +207,10 @@
             $UserAddress = $data['UserAddress'];
             $UserDocument = $data['UserDocument'];
             $BankDetails = $data['BankDetails'];
+            $CreatedBy = $data['CreatedBy'];
 
             $UserId = $UserInfo['UserId'];
+            $EmailAddress = $UserInfo['EmailAddress'];
             
             //add user info
             $UserInfo_data=array(
@@ -281,15 +283,15 @@
                       );                
                       $UserBankResult = $this->db->insert('tbluserbank', $userbank_data);
                       if($UserBankResult){
-                        /* ACTIVITY LOG */
+                        /*########################### ACTIVITY LOG ########################*/
                         $activity_log = array(
-                          'UserId'=>$UserId,
+                          'UserId'=>$CreatedBy,
                           'Module' =>'AchForm',
-                          'Activity'=>'Update Ach form by - '.$UserInfo['FirstName']
+                          'Activity'=>'Ach form Update  - '.$EmailAddress
                         );
 
                         $log = $this->db->insert('tblactivitylog',$activity_log);
-                        /* END */
+                        /*################################ END ############################*/
                       } else {
                         return false;
                       }

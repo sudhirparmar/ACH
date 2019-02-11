@@ -143,7 +143,7 @@ export class AchListComponent implements OnInit {
     }
     this.globals.isLoading = true;
     userEntity.UpdatedBy = this.globals.authData.UserId;
-
+    debugger
     this.AchInvitationService.isActiveChange(userEntity)
       .then((data) => {
         debugger

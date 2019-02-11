@@ -263,7 +263,7 @@ export class AchComponent implements OnInit {
 
     if (achForm.valid) {
       this.globals.isLoading = true;
-      var obj = { 'UserInfo': this.UserInfoEntity, 'UserAddress': this.AddressEntity, 'UserDocument': this.UserDocumentEntity, 'BankDetails': this.bankList };
+      var obj = { 'UserInfo': this.UserInfoEntity, 'UserAddress': this.AddressEntity, 'UserDocument': this.UserDocumentEntity, 'BankDetails': this.bankList ,'CreatedBy':this.globals.authData.UserId};
       debugger
       this.AchService.addAchForm(obj)
         .then((data) => {
