@@ -43,11 +43,30 @@
             $updatedata = array(
               'IsActive' => $IsActive
             );	
-           
+            $Email = $data['Email'];
             $this->db->where('UserId',trim($data['UserId']));
             $res = $this->db->update('tbluser',$updatedata);
           
             if($res){
+
+              /*##################### ACTIVITY LOG ###########################*/
+
+              if($data['IsActive']==1)
+              {
+                $val="User Activeted - ".$data['EmailAddress'];
+              }
+              else
+              {
+                $val="User Deactiveted - ".$data['EmailAddress'];
+              }
+              $activity_log = array(
+                'UserId'=> $data['UserId'],
+                'Module' =>'Ach list',
+                'Activity'=>$val 
+              );
+
+              $log = $this->db->insert('tblactivitylog',$activity_log);
+              /*####################### END ##################################*/
                return $res;
             }else{
               return false;
