@@ -33,6 +33,10 @@ export class AchComponent implements OnInit {
   ngOnInit() {
     debugger
     this.globals.isLoading = false;
+    $('#Preview_Modal').on('hidden.bs.modal', function () {
+      $('#addressDetails_Modal').modal('hide');
+      $('.right_content_block').removeClass('style_position');
+    })
 
     this.IsUpdate = false;
 
@@ -60,6 +64,7 @@ export class AchComponent implements OnInit {
 
     this.AchService.getUserInfo(UserInfo)
       .then((data) => {
+
         this.UserInfoEntity = data;
 
         if (this.UserInfoEntity.StatusId == 1) {
@@ -193,7 +198,7 @@ export class AchComponent implements OnInit {
         sum += parseInt(this.bankList[i].PercOfSalary);
       }
       if (sum == 100) {
-        $('#BankDetails_Modal').modal('show');
+        $('#Preview_Modal').modal('show');
         $('.right_content_block').addClass('style_position');
       } else {
         swal({
@@ -263,7 +268,7 @@ export class AchComponent implements OnInit {
 
     if (achForm.valid) {
       this.globals.isLoading = true;
-      var obj = { 'UserInfo': this.UserInfoEntity, 'UserAddress': this.AddressEntity, 'UserDocument': this.UserDocumentEntity, 'BankDetails': this.bankList ,'CreatedBy':this.globals.authData.UserId};
+      var obj = { 'UserInfo': this.UserInfoEntity, 'UserAddress': this.AddressEntity, 'UserDocument': this.UserDocumentEntity, 'BankDetails': this.bankList, 'CreatedBy': this.globals.authData.UserId };
       debugger
       this.AchService.addAchForm(obj)
         .then((data) => {
@@ -273,7 +278,7 @@ export class AchComponent implements OnInit {
                 this.AchService.uploadCheque(vc, TotalCheque)
                   .then((data) => {
                     this.submitted = false;
-                    $('#BankDetails_Modal').modal('hide');
+                    $('#Preview_Modal').modal('hide');
                     $('.right_content_block').removeClass('style_position');
                     this.globals.isLoading = false;
                     achForm.form.markAsPristine();

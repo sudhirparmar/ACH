@@ -67,8 +67,8 @@ class Ach extends CI_Controller
 				if($result) {
 					/* ACTIVITY LOG */
 					$activity_log = array(
-						'UserId'=>$UserInfo['UserId'],
-						'Module' =>'AchForm',
+						'UserId'=>$data['CreatedBy'],
+						'Module' =>'Ach Form',
 						'Activity'=>'Fill Ach form of '.$UserInfo['FirstName'].' '.$UserInfo['LastName']
 					  );
 					  $log = $this->db->insert('tblactivitylog',$activity_log);
@@ -81,8 +81,8 @@ class Ach extends CI_Controller
 				if($result) {
 					/* ACTIVITY LOG */
 					$activity_log = array(
-						'UserId'=>$UserInfo['UserId'],
-						'Module' =>'AchForm',
+						'UserId'=>$data['CreatedBy'],
+						'Module' =>'Ach Form',
 						'Activity'=>'Update Ach form of '.$UserInfo['FirstName'].' '.$UserInfo['LastName']
 					  );
 					  $log = $this->db->insert('tblactivitylog',$activity_log);

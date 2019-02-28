@@ -33,6 +33,16 @@ export class AchListComponent implements OnInit {
         $('footer').removeClass('footer_fixed');
       }
     }, 1000);
+
+    $('#addressDetails_Modal').on('hidden.bs.modal', function () {
+      $('#addressDetails_Modal').modal('hide');
+      $('.right_content_block').removeClass('style_position');
+    })
+    $('#BankDetails_Modal').on('hidden.bs.modal', function () {
+      $('#BankDetails_Modal').modal('hide');
+      $('.right_content_block').removeClass('style_position');
+    })
+
     this.globals.isLoading = true;
     this.userList = [];
 

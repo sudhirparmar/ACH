@@ -283,15 +283,7 @@
                       );                
                       $UserBankResult = $this->db->insert('tbluserbank', $userbank_data);
                       if($UserBankResult){
-                        /*########################### ACTIVITY LOG ########################*/
-                        $activity_log = array(
-                          'UserId'=>$CreatedBy,
-                          'Module' =>'AchForm',
-                          'Activity'=>'Ach form Update  - '.$EmailAddress
-                        );
-
-                        $log = $this->db->insert('tblactivitylog',$activity_log);
-                        /*################################ END ############################*/
+                        return true;
                       } else {
                         return false;
                       }

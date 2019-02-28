@@ -142,10 +142,10 @@
                 </div>
                 <div class="clearfix"></div>
 
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6" *ngIf="UserDocumentEntity.PanCard==null">
                     <label><span class="required">*</span>Attach PAN Card</label>
                     <input type="file" #PanCard="ngModel" [(ngModel)]="UserDocumentEntity.PanCard" class="form-control"
-                        id="PanCard" name="PanCard" accept="application/pdf,image/jpg,image/jpeg,image/png" required/>
+                        id="PanCard" name="PanCard" accept="application/pdf,image/jpg,image/jpeg,image/png" required />
                     <h5>allowed format (.pdf .jpg .jpeg .png)</h5>
                     <span class="error_span"
                         *ngIf="(PanCard.dirty && PanCard.invalid) || (PanCard.pristine && submitted)">
@@ -154,11 +154,17 @@
                         </span>
                     </span>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6" *ngIf="UserDocumentEntity.PanCard!=null">
+                    <label><span class="required">*</span>Update PAN Card</label>
+                    <input type="file" #PanCard="ngModel" [(ngModel)]="UserDocumentEntity.PanCard" class="form-control"
+                        id="PanCard" name="PanCard" accept="application/pdf,image/jpg,image/jpeg,image/png" />
+                    <h5>allowed format (.pdf .jpg .jpeg .png)</h5>
+                </div>
+                <div class="form-group col-md-6" *ngIf="UserDocumentEntity.AddressProof==null">
                     <label><span class="required">*</span>Attach Address Proof</label>
                     <input type="file" #AddressProof="ngModel" [(ngModel)]="UserDocumentEntity.AddressProof"
                         class="form-control" id="AddressProof" name="AddressProof"
-                        accept="application/pdf,image/jpg,image/jpeg,image/png" required/>
+                        accept="application/pdf,image/jpg,image/jpeg,image/png" required />
                     <h5>allowed format (.pdf .jpg .jpeg .png)</h5>
                     <span class="error_span"
                         *ngIf="(AddressProof.dirty && AddressProof.invalid) || (AddressProof.pristine && submitted)">
@@ -166,6 +172,13 @@
                             Please input Address Proof
                         </span>
                     </span>
+                </div>
+                <div class="form-group col-md-6" *ngIf="UserDocumentEntity.AddressProof!=null">
+                    <label><span class="required">*</span>Update Address Proof</label>
+                    <input type="file" #AddressProof="ngModel" [(ngModel)]="UserDocumentEntity.AddressProof"
+                        class="form-control" id="AddressProof" name="AddressProof"
+                        accept="application/pdf,image/jpg,image/jpeg,image/png" />
+                    <h5>allowed format (.pdf .jpg .jpeg .png)</h5>
                 </div>
                 <div class="clearfix"></div>
                 <hr>
@@ -239,7 +252,7 @@
                         </span>
                     </div>
                     <div class="clearfix"></div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-6" *ngIf="bankList[i].VoidCheque==''">
                         <label><span class="required">*</span>Attach Void Cheque</label>
                         <input type="file" #VoidCheque="ngModel" [(ngModel)]="bankList[i].VoidCheque"
                             class="form-control" id="VoidCheque{{i}}" name="VoidCheque{{i}}"
@@ -251,6 +264,13 @@
                                 Please input Void Cheque
                             </span>
                         </span>
+                    </div>
+                    <div class="form-group col-md-6" *ngIf="bankList[i].VoidCheque!=''">
+                        <label><span class="required">*</span>Update Void Cheque</label>
+                        <input type="file" #VoidCheque="ngModel" [(ngModel)]="bankList[i].VoidCheque"
+                            class="form-control" id="VoidCheque{{i}}" name="VoidCheque{{i}}"
+                            accept="application/pdf,image/jpg,image/jpeg,image/png" />
+                        <h5>allowed format (.pdf .jpg .jpeg .png)</h5>
                     </div>
                     <div class="form-group col-md-4">
                         <label><span class="required">*</span>Account Type</label>
@@ -297,7 +317,7 @@
 
 
 <!-- MODAL POP UP -->
-<div class="modal fade bs-example-modal-sm" id="BankDetails_Modal" tabindex="-1" role="dialog"
+<div class="modal fade bs-example-modal-sm" id="Preview_Modal" tabindex="-1" role="dialog"
     aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
