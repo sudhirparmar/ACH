@@ -98,7 +98,7 @@ define('BASE_URL', 'http://localhost:4200'); // Base URL - Local
 
 
 define('SMTP_EMAIL', 'myopeneyes3937@gmail.com');
-define('SMTP_PASSWORD', 'W3lc0m3@2019');
+define('SMTP_PASSWORD', 'W3lc0m3$2019');
 define('SMTP_HOST', 'ssl://smtp.googlemail.com');
 define('SMTP_PORT', '465');
 define('SMTP_PROTOCOL', 'smtp');
